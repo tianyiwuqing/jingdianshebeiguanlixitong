@@ -130,11 +130,11 @@
           </div>
           <div id="xin-y" data-options="region:'center',title:' '" style="padding:5px;background:white;">
             <div id="xin-x">
-              <a href="cxdl.jsp">重新登录 </a>
-              <a href="xgmm.jsp">修改密码</a>
+              <a href="Login.jsp">重新登录 </a>
+              <a href="changepassword.jsp">修改密码</a>
               <a href="">帮助</a>
               <a href="">关于</a>
-              <a href="tcdl.jsp">退出</a>
+              <a href="logout.jsp">退出</a>
             </div>
             <div id="context">
               <img src="../img/1234.png" style="margin-left: 230px">

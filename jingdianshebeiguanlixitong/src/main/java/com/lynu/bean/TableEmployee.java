@@ -152,4 +152,25 @@ public class TableEmployee {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+    @Override
+    public String toString() {
+        return "TableEmployee{" +
+                "id=" + id +
+                ", employeename='" + employeename + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", sex=" + sex +
+                ", telephone='" + telephone + '\'' +
+                ", address='" + address + '\'' +
+                ", isValid=" + isValid +
+                ", isLeader=" + isLeader +
+                ", description='" + description + '\'' +
+                ", type=" + type +
+                ", delFlag=" + delFlag +
+                ", photograph='" + photograph + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 }

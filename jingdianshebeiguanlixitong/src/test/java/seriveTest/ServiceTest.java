@@ -18,7 +18,7 @@ public class ServiceTest {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-dao.xml", "spring-service.xml");
         TableEmployeeServcie servcie = context.getBean(TableEmployeeServcie.class);
         TableEmployee employee=new TableEmployee();
-        employee.setEmployeename("zzzzzzzzzzzz");
+        employee.setEmployeename("zzzzzzzzzzzz111111");
         employee.setUsername("aszaz");
         employee.setPassword("azas");
         employee.setSex(0);

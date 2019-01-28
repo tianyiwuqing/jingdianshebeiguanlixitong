@@ -48,13 +48,12 @@
     <div id="p" style="padding:10px;" >
         <h2>医疗设备管理系统</h2>
         <br>
-        <form>
-            <input type="text" value="Admin">
+        <form action="LoginController/login">
+            <input name="user"  type="text" value="Admin">
             <br>
-            <input type="text">
+            <input name="password"  type="password">
             <br>
-
-            <span><a href="index.jsp"><img src="../jquery-easyui-1.3.5/themes/icons/ok.png"> 登录</a></span>
+            <span><input href="index.jsp"><img src="../jquery-easyui-1.3.5/themes/icons/ok.png"> 登录</input></span>
             <span><a href="index.jsp"><img src="../jquery-easyui-1.3.5/themes/icons/no.png"> 放弃</a></span>
         </form>
 
