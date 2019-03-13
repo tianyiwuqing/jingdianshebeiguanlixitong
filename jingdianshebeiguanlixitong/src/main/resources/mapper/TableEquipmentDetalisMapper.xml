@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynu.tools.mapper.TableEquipmentDetalisMapper">
+  <resultMap id="BaseResultMap" type="com.lynu.bean.TableEquipmentDetalis">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="equipment_id" jdbcType="VARCHAR" property="equipmentId" />
+    <result column="equipment_type" jdbcType="INTEGER" property="equipmentType" />
+    <result column="equipment_furnish" jdbcType="INTEGER" property="equipmentFurnish" />
+    <result column="equipment_brand" jdbcType="VARCHAR" property="equipmentBrand" />
+    <result column="productDate" jdbcType="TIMESTAMP" property="productdate" />
+    <result column="useDate" jdbcType="TIMESTAMP" property="usedate" />
+    <result column="fix_type" jdbcType="INTEGER" property="fixType" />
+    <result column="fixendDate" jdbcType="TIMESTAMP" property="fixenddate" />
+    <result column="fixtime" jdbcType="TIMESTAMP" property="fixtime" />
+    <result column="equipment_details" jdbcType="VARCHAR" property="equipmentDetails" />
+    <result column="department_id" jdbcType="INTEGER" property="departmentId" />
+    <result column="employee" jdbcType="INTEGER" property="employee" />
+    <result column="storage" jdbcType="INTEGER" property="storage" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, equipment_id, equipment_type, equipment_furnish, equipment_brand, productDate, 
+    useDate, fix_type, fixendDate, fixtime, equipment_details, department_id, employee, 
+    storage, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.lynu.bean.TableEquipmentDetalisExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from table_equipment_detalis
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from table_equipment_detalis
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_equipment_detalis
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lynu.bean.TableEquipmentDetalisExample">
+    delete from table_equipment_detalis
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lynu.bean.TableEquipmentDetalis">
+    insert into table_equipment_detalis (id, equipment_id, equipment_type, 
+      equipment_furnish, equipment_brand, productDate, 
+      useDate, fix_type, fixendDate, 
+      fixtime, equipment_details, department_id, 
+      employee, storage, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{equipmentId,jdbcType=VARCHAR}, #{equipmentType,jdbcType=INTEGER}, 
+      #{equipmentFurnish,jdbcType=INTEGER}, #{equipmentBrand,jdbcType=VARCHAR}, #{productdate,jdbcType=TIMESTAMP}, 
+      #{usedate,jdbcType=TIMESTAMP}, #{fixType,jdbcType=INTEGER}, #{fixenddate,jdbcType=TIMESTAMP}, 
+      #{fixtime,jdbcType=TIMESTAMP}, #{equipmentDetails,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}, 
+      #{employee,jdbcType=INTEGER}, #{storage,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lynu.bean.TableEquipmentDetalis">
+    insert into table_equipment_detalis
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="equipmentId != null">
+        equipment_id,
+      </if>
+      <if test="equipmentType != null">
+        equipment_type,
+      </if>
+      <if test="equipmentFurnish != null">
+        equipment_furnish,
+      </if>
+      <if test="equipmentBrand != null">
+        equipment_brand,
+      </if>
+      <if test="productdate != null">
+        productDate,
+      </if>
+      <if test="usedate != null">
+        useDate,
+      </if>
+      <if test="fixType != null">
+        fix_type,
+      </if>
+      <if test="fixenddate != null">
+        fixendDate,
+      </if>
+      <if test="fixtime != null">
+        fixtime,
+      </if>
+      <if test="equipmentDetails != null">
+        equipment_details,
+      </if>
+      <if test="departmentId != null">
+        department_id,
+      </if>
+      <if test="employee != null">
+        employee,
+      </if>
+      <if test="storage != null">
+        storage,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentId != null">
+        #{equipmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentType != null">
+        #{equipmentType,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentFurnish != null">
+        #{equipmentFurnish,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentBrand != null">
+        #{equipmentBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="productdate != null">
+        #{productdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usedate != null">
+        #{usedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fixType != null">
+        #{fixType,jdbcType=INTEGER},
+      </if>
+      <if test="fixenddate != null">
+        #{fixenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fixtime != null">
+        #{fixtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="equipmentDetails != null">
+        #{equipmentDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="employee != null">
+        #{employee,jdbcType=INTEGER},
+      </if>
+      <if test="storage != null">
+        #{storage,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lynu.bean.TableEquipmentDetalisExample" resultType="java.lang.Long">
+    select count(*) from table_equipment_detalis
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update table_equipment_detalis
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.equipmentId != null">
+        equipment_id = #{record.equipmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipmentType != null">
+        equipment_type = #{record.equipmentType,jdbcType=INTEGER},
+      </if>
+      <if test="record.equipmentFurnish != null">
+        equipment_furnish = #{record.equipmentFurnish,jdbcType=INTEGER},
+      </if>
+      <if test="record.equipmentBrand != null">
+        equipment_brand = #{record.equipmentBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productdate != null">
+        productDate = #{record.productdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.usedate != null">
+        useDate = #{record.usedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fixType != null">
+        fix_type = #{record.fixType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fixenddate != null">
+        fixendDate = #{record.fixenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fixtime != null">
+        fixtime = #{record.fixtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.equipmentDetails != null">
+        equipment_details = #{record.equipmentDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departmentId != null">
+        department_id = #{record.departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.employee != null">
+        employee = #{record.employee,jdbcType=INTEGER},
+      </if>
+      <if test="record.storage != null">
+        storage = #{record.storage,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update table_equipment_detalis
+    set id = #{record.id,jdbcType=INTEGER},
+      equipment_id = #{record.equipmentId,jdbcType=VARCHAR},
+      equipment_type = #{record.equipmentType,jdbcType=INTEGER},
+      equipment_furnish = #{record.equipmentFurnish,jdbcType=INTEGER},
+      equipment_brand = #{record.equipmentBrand,jdbcType=VARCHAR},
+      productDate = #{record.productdate,jdbcType=TIMESTAMP},
+      useDate = #{record.usedate,jdbcType=TIMESTAMP},
+      fix_type = #{record.fixType,jdbcType=INTEGER},
+      fixendDate = #{record.fixenddate,jdbcType=TIMESTAMP},
+      fixtime = #{record.fixtime,jdbcType=TIMESTAMP},
+      equipment_details = #{record.equipmentDetails,jdbcType=VARCHAR},
+      department_id = #{record.departmentId,jdbcType=INTEGER},
+      employee = #{record.employee,jdbcType=INTEGER},
+      storage = #{record.storage,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lynu.bean.TableEquipmentDetalis">
+    update table_equipment_detalis
+    <set>
+      <if test="equipmentId != null">
+        equipment_id = #{equipmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentType != null">
+        equipment_type = #{equipmentType,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentFurnish != null">
+        equipment_furnish = #{equipmentFurnish,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentBrand != null">
+        equipment_brand = #{equipmentBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="productdate != null">
+        productDate = #{productdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usedate != null">
+        useDate = #{usedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fixType != null">
+        fix_type = #{fixType,jdbcType=INTEGER},
+      </if>
+      <if test="fixenddate != null">
+        fixendDate = #{fixenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fixtime != null">
+        fixtime = #{fixtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="equipmentDetails != null">
+        equipment_details = #{equipmentDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        department_id = #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="employee != null">
+        employee = #{employee,jdbcType=INTEGER},
+      </if>
+      <if test="storage != null">
+        storage = #{storage,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lynu.bean.TableEquipmentDetalis">
+    update table_equipment_detalis
+    set equipment_id = #{equipmentId,jdbcType=VARCHAR},
+      equipment_type = #{equipmentType,jdbcType=INTEGER},
+      equipment_furnish = #{equipmentFurnish,jdbcType=INTEGER},
+      equipment_brand = #{equipmentBrand,jdbcType=VARCHAR},
+      productDate = #{productdate,jdbcType=TIMESTAMP},
+      useDate = #{usedate,jdbcType=TIMESTAMP},
+      fix_type = #{fixType,jdbcType=INTEGER},
+      fixendDate = #{fixenddate,jdbcType=TIMESTAMP},
+      fixtime = #{fixtime,jdbcType=TIMESTAMP},
+      equipment_details = #{equipmentDetails,jdbcType=VARCHAR},
+      department_id = #{departmentId,jdbcType=INTEGER},
+      employee = #{employee,jdbcType=INTEGER},
+      storage = #{storage,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

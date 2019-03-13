@@ -1,7 +1,9 @@
 package com.lynu.bean;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.Date;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class TableEmployee {
     private Integer id;
 

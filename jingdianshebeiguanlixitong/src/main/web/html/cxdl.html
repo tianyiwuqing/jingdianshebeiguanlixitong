@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>重新登录</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../jquery-easyui-1.3.5/themes/default/easyui.css">
+    <link rel="stylesheet" href="../jquery-easyui-1.3.5/themes/icon.css">
+    <script type="text/javascript" src="../jquery-easyui-1.3.5/jquery.min.js"></script>
+    <script type="text/javascript" src="../jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"></script>
+    <style>
+        #p{
+            text-align: center;
+        }
+        input{
+            margin: 2px;
+        }
+        span{
+            margin-top: 15px;
+            margin-right: 20px;
+           display: inline-block;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            border: #0f0f0f;
+            background-color: #c7ddef;
+            border-radius: 4px;
+        }
+        #p a{
+            text-decoration: none;
+        }
+        #out{
+            margin-left: 500px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="out">
+    <div id="p" style="padding:10px;" >
+        <h2>医疗设备管理系统</h2>
+        <br>
+        <form>
+            <input type="text" value="Admin">
+            <br>
+            <input type="text">
+            <br>
+
+            <span><a href="newindex.html"><img src="../jquery-easyui-1.3.5/themes/icons/ok.png"> 登录</a></span>
+            <span><a href="newindex.html"><img src="../jquery-easyui-1.3.5/themes/icons/no.png"> 放弃</a></span>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    $('#p').panel({
+        width:400,
+        height:230,
+        title: '系统登录',
+        tools: [{
+            iconCls:'icon-no',
+        }]
+    });
+</script>
+
+</body>
+</html>
