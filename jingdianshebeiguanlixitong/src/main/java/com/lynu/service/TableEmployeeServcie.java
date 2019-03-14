@@ -1,7 +1,6 @@
 package com.lynu.service;
 
 import com.lynu.bean.TableEmployee;
-import org.springframework.stereotype.Service;
 
 /**
  * @author 28449

@@ -55,6 +55,8 @@
             margin-top: 1px;
             margin-bottom: 1px;
         }
+
+
     </style>
 </head>
 <body>
@@ -149,6 +151,7 @@
                     </div>
                     <div id="xin-y" data-options="region:'center',title:' '" style="padding:3px;background:white;">
                         <div id="xin--x">设备增加管理</div>
+                        <%--二级导航--%>
                         <div id="xin-x">
                             <a href="../html/cxdl.html">重新登录 </a>
                             <a href="xgmm.html">修改密码</a>
@@ -160,7 +163,7 @@
                         <div id="shebeizengjia1">
                             <div id="dd3" style="width:100%;height:27px;background:#f9f9f9;">
                                 <div id="title">
-                                    <a href=""><img src="../fontimg/add.png" alt="">添加</a>
+                                    <a href="" onclick="javascript:add()"><img src="../fontimg/add.png" alt="">添加</a>
                                     <a href=""><img src="../fontimg/shanchu.png" alt="">删除</a>
                                     <a href=""><img src="../fontimg/baocun.png" alt="">保存</a>
                                     <a href=""><img src="../fontimg/dengzhang.png" alt="">登账</a>
@@ -214,6 +217,7 @@
                             </div>
                         </div>
                     </div>
+                            <form id="danjuxinxi">
                             单据信息
                             <div style="border: 1px solid #0f0f0f;width: 100%;height: 130px" id="danju">
                                 单据编号：<input type="text">
@@ -257,6 +261,7 @@
                             </div>
                             详细配置
                             <input style="border: 1px solid #0f0f0f;width: 100%;height: 35px">
+                            </form>
                     </div>
                     </div>
                     <div data-options="region:'south',title:'试用版'" style="height:20px;"></div>

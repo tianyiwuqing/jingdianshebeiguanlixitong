@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lynu.dao.TableStorageMapper">
-  <resultMap id="BaseResultMap" type="com.lynu.bean.TableStorage">
+<mapper namespace="com.lynu.dao.TableDepreciationMapper">
+  <resultMap id="BaseResultMap" type="com.lynu.bean.TableDepreciation">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
-    <result column="relationperson" jdbcType="VARCHAR" property="relationperson" />
+    <result column="explain" jdbcType="VARCHAR" property="explain" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, address, telephone, relationperson
+    id, name, explain
   </sql>
-  <select id="selectByExample" parameterType="com.lynu.bean.TableStorageExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.lynu.bean.TableDepreciationExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from table_storage
+    from table_depreciation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,27 +84,27 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from table_storage
+    from table_depreciation
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from table_storage
+    delete from table_depreciation
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.lynu.bean.TableStorageExample">
-    delete from table_storage
+  <delete id="deleteByExample" parameterType="com.lynu.bean.TableDepreciationExample">
+    delete from table_depreciation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.lynu.bean.TableStorage">
-    insert into table_storage (id, name, address, 
-      telephone, relationperson)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{telephone,jdbcType=VARCHAR}, #{relationperson,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.lynu.bean.TableDepreciation">
+    insert into table_depreciation (id, name, explain
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{explain,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.lynu.bean.TableStorage">
-    insert into table_storage
+  <insert id="insertSelective" parameterType="com.lynu.bean.TableDepreciation">
+    insert into table_depreciation
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -114,14 +112,8 @@
       <if test="name != null">
         name,
       </if>
-      <if test="address != null">
-        address,
-      </if>
-      <if test="telephone != null">
-        telephone,
-      </if>
-      <if test="relationperson != null">
-        relationperson,
+      <if test="explain != null">
+        explain,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -131,25 +123,19 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null">
-        #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="relationperson != null">
-        #{relationperson,jdbcType=VARCHAR},
+      <if test="explain != null">
+        #{explain,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.lynu.bean.TableStorageExample" resultType="java.lang.Long">
-    select count(*) from table_storage
+  <select id="countByExample" parameterType="com.lynu.bean.TableDepreciationExample" resultType="java.lang.Long">
+    select count(*) from table_depreciation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update table_storage
+    update table_depreciation
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
@@ -157,14 +143,8 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.address != null">
-        address = #{record.address,jdbcType=VARCHAR},
-      </if>
-      <if test="record.telephone != null">
-        telephone = #{record.telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.relationperson != null">
-        relationperson = #{record.relationperson,jdbcType=VARCHAR},
+      <if test="record.explain != null">
+        explain = #{record.explain,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -172,40 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update table_storage
+    update table_depreciation
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      address = #{record.address,jdbcType=VARCHAR},
-      telephone = #{record.telephone,jdbcType=VARCHAR},
-      relationperson = #{record.relationperson,jdbcType=VARCHAR}
+      explain = #{record.explain,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lynu.bean.TableStorage">
-    update table_storage
+  <update id="updateByPrimaryKeySelective" parameterType="com.lynu.bean.TableDepreciation">
+    update table_depreciation
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null">
-        telephone = #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="relationperson != null">
-        relationperson = #{relationperson,jdbcType=VARCHAR},
+      <if test="explain != null">
+        explain = #{explain,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lynu.bean.TableStorage">
-    update table_storage
+  <update id="updateByPrimaryKey" parameterType="com.lynu.bean.TableDepreciation">
+    update table_depreciation
     set name = #{name,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      telephone = #{telephone,jdbcType=VARCHAR},
-      relationperson = #{relationperson,jdbcType=VARCHAR}
+      explain = #{explain,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -35,6 +35,8 @@ public class TableEquipmentDetalis {
 
     private Date updateTime;
 
+    private String depreciationtype;
+
     public Integer getId() {
         return id;
     }
@@ -161,5 +163,13 @@ public class TableEquipmentDetalis {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getDepreciationtype() {
+        return depreciationtype;
+    }
+
+    public void setDepreciationtype(String depreciationtype) {
+        this.depreciationtype = depreciationtype == null ? null : depreciationtype.trim();
     }
 }

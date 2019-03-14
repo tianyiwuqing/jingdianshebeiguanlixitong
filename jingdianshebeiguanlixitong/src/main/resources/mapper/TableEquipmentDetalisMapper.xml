@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lynu.tools.mapper.TableEquipmentDetalisMapper">
+<mapper namespace="com.lynu.dao.TableEquipmentDetalisMapper">
   <resultMap id="BaseResultMap" type="com.lynu.bean.TableEquipmentDetalis">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="equipment_id" jdbcType="VARCHAR" property="equipmentId" />
@@ -18,6 +18,7 @@
     <result column="storage" jdbcType="INTEGER" property="storage" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="depreciationtype" jdbcType="VARCHAR" property="depreciationtype" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -80,7 +81,7 @@
   <sql id="Base_Column_List">
     id, equipment_id, equipment_type, equipment_furnish, equipment_brand, productDate, 
     useDate, fix_type, fixendDate, fixtime, equipment_details, department_id, employee, 
-    storage, create_time, update_time
+    storage, create_time, update_time, depreciationtype
   </sql>
   <select id="selectByExample" parameterType="com.lynu.bean.TableEquipmentDetalisExample" resultMap="BaseResultMap">
     select
@@ -118,13 +119,13 @@
       useDate, fix_type, fixendDate, 
       fixtime, equipment_details, department_id, 
       employee, storage, create_time, 
-      update_time)
+      update_time, depreciationtype)
     values (#{id,jdbcType=INTEGER}, #{equipmentId,jdbcType=VARCHAR}, #{equipmentType,jdbcType=INTEGER}, 
       #{equipmentFurnish,jdbcType=INTEGER}, #{equipmentBrand,jdbcType=VARCHAR}, #{productdate,jdbcType=TIMESTAMP}, 
       #{usedate,jdbcType=TIMESTAMP}, #{fixType,jdbcType=INTEGER}, #{fixenddate,jdbcType=TIMESTAMP}, 
       #{fixtime,jdbcType=TIMESTAMP}, #{equipmentDetails,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}, 
       #{employee,jdbcType=INTEGER}, #{storage,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{updateTime,jdbcType=TIMESTAMP}, #{depreciationtype,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lynu.bean.TableEquipmentDetalis">
     insert into table_equipment_detalis
@@ -177,6 +178,9 @@
       <if test="updateTime != null">
         update_time,
       </if>
+      <if test="depreciationtype != null">
+        depreciationtype,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -226,6 +230,9 @@
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depreciationtype != null">
+        #{depreciationtype,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -286,6 +293,9 @@
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.depreciationtype != null">
+        depreciationtype = #{record.depreciationtype,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -308,7 +318,8 @@
       employee = #{record.employee,jdbcType=INTEGER},
       storage = #{record.storage,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      depreciationtype = #{record.depreciationtype,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -361,6 +372,9 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="depreciationtype != null">
+        depreciationtype = #{depreciationtype,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -380,7 +394,8 @@
       employee = #{employee,jdbcType=INTEGER},
       storage = #{storage,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      depreciationtype = #{depreciationtype,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

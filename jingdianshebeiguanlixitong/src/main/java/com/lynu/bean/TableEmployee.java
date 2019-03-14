@@ -1,9 +1,7 @@
 package com.lynu.bean;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.Date;
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+
 public class TableEmployee {
     private Integer id;
 
@@ -48,7 +46,7 @@ public class TableEmployee {
     }
 
     public void setEmployeename(String employeename) {
-        this.employeename = employeename;
+        this.employeename = employeename == null ? null : employeename.trim();
     }
 
     public String getUsername() {
@@ -56,7 +54,7 @@ public class TableEmployee {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -64,7 +62,7 @@ public class TableEmployee {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
     public Integer getSex() {
@@ -80,7 +78,7 @@ public class TableEmployee {
     }
 
     public void setTelephone(String telephone) {
-        this.telephone = telephone;
+        this.telephone = telephone == null ? null : telephone.trim();
     }
 
     public String getAddress() {
@@ -88,7 +86,7 @@ public class TableEmployee {
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address == null ? null : address.trim();
     }
 
     public Integer getIsValid() {
@@ -112,7 +110,7 @@ public class TableEmployee {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? null : description.trim();
     }
 
     public Integer getType() {
@@ -136,7 +134,7 @@ public class TableEmployee {
     }
 
     public void setPhotograph(String photograph) {
-        this.photograph = photograph;
+        this.photograph = photograph == null ? null : photograph.trim();
     }
 
     public Date getCreateTime() {
@@ -153,26 +151,5 @@ public class TableEmployee {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "TableEmployee{" +
-                "id=" + id +
-                ", employeename='" + employeename + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", sex=" + sex +
-                ", telephone='" + telephone + '\'' +
-                ", address='" + address + '\'' +
-                ", isValid=" + isValid +
-                ", isLeader=" + isLeader +
-                ", description='" + description + '\'' +
-                ", type=" + type +
-                ", delFlag=" + delFlag +
-                ", photograph='" + photograph + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
     }
 }

@@ -1094,6 +1094,76 @@ public class TableEquipmentDetalisExample {
             addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
+
+        public Criteria andDepreciationtypeIsNull() {
+            addCriterion("depreciationtype is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeIsNotNull() {
+            addCriterion("depreciationtype is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeEqualTo(String value) {
+            addCriterion("depreciationtype =", value, "depreciationtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeNotEqualTo(String value) {
+            addCriterion("depreciationtype <>", value, "depreciationtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeGreaterThan(String value) {
+            addCriterion("depreciationtype >", value, "depreciationtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeGreaterThanOrEqualTo(String value) {
+            addCriterion("depreciationtype >=", value, "depreciationtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeLessThan(String value) {
+            addCriterion("depreciationtype <", value, "depreciationtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeLessThanOrEqualTo(String value) {
+            addCriterion("depreciationtype <=", value, "depreciationtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeLike(String value) {
+            addCriterion("depreciationtype like", value, "depreciationtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeNotLike(String value) {
+            addCriterion("depreciationtype not like", value, "depreciationtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeIn(List<String> values) {
+            addCriterion("depreciationtype in", values, "depreciationtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeNotIn(List<String> values) {
+            addCriterion("depreciationtype not in", values, "depreciationtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeBetween(String value1, String value2) {
+            addCriterion("depreciationtype between", value1, value2, "depreciationtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepreciationtypeNotBetween(String value1, String value2) {
+            addCriterion("depreciationtype not between", value1, value2, "depreciationtype");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

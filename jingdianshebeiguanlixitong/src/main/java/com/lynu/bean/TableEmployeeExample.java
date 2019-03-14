@@ -1,11 +1,9 @@
 package com.lynu.bean;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+
 public class TableEmployeeExample {
     protected String orderByClause;
 
