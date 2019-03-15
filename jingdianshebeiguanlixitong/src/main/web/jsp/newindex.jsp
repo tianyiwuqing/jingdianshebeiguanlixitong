@@ -15,17 +15,17 @@
     <title>医疗设备管理系统</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="jquery-easyui-1.3.5/themes/default/easyui.css">
-    <link rel="stylesheet" href="jquery-easyui-1.3.5/themes/icon.css">
-    <script type="text/javascript" src="jquery-easyui-1.3.5/jquery.min.js"></script>
-    <script type="application/javascript" src="js/jquery-2.1.1/jquery.min.js"/>
-    <script type="text/javascript" src="jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"></script>
-    <link rel="stylesheet" href="dist/metisMenu.css"/>
-    <link rel="stylesheet" href="test/demo.css"/>
-    <link rel="stylesheet" href="test/mini.css"/>
-    <link rel="stylesheet" href="test/设备增加.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../jquery-easyui-1.3.5/themes/default/easyui.css">
+    <link rel="stylesheet" href="../jquery-easyui-1.3.5/themes/icon.css">
+    <script type="text/javascript" src="../jquery-easyui-1.3.5/jquery.min.js"></script>
+    <script type="application/javascript" src="../js/jquery-2.1.1/jquery.min.js"/>
+    <script type="text/javascript" src="../jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="../dist/metisMenu.css"/>
+    <link rel="stylesheet" href="../test/demo.css"/>
+    <link rel="stylesheet" href="../test/mini.css"/>
+    <link rel="stylesheet" href="../test/设备增加.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css"/>
     <style>
         #xin a{
@@ -73,7 +73,7 @@
                                         <li>
                                             <a href="#" aria-expanded="false">运行管理<span class="glyphicon arrow"></span></a>
                                             <ul aria-expanded="false">
-                                                <li><a href="./jsp/t设备故障登记.html">设备故障登记</a></li>
+                                                <li><a href="t设备故障登记.html">设备故障登记</a></li>
                                                 <li><a href="#">故障维修管理</a></li>
                                                 <li><a href="#">维修记录查询</a></li>
                                                 <li><a href="#">设备启用管理</a></li>
@@ -136,22 +136,22 @@
                     <div id="xin-y" data-options="region:'center',title:' '" style="padding:5px;background:white;">
                         <div id="xin-x">
                             <a href="cxdl.html">重新登录 </a>
-                            <a href="./jsp/xgmm.html">修改密码</a>
+                            <a href="xgmm.html">修改密码</a>
                             <a href="">帮助</a>
                             <a href="">关于</a>
                             <a href="tcdl.html">退出</a>
                         </div>
                         <div id="context">
-                            <img src="./img/1234.png" style="margin-left: 230px">
+                            <img src="../img/1234.png" style="margin-left: 230px">
                         </div>
                         <div id="shebeiguanli" style="display: none">
-                            <img src="./img/设备管理/head.png" style="margin-left: 200px">
-                            <a href="jsp/设备增加.jsp" id="shebeizengjia2"><img src="./img/设备管理/设备增加.png" style="margin-left: 200px"></a>
-                            <a href="./jsp/设备盘点.html" id="shebeipandian2"><img src="./img/设备管理/设备盘点.png" style="margin-left: 200px"></a>
-                            <img src="./img/设备管理/入库查询.png" style="margin-left: 200px">
-                            <img src="./img/设备管理/入库管理.png" style="margin-left: 200px">
-                            <img src="./img/设备管理/出库查询.png" style="margin-left: 200px">
-                            <img src="./img/设备管理/出库管理.png" style="margin-left: 200px">
+                            <img src="../img/设备管理/head.png" style="margin-left: 200px">
+                            <a href="设备增加.jsp" id="shebeizengjia2"><img src="../img/设备管理/设备增加.png" style="margin-left: 200px"></a>
+                            <a href="设备盘点.html" id="shebeipandian2"><img src="../img/设备管理/设备盘点.png" style="margin-left: 200px"></a>
+                            <img src="../img/设备管理/入库查询.png" style="margin-left: 200px">
+                            <img src="../img/设备管理/入库管理.png" style="margin-left: 200px">
+                            <img src="../img/设备管理/出库查询.png" style="margin-left: 200px">
+                            <img src="../img/设备管理/出库管理.png" style="margin-left: 200px">
                         </div>
                     </div>
                     <div data-options="region:'south',title:'试用版'" style="height:20px;"></div>
@@ -161,9 +161,9 @@
         </div>
     </div>
 </div>
-<script src="./js/bootstrap.min.js"></script>
-<script src="./dist/metisMenu.min.js"></script>
-<script src="./js/context.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../dist/metisMenu.min.js"></script>
+<script src="../js/context.js"></script>
 <script>
     $(function () {
         $('#menu').metisMenu();

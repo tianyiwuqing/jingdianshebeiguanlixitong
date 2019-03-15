@@ -172,4 +172,27 @@ public class TableEquipmentDetalis {
     public void setDepreciationtype(String depreciationtype) {
         this.depreciationtype = depreciationtype == null ? null : depreciationtype.trim();
     }
+
+    @Override
+    public String toString() {
+        return "TableEquipmentDetalis{" +
+                "id=" + id +
+                ", equipmentId='" + equipmentId + '\'' +
+                ", equipmentType=" + equipmentType +
+                ", equipmentFurnish=" + equipmentFurnish +
+                ", equipmentBrand='" + equipmentBrand + '\'' +
+                ", productdate=" + productdate +
+                ", usedate=" + usedate +
+                ", fixType=" + fixType +
+                ", fixenddate=" + fixenddate +
+                ", fixtime=" + fixtime +
+                ", equipmentDetails='" + equipmentDetails + '\'' +
+                ", departmentId=" + departmentId +
+                ", employee=" + employee +
+                ", storage=" + storage +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", depreciationtype='" + depreciationtype + '\'' +
+                '}';
+    }
 }

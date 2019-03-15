@@ -142,4 +142,24 @@ public class TableAddequipmentbills {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+    @Override
+    public String toString() {
+        return "TableAddequipmentbills{" +
+                "id=" + id +
+                ", billsnumber='" + billsnumber + '\'' +
+                ", departmentId='" + departmentId + '\'' +
+                ", receptionperson='" + receptionperson + '\'' +
+                ", purchaseTime=" + purchaseTime +
+                ", abstarct='" + abstarct + '\'' +
+                ", equipmentFurnish='" + equipmentFurnish + '\'' +
+                ", operatorperson='" + operatorperson + '\'' +
+                ", isDelate=" + isDelate +
+                ", billsperson='" + billsperson + '\'' +
+                ", money='" + money + '\'' +
+                ", usedir='" + usedir + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 }

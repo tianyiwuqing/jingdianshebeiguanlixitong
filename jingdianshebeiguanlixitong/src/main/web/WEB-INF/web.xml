@@ -24,23 +24,7 @@
     </listener>
 
     <!--前端控制器-->
-    <!--<servlet>-->
-        <!--<servlet-name>taotao-manager</servlet-name>-->
-        <!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
-        <!--&lt;!&ndash; contextConfigLocation配置springmvc记载的配置文件（配置处理器映射器、适配器等等）-->
-        <!--如果不配置contextConfigLocation，默认加载的是/WEB-INF/servlet名称-servlet.xml-->
-         <!--&ndash;&gt;-->
-        <!--<init-param>-->
-            <!--<param-name>contextConfigLocation</param-name>-->
-            <!--<param-value>classpath:springMVC.xml</param-value>-->
-        <!--</init-param>-->
-        <!--&lt;!&ndash; 配置服务器启动后立即加载Spring MVC配置文件 &ndash;&gt;-->
-        <!--<load-on-startup>1</load-on-startup>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>taotao-manager</servlet-name>-->
-        <!--<url-pattern>/</url-pattern>-->
-    <!--</servlet-mapping>-->
+
     <servlet>
         <servlet-name>springmvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -94,6 +78,6 @@
 
     <welcome-file-list>
         <!--<welcome-file>newindex.html</welcome-file>-->
-        <welcome-file>newindex.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

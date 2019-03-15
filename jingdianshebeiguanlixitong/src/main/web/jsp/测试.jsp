@@ -1,9 +1,16 @@
-<!DOCTYPE html>
-<html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <title>超出部分隐藏滚动条</title>
+   <script type="text/javascript" src="../js/jquery-2.1.1/jquery.min.js"/>
+    <script type="text/javascript">
+        function save() {
+            $("#form1").submit();
+        }
+    </script>
 </head>
+
 <style type="text/css">
     #box {
         width: 500px;
@@ -43,31 +50,14 @@
 </style>
 <body>
 <!-- 兼容所有浏览器的超出部分滚动不显示滚动条 -->
-<div id="box">
-    你好 </br>你好 </br>
-    你好 </br>你好 </br>
-    你好 </br>你好 </br>
-    你好 </br>你好 </br>
-    你好 </br>你好 </br>
-    你好 </br>你好 </br>
-    你好 </br>你好 </br>
-</div>
-<hr>
-<table id="table">
-    <tr style="color: #00ee00;width: 600px;">
-        <td> 花花花花</td>
-        <td>花花花花</td>
-        <td>花花花花</td>
-        <td>花花花花</td>
-        <td>花花花花</td>
-        <td>花花花花</td>
-        <td>花花花花</td>
-        <td>花花花花</td>
-        <td>花花花花</td>
-        <td>花花花花</td>
-        <td>花花花花</td>
-        <td>花花花花</td>
-    </tr>
-</table>
+
+<a href="${pageContext.request.contextPath}/equipmentAddController/addEquipment" >点击</a>
+
+<form id="form1" action="${pageContext.request.contextPath}/equipmentAddController/test">
+    <input name="name" type="text"><br>
+    <input name="passwords" type="text"><br>
+</form>
+<a href="javascript:save()">添加</a>
+
 </body>
 </html>

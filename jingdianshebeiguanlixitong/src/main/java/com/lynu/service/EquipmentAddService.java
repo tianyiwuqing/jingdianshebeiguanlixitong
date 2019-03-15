@@ -1,6 +1,9 @@
 package com.lynu.service;
 
+import com.lynu.bean.TableDepartment;
 import com.lynu.bean.TableEquipment;
+
+import java.util.List;
 
 /**
  * @author 天意无情
@@ -14,4 +17,6 @@ public interface EquipmentAddService {
      * @return
      */
    boolean   addEquipment(TableEquipment equipment);
+
+   List<TableDepartment> chaAllDepartment();
 }

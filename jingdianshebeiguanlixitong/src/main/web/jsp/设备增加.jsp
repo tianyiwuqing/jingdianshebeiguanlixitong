@@ -19,7 +19,12 @@
     <link rel="stylesheet" href="../test/demo.css"/>
     <link rel="stylesheet" href="../test/mini.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css"/>
-    <script type="javascript">
+    <script type="text/javascript" src="../js/jquery-2.1.1/jquery.min.js"/>
+    <script type="text/javascript">
+        function save() {
+            $("#add").submit()
+        }
+
     </script>
     <style>
         #xin a{
@@ -55,8 +60,6 @@
             margin-top: 1px;
             margin-bottom: 1px;
         }
-
-
     </style>
 </head>
 <body>
@@ -165,7 +168,7 @@
                                 <div id="title">
                                     <a href="" onclick="javascript:add()"><img src="../fontimg/add.png" alt="">添加</a>
                                     <a href=""><img src="../fontimg/shanchu.png" alt="">删除</a>
-                                    <a href=""><img src="../fontimg/baocun.png" alt="">保存</a>
+                                    <a href="javascript:save()"><img src="../fontimg/baocun.png" alt="">保存</a>
                                     <a href=""><img src="../fontimg/dengzhang.png" alt="">登账</a>
                                     <a href=""><img src="../fontimg/dayin.png" alt="">打印</a>
                                     <a href=""><img src="../fontimg/sheji.png" alt="">设计</a>
@@ -217,27 +220,28 @@
                             </div>
                         </div>
                     </div>
-                            <form id="danjuxinxi">
                             单据信息
                             <div style="border: 1px solid #0f0f0f;width: 100%;height: 130px" id="danju">
+                                <form id="add" name="addequipmentbills"  action="${pageContext.request.contextPath}/equipmentAddController/addEquipment">
                                 单据编号：<input type="text">
-                                接收部门：<input type="text">
-                                接收人员：<input type="text">
-                                购置日期：<input type="text"><br>
-                                增加方式：<input type="text">
-                                供应厂商：<input type="text">
-                                验收人员：<input type="text">
-                                财务审核：<input type="text"><br>
-                                单据摘要：<input type="text" style="width: 363px">
-                                存放位置：<input type="text" style="width: 363px"><br>
-                                经办人员：<input type="text">
-                                单据状态：<input type="text">
-                                登账人员：<input type="text">
-                                登账日期：<input type="text"><br>
-                                经费来源：<input type="text">
-                                购置部门：<input type="text">
-                                使用方向：<input type="text">
-                                工程项目：<input type="text">
+                                接收部门：<input name="departmentId" type="text">
+                                接收人员：<input name="receptionperson" type="text">
+                                购置日期：<input name="purchaseTime" type="text"><br>
+                                增加方式：<input name="" type="text"><%--quchu--%>
+                                供应厂商：<input name="equipmentFurnish" type="text">
+                                验收人员：<input name="operatorperson" type="text">
+                                财务审核：<input name="" type="text"><br><%--quchu--%>
+                                单据摘要：<input name="abstarct" type="text" style="width: 363px">
+                                存放位置：<input name="" type="text" style="width: 363px"><br>
+                                经办人员：<input name="" type="text"><%--quchu--%>
+                                    单据状态：<input name="isDelate" type="text">
+                                登账人员：<input name="billsperson" type="text">
+                                登账日期：<input name="createTime" type="text"><br>
+                                经费来源：<input name="money" type="text">
+                                购置部门：<input name="departmentId" type="text">
+                                使用方向：<input name="usedir" type="text">
+                                工程项目：<input type="submit"><%--quchu--%>
+                                </form>
                             </div>
                             基础信息
                             <div style="border: 1px solid #0f0f0f;width: 100%;height: 105px" id="jichu">
@@ -261,7 +265,7 @@
                             </div>
                             详细配置
                             <input style="border: 1px solid #0f0f0f;width: 100%;height: 35px">
-                            </form>
+                            <%--</form>--%>
                     </div>
                     </div>
                     <div data-options="region:'south',title:'试用版'" style="height:20px;"></div>
@@ -285,6 +289,7 @@
     $('#dd3').draggable({
         handle:'#title'
     });
+
 </script>
 </body>
 </html>

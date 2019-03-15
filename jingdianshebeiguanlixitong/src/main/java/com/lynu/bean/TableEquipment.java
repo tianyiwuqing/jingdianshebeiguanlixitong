@@ -7,6 +7,17 @@ public class TableEquipment {
 
     private String equipmentStandard;
 
+    private TableEquipmentDetalis equipmentDetalis;
+
+
+    public TableEquipmentDetalis getEquipmentDetalis() {
+        return equipmentDetalis;
+    }
+
+    public void setEquipmentDetalis(TableEquipmentDetalis equipmentDetalis) {
+        this.equipmentDetalis = equipmentDetalis;
+    }
+
     public String getId() {
         return id;
     }
@@ -29,5 +40,15 @@ public class TableEquipment {
 
     public void setEquipmentStandard(String equipmentStandard) {
         this.equipmentStandard = equipmentStandard == null ? null : equipmentStandard.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "TableEquipment{" +
+                "id='" + id + '\'' +
+                ", equipmentName='" + equipmentName + '\'' +
+                ", equipmentStandard='" + equipmentStandard + '\'' +
+                ", equipmentDetalis=" + equipmentDetalis +
+                '}';
     }
 }

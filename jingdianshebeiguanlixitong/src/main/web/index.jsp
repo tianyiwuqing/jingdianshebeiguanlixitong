@@ -11,6 +11,7 @@
     <title>index.jsp</title>
 </head>
 <body>
-    <a href="newindex.html" >点击</a>
+    <a href="jsp/测试.jsp" >点击</a>
+    <a href="jsp/newindex.jsp" >点击</a>
 </body>
 </html>

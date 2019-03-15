@@ -40,4 +40,14 @@ public class TableDepartment {
     public void setTelephone(String telephone) {
         this.telephone = telephone == null ? null : telephone.trim();
     }
+
+    @Override
+    public String toString() {
+        return "TableDepartment{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", telephone='" + telephone + '\'' +
+                '}';
+    }
 }
