@@ -425,6 +425,66 @@ public class TableEquipmentDetalisExample {
             return (Criteria) this;
         }
 
+        public Criteria andManufacturerIsNull() {
+            addCriterion("manufacturer is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andManufacturerIsNotNull() {
+            addCriterion("manufacturer is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andManufacturerEqualTo(Integer value) {
+            addCriterion("manufacturer =", value, "manufacturer");
+            return (Criteria) this;
+        }
+
+        public Criteria andManufacturerNotEqualTo(Integer value) {
+            addCriterion("manufacturer <>", value, "manufacturer");
+            return (Criteria) this;
+        }
+
+        public Criteria andManufacturerGreaterThan(Integer value) {
+            addCriterion("manufacturer >", value, "manufacturer");
+            return (Criteria) this;
+        }
+
+        public Criteria andManufacturerGreaterThanOrEqualTo(Integer value) {
+            addCriterion("manufacturer >=", value, "manufacturer");
+            return (Criteria) this;
+        }
+
+        public Criteria andManufacturerLessThan(Integer value) {
+            addCriterion("manufacturer <", value, "manufacturer");
+            return (Criteria) this;
+        }
+
+        public Criteria andManufacturerLessThanOrEqualTo(Integer value) {
+            addCriterion("manufacturer <=", value, "manufacturer");
+            return (Criteria) this;
+        }
+
+        public Criteria andManufacturerIn(List<Integer> values) {
+            addCriterion("manufacturer in", values, "manufacturer");
+            return (Criteria) this;
+        }
+
+        public Criteria andManufacturerNotIn(List<Integer> values) {
+            addCriterion("manufacturer not in", values, "manufacturer");
+            return (Criteria) this;
+        }
+
+        public Criteria andManufacturerBetween(Integer value1, Integer value2) {
+            addCriterion("manufacturer between", value1, value2, "manufacturer");
+            return (Criteria) this;
+        }
+
+        public Criteria andManufacturerNotBetween(Integer value1, Integer value2) {
+            addCriterion("manufacturer not between", value1, value2, "manufacturer");
+            return (Criteria) this;
+        }
+
         public Criteria andProductdateIsNull() {
             addCriterion("productDate is null");
             return (Criteria) this;
@@ -675,52 +735,62 @@ public class TableEquipmentDetalisExample {
             return (Criteria) this;
         }
 
-        public Criteria andFixtimeEqualTo(Date value) {
+        public Criteria andFixtimeEqualTo(String value) {
             addCriterion("fixtime =", value, "fixtime");
             return (Criteria) this;
         }
 
-        public Criteria andFixtimeNotEqualTo(Date value) {
+        public Criteria andFixtimeNotEqualTo(String value) {
             addCriterion("fixtime <>", value, "fixtime");
             return (Criteria) this;
         }
 
-        public Criteria andFixtimeGreaterThan(Date value) {
+        public Criteria andFixtimeGreaterThan(String value) {
             addCriterion("fixtime >", value, "fixtime");
             return (Criteria) this;
         }
 
-        public Criteria andFixtimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andFixtimeGreaterThanOrEqualTo(String value) {
             addCriterion("fixtime >=", value, "fixtime");
             return (Criteria) this;
         }
 
-        public Criteria andFixtimeLessThan(Date value) {
+        public Criteria andFixtimeLessThan(String value) {
             addCriterion("fixtime <", value, "fixtime");
             return (Criteria) this;
         }
 
-        public Criteria andFixtimeLessThanOrEqualTo(Date value) {
+        public Criteria andFixtimeLessThanOrEqualTo(String value) {
             addCriterion("fixtime <=", value, "fixtime");
             return (Criteria) this;
         }
 
-        public Criteria andFixtimeIn(List<Date> values) {
+        public Criteria andFixtimeLike(String value) {
+            addCriterion("fixtime like", value, "fixtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFixtimeNotLike(String value) {
+            addCriterion("fixtime not like", value, "fixtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFixtimeIn(List<String> values) {
             addCriterion("fixtime in", values, "fixtime");
             return (Criteria) this;
         }
 
-        public Criteria andFixtimeNotIn(List<Date> values) {
+        public Criteria andFixtimeNotIn(List<String> values) {
             addCriterion("fixtime not in", values, "fixtime");
             return (Criteria) this;
         }
 
-        public Criteria andFixtimeBetween(Date value1, Date value2) {
+        public Criteria andFixtimeBetween(String value1, String value2) {
             addCriterion("fixtime between", value1, value2, "fixtime");
             return (Criteria) this;
         }
 
-        public Criteria andFixtimeNotBetween(Date value1, Date value2) {
+        public Criteria andFixtimeNotBetween(String value1, String value2) {
             addCriterion("fixtime not between", value1, value2, "fixtime");
             return (Criteria) this;
         }
@@ -1105,62 +1175,52 @@ public class TableEquipmentDetalisExample {
             return (Criteria) this;
         }
 
-        public Criteria andDepreciationtypeEqualTo(String value) {
+        public Criteria andDepreciationtypeEqualTo(Integer value) {
             addCriterion("depreciationtype =", value, "depreciationtype");
             return (Criteria) this;
         }
 
-        public Criteria andDepreciationtypeNotEqualTo(String value) {
+        public Criteria andDepreciationtypeNotEqualTo(Integer value) {
             addCriterion("depreciationtype <>", value, "depreciationtype");
             return (Criteria) this;
         }
 
-        public Criteria andDepreciationtypeGreaterThan(String value) {
+        public Criteria andDepreciationtypeGreaterThan(Integer value) {
             addCriterion("depreciationtype >", value, "depreciationtype");
             return (Criteria) this;
         }
 
-        public Criteria andDepreciationtypeGreaterThanOrEqualTo(String value) {
+        public Criteria andDepreciationtypeGreaterThanOrEqualTo(Integer value) {
             addCriterion("depreciationtype >=", value, "depreciationtype");
             return (Criteria) this;
         }
 
-        public Criteria andDepreciationtypeLessThan(String value) {
+        public Criteria andDepreciationtypeLessThan(Integer value) {
             addCriterion("depreciationtype <", value, "depreciationtype");
             return (Criteria) this;
         }
 
-        public Criteria andDepreciationtypeLessThanOrEqualTo(String value) {
+        public Criteria andDepreciationtypeLessThanOrEqualTo(Integer value) {
             addCriterion("depreciationtype <=", value, "depreciationtype");
             return (Criteria) this;
         }
 
-        public Criteria andDepreciationtypeLike(String value) {
-            addCriterion("depreciationtype like", value, "depreciationtype");
-            return (Criteria) this;
-        }
-
-        public Criteria andDepreciationtypeNotLike(String value) {
-            addCriterion("depreciationtype not like", value, "depreciationtype");
-            return (Criteria) this;
-        }
-
-        public Criteria andDepreciationtypeIn(List<String> values) {
+        public Criteria andDepreciationtypeIn(List<Integer> values) {
             addCriterion("depreciationtype in", values, "depreciationtype");
             return (Criteria) this;
         }
 
-        public Criteria andDepreciationtypeNotIn(List<String> values) {
+        public Criteria andDepreciationtypeNotIn(List<Integer> values) {
             addCriterion("depreciationtype not in", values, "depreciationtype");
             return (Criteria) this;
         }
 
-        public Criteria andDepreciationtypeBetween(String value1, String value2) {
+        public Criteria andDepreciationtypeBetween(Integer value1, Integer value2) {
             addCriterion("depreciationtype between", value1, value2, "depreciationtype");
             return (Criteria) this;
         }
 
-        public Criteria andDepreciationtypeNotBetween(String value1, String value2) {
+        public Criteria andDepreciationtypeNotBetween(Integer value1, Integer value2) {
             addCriterion("depreciationtype not between", value1, value2, "depreciationtype");
             return (Criteria) this;
         }

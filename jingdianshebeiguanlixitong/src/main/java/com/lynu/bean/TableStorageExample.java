@@ -1,6 +1,7 @@
 package com.lynu.bean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TableStorageExample {
@@ -441,6 +442,256 @@ public class TableStorageExample {
 
         public Criteria andRelationpersonNotBetween(String value1, String value2) {
             addCriterion("relationperson not between", value1, value2, "relationperson");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdeleteIsNull() {
+            addCriterion("isdelete is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdeleteIsNotNull() {
+            addCriterion("isdelete is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdeleteEqualTo(Integer value) {
+            addCriterion("isdelete =", value, "isdelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdeleteNotEqualTo(Integer value) {
+            addCriterion("isdelete <>", value, "isdelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdeleteGreaterThan(Integer value) {
+            addCriterion("isdelete >", value, "isdelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdeleteGreaterThanOrEqualTo(Integer value) {
+            addCriterion("isdelete >=", value, "isdelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdeleteLessThan(Integer value) {
+            addCriterion("isdelete <", value, "isdelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdeleteLessThanOrEqualTo(Integer value) {
+            addCriterion("isdelete <=", value, "isdelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdeleteIn(List<Integer> values) {
+            addCriterion("isdelete in", values, "isdelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdeleteNotIn(List<Integer> values) {
+            addCriterion("isdelete not in", values, "isdelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdeleteBetween(Integer value1, Integer value2) {
+            addCriterion("isdelete between", value1, value2, "isdelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdeleteNotBetween(Integer value1, Integer value2) {
+            addCriterion("isdelete not between", value1, value2, "isdelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityIsNull() {
+            addCriterion("capacity is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityIsNotNull() {
+            addCriterion("capacity is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityEqualTo(String value) {
+            addCriterion("capacity =", value, "capacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityNotEqualTo(String value) {
+            addCriterion("capacity <>", value, "capacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityGreaterThan(String value) {
+            addCriterion("capacity >", value, "capacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityGreaterThanOrEqualTo(String value) {
+            addCriterion("capacity >=", value, "capacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityLessThan(String value) {
+            addCriterion("capacity <", value, "capacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityLessThanOrEqualTo(String value) {
+            addCriterion("capacity <=", value, "capacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityLike(String value) {
+            addCriterion("capacity like", value, "capacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityNotLike(String value) {
+            addCriterion("capacity not like", value, "capacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityIn(List<String> values) {
+            addCriterion("capacity in", values, "capacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityNotIn(List<String> values) {
+            addCriterion("capacity not in", values, "capacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityBetween(String value1, String value2) {
+            addCriterion("capacity between", value1, value2, "capacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapacityNotBetween(String value1, String value2) {
+            addCriterion("capacity not between", value1, value2, "capacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsetimeIsNull() {
+            addCriterion("usetime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsetimeIsNotNull() {
+            addCriterion("usetime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsetimeEqualTo(Date value) {
+            addCriterion("usetime =", value, "usetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsetimeNotEqualTo(Date value) {
+            addCriterion("usetime <>", value, "usetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsetimeGreaterThan(Date value) {
+            addCriterion("usetime >", value, "usetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsetimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("usetime >=", value, "usetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsetimeLessThan(Date value) {
+            addCriterion("usetime <", value, "usetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsetimeLessThanOrEqualTo(Date value) {
+            addCriterion("usetime <=", value, "usetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsetimeIn(List<Date> values) {
+            addCriterion("usetime in", values, "usetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsetimeNotIn(List<Date> values) {
+            addCriterion("usetime not in", values, "usetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsetimeBetween(Date value1, Date value2) {
+            addCriterion("usetime between", value1, value2, "usetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsetimeNotBetween(Date value1, Date value2) {
+            addCriterion("usetime not between", value1, value2, "usetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletetimeIsNull() {
+            addCriterion("deletetime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletetimeIsNotNull() {
+            addCriterion("deletetime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletetimeEqualTo(Date value) {
+            addCriterion("deletetime =", value, "deletetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletetimeNotEqualTo(Date value) {
+            addCriterion("deletetime <>", value, "deletetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletetimeGreaterThan(Date value) {
+            addCriterion("deletetime >", value, "deletetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletetimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("deletetime >=", value, "deletetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletetimeLessThan(Date value) {
+            addCriterion("deletetime <", value, "deletetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletetimeLessThanOrEqualTo(Date value) {
+            addCriterion("deletetime <=", value, "deletetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletetimeIn(List<Date> values) {
+            addCriterion("deletetime in", values, "deletetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletetimeNotIn(List<Date> values) {
+            addCriterion("deletetime not in", values, "deletetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletetimeBetween(Date value1, Date value2) {
+            addCriterion("deletetime between", value1, value2, "deletetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletetimeNotBetween(Date value1, Date value2) {
+            addCriterion("deletetime not between", value1, value2, "deletetime");
             return (Criteria) this;
         }
     }

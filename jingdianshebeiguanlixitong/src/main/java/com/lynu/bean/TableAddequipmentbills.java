@@ -1,19 +1,30 @@
 package com.lynu.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.lynu.tools.MyDateFormat;
+
+import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TableAddequipmentbills {
+/**
+ * @author 天意无情
+ */
+public class TableAddequipmentbills implements Serializable {
     private Integer id;
 
     private String billsnumber;
 
     private String departmentId;
 
-    private String receptionperson;
+    private String shopdepartmentId;
 
+    private String receptionperson;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date purchaseTime;
 
-    private String abstarct;
+    private String abstractdetails;
 
     private String equipmentFurnish;
 
@@ -26,10 +37,24 @@ public class TableAddequipmentbills {
     private String money;
 
     private String usedir;
-
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createTime;
-
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date updateTime;
+
+    private String checkingperson;
+
+    private String address;
+
+    private TableEquipment equipment;
+
+    public TableEquipment getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(TableEquipment equipment) {
+        this.equipment = equipment;
+    }
 
     public Integer getId() {
         return id;
@@ -55,6 +80,14 @@ public class TableAddequipmentbills {
         this.departmentId = departmentId == null ? null : departmentId.trim();
     }
 
+    public String getShopdepartmentId() {
+        return shopdepartmentId;
+    }
+
+    public void setShopdepartmentId(String shopdepartmentId) {
+        this.shopdepartmentId = shopdepartmentId == null ? null : shopdepartmentId.trim();
+    }
+
     public String getReceptionperson() {
         return receptionperson;
     }
@@ -67,16 +100,17 @@ public class TableAddequipmentbills {
         return purchaseTime;
     }
 
-    public void setPurchaseTime(Date purchaseTime) {
-        this.purchaseTime = purchaseTime;
+
+    public void setPurchaseTime(String purchaseTime) {
+            this.purchaseTime = MyDateFormat.dateFormat(purchaseTime);
     }
 
-    public String getAbstract() {
-        return abstarct;
+    public String getAbstractdetails() {
+        return abstractdetails;
     }
 
-    public void setAbstract(String abstarct) {
-        this.abstarct = abstarct == null ? null : abstarct.trim();
+    public void setAbstractdetails(String abstractdetails) {
+        this.abstractdetails = abstractdetails == null ? null : abstractdetails.trim();
     }
 
     public String getEquipmentFurnish() {
@@ -131,8 +165,9 @@ public class TableAddequipmentbills {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreateTime(String createTime) {
+
+        this.createTime = MyDateFormat.dateFormat(createTime);
     }
 
     public Date getUpdateTime() {
@@ -143,15 +178,32 @@ public class TableAddequipmentbills {
         this.updateTime = updateTime;
     }
 
+    public String getCheckingperson() {
+        return checkingperson;
+    }
+
+    public void setCheckingperson(String checkingperson) {
+        this.checkingperson = checkingperson == null ? null : checkingperson.trim();
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
+
     @Override
     public String toString() {
         return "TableAddequipmentbills{" +
                 "id=" + id +
                 ", billsnumber='" + billsnumber + '\'' +
                 ", departmentId='" + departmentId + '\'' +
+                ", shopdepartmentId='" + shopdepartmentId + '\'' +
                 ", receptionperson='" + receptionperson + '\'' +
                 ", purchaseTime=" + purchaseTime +
-                ", abstarct='" + abstarct + '\'' +
+                ", abstractdetails='" + abstractdetails + '\'' +
                 ", equipmentFurnish='" + equipmentFurnish + '\'' +
                 ", operatorperson='" + operatorperson + '\'' +
                 ", isDelate=" + isDelate +
@@ -160,6 +212,9 @@ public class TableAddequipmentbills {
                 ", usedir='" + usedir + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", checkingperson='" + checkingperson + '\'' +
+                ", address='" + address + '\'' +
+                ", equipment=" + equipment +
                 '}';
     }
 }

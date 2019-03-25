@@ -5,9 +5,10 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="billsnumber" jdbcType="VARCHAR" property="billsnumber" />
     <result column="department_id" jdbcType="VARCHAR" property="departmentId" />
+    <result column="shopdepartment_id" jdbcType="VARCHAR" property="shopdepartmentId" />
     <result column="receptionperson" jdbcType="VARCHAR" property="receptionperson" />
     <result column="purchase_time" jdbcType="TIMESTAMP" property="purchaseTime" />
-    <result column="abstract" jdbcType="VARCHAR" property="abstract" />
+    <result column="abstractdetails" jdbcType="VARCHAR" property="abstractdetails" />
     <result column="equipment_furnish" jdbcType="VARCHAR" property="equipmentFurnish" />
     <result column="operatorperson" jdbcType="VARCHAR" property="operatorperson" />
     <result column="is_delate" jdbcType="INTEGER" property="isDelate" />
@@ -16,6 +17,8 @@
     <result column="usedir" jdbcType="VARCHAR" property="usedir" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="checkingperson" jdbcType="VARCHAR" property="checkingperson" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,8 +79,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, billsnumber, department_id, receptionperson, purchase_time, abstract, equipment_furnish, 
-    operatorperson, is_delate, billsperson, money, usedir, create_time, update_time
+    id, billsnumber, department_id, shopdepartment_id, receptionperson, purchase_time, 
+    abstractdetails, equipment_furnish, operatorperson, is_delate, billsperson, money, 
+    usedir, create_time, update_time, checkingperson, address
   </sql>
   <select id="selectByExample" parameterType="com.lynu.bean.TableAddequipmentbillsExample" resultMap="BaseResultMap">
     select
@@ -111,15 +115,17 @@
   </delete>
   <insert id="insert" parameterType="com.lynu.bean.TableAddequipmentbills">
     insert into table_addequipmentbills (id, billsnumber, department_id, 
-      receptionperson, purchase_time, abstract, 
-      equipment_furnish, operatorperson, is_delate, 
-      billsperson, money, usedir, 
-      create_time, update_time)
+      shopdepartment_id, receptionperson, purchase_time, 
+      abstractdetails, equipment_furnish, operatorperson, 
+      is_delate, billsperson, money, 
+      usedir, create_time, update_time, 
+      checkingperson, address)
     values (#{id,jdbcType=INTEGER}, #{billsnumber,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, 
-      #{receptionperson,jdbcType=VARCHAR}, #{purchaseTime,jdbcType=TIMESTAMP}, #{abstract,jdbcType=VARCHAR}, 
-      #{equipmentFurnish,jdbcType=VARCHAR}, #{operatorperson,jdbcType=VARCHAR}, #{isDelate,jdbcType=INTEGER}, 
-      #{billsperson,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, #{usedir,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+      #{shopdepartmentId,jdbcType=VARCHAR}, #{receptionperson,jdbcType=VARCHAR}, #{purchaseTime,jdbcType=TIMESTAMP}, 
+      #{abstractdetails,jdbcType=VARCHAR}, #{equipmentFurnish,jdbcType=VARCHAR}, #{operatorperson,jdbcType=VARCHAR}, 
+      #{isDelate,jdbcType=INTEGER}, #{billsperson,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, 
+      #{usedir,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{checkingperson,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lynu.bean.TableAddequipmentbills">
     insert into table_addequipmentbills
@@ -133,14 +139,17 @@
       <if test="departmentId != null">
         department_id,
       </if>
+      <if test="shopdepartmentId != null">
+        shopdepartment_id,
+      </if>
       <if test="receptionperson != null">
         receptionperson,
       </if>
       <if test="purchaseTime != null">
         purchase_time,
       </if>
-      <if test="abstract != null">
-        abstract,
+      <if test="abstractdetails != null">
+        abstractdetails,
       </if>
       <if test="equipmentFurnish != null">
         equipment_furnish,
@@ -166,6 +175,12 @@
       <if test="updateTime != null">
         update_time,
       </if>
+      <if test="checkingperson != null">
+        checkingperson,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -177,14 +192,17 @@
       <if test="departmentId != null">
         #{departmentId,jdbcType=VARCHAR},
       </if>
+      <if test="shopdepartmentId != null">
+        #{shopdepartmentId,jdbcType=VARCHAR},
+      </if>
       <if test="receptionperson != null">
         #{receptionperson,jdbcType=VARCHAR},
       </if>
       <if test="purchaseTime != null">
         #{purchaseTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="abstract != null">
-        #{abstract,jdbcType=VARCHAR},
+      <if test="abstractdetails != null">
+        #{abstractdetails,jdbcType=VARCHAR},
       </if>
       <if test="equipmentFurnish != null">
         #{equipmentFurnish,jdbcType=VARCHAR},
@@ -210,6 +228,12 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="checkingperson != null">
+        #{checkingperson,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.lynu.bean.TableAddequipmentbillsExample" resultType="java.lang.Long">
@@ -230,14 +254,17 @@
       <if test="record.departmentId != null">
         department_id = #{record.departmentId,jdbcType=VARCHAR},
       </if>
+      <if test="record.shopdepartmentId != null">
+        shopdepartment_id = #{record.shopdepartmentId,jdbcType=VARCHAR},
+      </if>
       <if test="record.receptionperson != null">
         receptionperson = #{record.receptionperson,jdbcType=VARCHAR},
       </if>
       <if test="record.purchaseTime != null">
         purchase_time = #{record.purchaseTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.abstract != null">
-        abstract = #{record.abstract,jdbcType=VARCHAR},
+      <if test="record.abstractdetails != null">
+        abstractdetails = #{record.abstractdetails,jdbcType=VARCHAR},
       </if>
       <if test="record.equipmentFurnish != null">
         equipment_furnish = #{record.equipmentFurnish,jdbcType=VARCHAR},
@@ -263,6 +290,12 @@
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.checkingperson != null">
+        checkingperson = #{record.checkingperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -273,9 +306,10 @@
     set id = #{record.id,jdbcType=INTEGER},
       billsnumber = #{record.billsnumber,jdbcType=VARCHAR},
       department_id = #{record.departmentId,jdbcType=VARCHAR},
+      shopdepartment_id = #{record.shopdepartmentId,jdbcType=VARCHAR},
       receptionperson = #{record.receptionperson,jdbcType=VARCHAR},
       purchase_time = #{record.purchaseTime,jdbcType=TIMESTAMP},
-      abstract = #{record.abstract,jdbcType=VARCHAR},
+      abstractdetails = #{record.abstractdetails,jdbcType=VARCHAR},
       equipment_furnish = #{record.equipmentFurnish,jdbcType=VARCHAR},
       operatorperson = #{record.operatorperson,jdbcType=VARCHAR},
       is_delate = #{record.isDelate,jdbcType=INTEGER},
@@ -283,7 +317,9 @@
       money = #{record.money,jdbcType=VARCHAR},
       usedir = #{record.usedir,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      checkingperson = #{record.checkingperson,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -297,14 +333,17 @@
       <if test="departmentId != null">
         department_id = #{departmentId,jdbcType=VARCHAR},
       </if>
+      <if test="shopdepartmentId != null">
+        shopdepartment_id = #{shopdepartmentId,jdbcType=VARCHAR},
+      </if>
       <if test="receptionperson != null">
         receptionperson = #{receptionperson,jdbcType=VARCHAR},
       </if>
       <if test="purchaseTime != null">
         purchase_time = #{purchaseTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="abstract != null">
-        abstract = #{abstract,jdbcType=VARCHAR},
+      <if test="abstractdetails != null">
+        abstractdetails = #{abstractdetails,jdbcType=VARCHAR},
       </if>
       <if test="equipmentFurnish != null">
         equipment_furnish = #{equipmentFurnish,jdbcType=VARCHAR},
@@ -330,6 +369,12 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="checkingperson != null">
+        checkingperson = #{checkingperson,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -337,9 +382,10 @@
     update table_addequipmentbills
     set billsnumber = #{billsnumber,jdbcType=VARCHAR},
       department_id = #{departmentId,jdbcType=VARCHAR},
+      shopdepartment_id = #{shopdepartmentId,jdbcType=VARCHAR},
       receptionperson = #{receptionperson,jdbcType=VARCHAR},
       purchase_time = #{purchaseTime,jdbcType=TIMESTAMP},
-      abstract = #{abstract,jdbcType=VARCHAR},
+      abstractdetails = #{abstractdetails,jdbcType=VARCHAR},
       equipment_furnish = #{equipmentFurnish,jdbcType=VARCHAR},
       operatorperson = #{operatorperson,jdbcType=VARCHAR},
       is_delate = #{isDelate,jdbcType=INTEGER},
@@ -347,7 +393,9 @@
       money = #{money,jdbcType=VARCHAR},
       usedir = #{usedir,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      checkingperson = #{checkingperson,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

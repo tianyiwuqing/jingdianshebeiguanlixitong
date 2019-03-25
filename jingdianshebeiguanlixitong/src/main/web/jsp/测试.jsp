@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>超出部分隐藏滚动条</title>
-   <script type="text/javascript" src="../js/jquery-2.1.1/jquery.min.js"/>
+    <script type="text/javascript" src="../js/jquery-2.1.1/jquery.min.js"></script>
     <script type="text/javascript">
         function save() {
+            alert("xiangying!");
             $("#form1").submit();
         }
     </script>
@@ -54,10 +55,19 @@
 <a href="${pageContext.request.contextPath}/equipmentAddController/addEquipment" >点击</a>
 
 <form id="form1" action="${pageContext.request.contextPath}/equipmentAddController/test">
-    <input name="name" type="text"><br>
-    <input name="passwords" type="text"><br>
+
+    <select id="billsnumber" name="billsnumber">
+        <option value="0">0</option>
+        <option value="1">1</option>
+    </select>
+    <br>
+    <select id="departmentId" name="departmentId">
+        <option value="0">0</option>
+        <option value="1">1</option>
+    </select>
+<br>
 </form>
-<a href="javascript:save()">添加</a>
+<a href="javaScript:save()">添加</a>
 
 </body>
 </html>

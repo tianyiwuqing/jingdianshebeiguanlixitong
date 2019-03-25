@@ -1,13 +1,18 @@
-
+<%--
+  Created by IntelliJ IDEA.
+  User: 天意无情
+  Date: 2019/3/15
+  Time: 23:15
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<html lang="zh-CN">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>医疗设备管理系统</title>
-
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../jquery-easyui-1.3.5/themes/default/easyui.css">
@@ -19,44 +24,206 @@
     <link rel="stylesheet" href="../test/demo.css"/>
     <link rel="stylesheet" href="../test/mini.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css"/>
-    <script type="text/javascript" src="../js/jquery-2.1.1/jquery.min.js"/>
+    <script type="text/javascript" src="../js/jquery-2.1.1/jquery.min.js"></script>
     <script type="text/javascript">
-        function save() {
-            $("#add").submit()
+        function add() {
+            alert("是否提交项目");
+            $("#add").submit();
+            $("#addEquipment").submit();
+        }
+
+        //部门ajax
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "${pageContext.request.contextPath}/equipmentAddController/chaAllDepartment",
+                dataType: "json",
+                success: function (returnData) {
+                    console.log("ajax on");
+                    $(returnData).each(function (index, item) {
+                        var option = "<option value=" + item.id + ">" + item.name + "</option>";
+                        $("#departmentId").append(option);
+                        $("#shopdepartmentId").append(option);
+                    })
+                },
+                error: function () {
+                    console.log("error！")
+                }
+            })
+        });
+
+        //检验演员ajax
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "${pageContext.request.contextPath}/equipmentAddController/chaCheckingperson",
+                dataType: "json",
+                success: function (returnData) {
+                    console.log("ajax on");
+                    $(returnData).each(function (index, item) {
+                        var option = "<option value=" + item.id + ">" + item.employeename + "</option>";
+                        $("#checkingperson").append(option);
+                    })
+                },
+                error: function () {
+                    console.log("error！")
+                }
+            })
+        });
+
+        //登账人员ajax
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "${pageContext.request.contextPath}/equipmentAddController/chaOperatorpersonAddBillsperson",
+                dataType: "json",
+                success: function (returnData) {
+                    console.log("ajax on");
+                    $(returnData).each(function (index, item) {
+                        var option = "<option value=" + item.id + ">" + item.employeename + "</option>";
+                        $("#operatorperson").append(option);
+                        $("#billsperson").append(option);
+                    })
+                },
+                error: function () {
+                    console.log("error！")
+                }
+            })
+        });
+
+
+        //仓库ajax
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "${pageContext.request.contextPath}/equipmentAddController/chaStorage",
+                dataType: "json",
+                success: function (returnData) {
+                    $(returnData).each(function (index, item) {
+                        var option = "<option value=" + item.id + ">" + item.name + "</option>";
+                        $("#address").append(option);
+                    })
+                },
+                error: function () {
+                    console.log("error！")
+                }
+            })
+        });
+        //供应商ajax
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "${pageContext.request.contextPath}/equipmentAddController/chaFurnish",
+                dataType: "json",
+                success: function (returnData) {
+                    $(returnData).each(function (index, item) {
+                        var option = "<option value=" + item.id + ">" + item.name + "</option>";
+                        $("#equipmentFurnish").append(option);
+                    })
+                },
+                error: function () {
+                    console.log("error！")
+                }
+            })
+        });
+        //生产商ajax
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "${pageContext.request.contextPath}/equipmentAddController/chaAllManufacturer",
+                dataType: "json",
+                success: function (returnData) {
+                    $(returnData).each(function (index, item) {
+                        var option = "<option value=" + item.id + ">" + item.name + "</option>";
+                        $("#manufacturer").append(option);
+                    })
+                },
+                error: function () {
+                    console.log("error！")
+                }
+            })
+        });
+        //设备分类ajax
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "${pageContext.request.contextPath}/equipmentAddController/chaEquipmentType",
+                dataType: "json",
+                success: function (returnData) {
+                    $(returnData).each(function (index, item) {
+                        var option = "<option value=" + item.id + ">" + item.name + "</option>";
+                        $("#equipmentType").append(option);
+                    })
+                },
+                error: function () {
+                    console.log("error！")
+                }
+            })
+        });
+
+        function employeeChang() {
+            var obj = $("#departmentId").val();
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/equipmentAddController/departmentOfEmployee",
+                data: {"did": obj},
+                dataType: "json",
+                success: function (returnData) {
+                    $("#receptionperson").empty();
+                    $("#receptionperson").append("<option value='0'>-请选择-</option>");
+                    console.log("did on");
+                    $(returnData).each(function (index, item) {
+                        var option = "<option value=" + item.id + ">" + item.employeename + "</option>";
+                        $("#receptionperson").append(option);
+
+                    })
+                },
+                error: function () {
+                    console.log("error！")
+                }
+            })
+
+
         }
 
     </script>
     <style>
-        #xin a{
+        #xin a {
             text-decoration: none;
             color: #0f0f0f;
             font-size: 16px;
             margin-right: 10px;
         }
-        #xin a:hover{
+
+        #xin a:hover {
             color: #bfbfbf;
         }
-        #xin-x{
+
+        #xin-x {
             position: absolute;
             top: 2px;
             left: 72%;
         }
-        #xin--x{
+
+        #xin--x {
             position: absolute;
             font-size: 16px;
             top: 2px;
         }
-        #shebeizengjia1 img{
+
+        #shebeizengjia1 img {
             width: 20px;
             height: 20px;
-            margin: 0 2px ;
+            margin: 0 2px;
 
         }
-        #danju input{
+
+        #danju input {
             margin-top: 1px;
             margin-bottom: 1px;
         }
-        #jichu input{
+
+        #jichu input {
             margin-top: 1px;
             margin-bottom: 1px;
         }
@@ -69,7 +236,7 @@
         <div data-options="region:'center'">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h2 class="panel-title"style="color: #ffffff;font-size: 22px">医疗设备管理系统</h2>
+                    <h2 class="panel-title" style="color: #ffffff;font-size: 22px">医疗设备管理系统</h2>
                 </div>
                 <div class="easyui-layout" style="height: 521px;width: 100%" id="xin">
                     <div data-options="region:'west',title:'功能导航',split:true" style="width:200px;">
@@ -78,9 +245,10 @@
                                 <nav class="sidebar-nav">
                                     <ul class="metismenu" id="menu">
                                         <li>
-                                            <a href="设备管理.html" aria-expanded="false" id="shebei">设备管理<span class="glyphicon arrow"></span></a>
+                                            <a href="../html/设备管理.html" aria-expanded="false" id="shebei">设备管理<span
+                                                    class="glyphicon arrow"></span></a>
                                             <ul aria-expanded="false">
-                                                <li><a href="设备增加.jsp" >设备增加</a></li>
+                                                <li><a href="设备增加.html">设备增加</a></li>
                                                 <li><a href="出库管理.html">出库管理</a></li>
                                                 <li><a href="出库查询.html">出库查询</a></li>
                                                 <li><a href="入库管理.html">入库管理</a></li>
@@ -154,29 +322,28 @@
                     </div>
                     <div id="xin-y" data-options="region:'center',title:' '" style="padding:3px;background:white;">
                         <div id="xin--x">设备增加管理</div>
-                        <%--二级导航--%>
                         <div id="xin-x">
-                            <a href="../html/cxdl.html">重新登录 </a>
+                            <a href="cxdl.html">重新登录 </a>
                             <a href="xgmm.html">修改密码</a>
                             <a href="">帮助</a>
                             <a href="">关于</a>
-                            <a href="../html/tcdl.html">退出</a>
+                            <a href="tcdl.html">退出</a>
                         </div>
 
                         <div id="shebeizengjia1">
                             <div id="dd3" style="width:100%;height:27px;background:#f9f9f9;">
                                 <div id="title">
-                                    <a href="" onclick="javascript:add()"><img src="../fontimg/add.png" alt="">添加</a>
+                                    <a href="JavaScript:add()"><img src="../fontimg/add.png" alt="">添加</a>
                                     <a href=""><img src="../fontimg/shanchu.png" alt="">删除</a>
-                                    <a href="javascript:save()"><img src="../fontimg/baocun.png" alt="">保存</a>
+                                    <a href=""><img src="../fontimg/baocun.png" alt="">保存</a>
                                     <a href=""><img src="../fontimg/dengzhang.png" alt="">登账</a>
                                     <a href=""><img src="../fontimg/dayin.png" alt="">打印</a>
                                     <a href=""><img src="../fontimg/sheji.png" alt="">设计</a>
-                                    <a href="../html/newindex.html"><img src="../fontimg/fanhui.png" alt="">返回</a><br>
+                                    <a href="newindex.html"><img src="../fontimg/fanhui.png" alt="">返回</a><br>
                                 </div>
                             </div>
                             <div>
-                                <input  id="dd1"  type="text">  至   <input  id="dd2"  type="text">
+                                <input id="dd1" type="text"> 至 <input id="dd2" type="text">
                                 <a href=""><img src="../fontimg/chaxun.png" alt="">查询</a>
                             </div>
                             <div style="border: 1px solid #0f0f0f;width: 100%;height: 100px">
@@ -216,80 +383,120 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <div style="text-align: center;line-height: 100px"> 无数据显示 <div>
+                                <div style="text-align: center;line-height: 100px"> 无数据显示
+                                    <div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
                             单据信息
                             <div style="border: 1px solid #0f0f0f;width: 100%;height: 130px" id="danju">
-                                <form id="add" name="addequipmentbills"  action="${pageContext.request.contextPath}/equipmentAddController/addEquipment">
-                                单据编号：<input type="text">
-                                接收部门：<input name="departmentId" type="text">
-                                接收人员：<input name="receptionperson" type="text">
-                                购置日期：<input name="purchaseTime" type="text"><br>
-                                增加方式：<input name="" type="text"><%--quchu--%>
-                                供应厂商：<input name="equipmentFurnish" type="text">
-                                验收人员：<input name="operatorperson" type="text">
-                                财务审核：<input name="" type="text"><br><%--quchu--%>
-                                单据摘要：<input name="abstarct" type="text" style="width: 363px">
-                                存放位置：<input name="" type="text" style="width: 363px"><br>
-                                经办人员：<input name="" type="text"><%--quchu--%>
-                                    单据状态：<input name="isDelate" type="text">
-                                登账人员：<input name="billsperson" type="text">
-                                登账日期：<input name="createTime" type="text"><br>
-                                经费来源：<input name="money" type="text">
-                                购置部门：<input name="departmentId" type="text">
-                                使用方向：<input name="usedir" type="text">
-                                工程项目：<input type="submit"><%--quchu--%>
+                                <form id="add" method="post"
+                                      action="${pageContext.request.contextPath}/equipmentAddController/addEquipment">
+                                    单据编号：<input name="billsnumber" type="text">
+                                    接收部门：
+                                    <select name="departmentId" id="departmentId" onblur="employeeChang()">
+                                        <option value="0">-请选择-</option>
+                                    </select>
+                                    接收人员：
+                                    <select name="receptionperson" id="receptionperson">
+                                        <option value="0">-请选择-</option>
+                                    </select>
+                                    购置日期：<input name="purchaseTime" type="date"><br>
+
+                                    供应厂商：
+                                    <select name="equipmentFurnish" id="equipmentFurnish">
+                                        <option value="0">-请选择-</option>
+                                    </select>
+                                    验收人员：
+                                    <select name="checkingperson" id="checkingperson">
+                                        <option value="0">-请选择-</option>
+                                    </select>
+
+                                    单据摘要：<input name="abstractdetails" type="text" style="width: 363px">
+                                    存放位置：
+                                    <select name="address" id="address">
+                                        <option value="0">-请选择—</option>
+                                    </select><br>
+                                    经办人员：
+                                    <select name="operatorperson" id="operatorperson">
+                                        <option value="0">请选择</option>
+                                    </select>
+                                    单据状态：
+                                    <select name="isDelate" id="isDelate">
+                                        <option value="0">正常</option>
+                                        <option value="1">已删除</option>
+                                    </select>
+                                    登账人员：
+                                    <select name="billsperson" id="billsperson">
+                                        <option value="0">请选择</option>
+                                    </select>
+                                    登账日期：<input name="createTime" type="date"><br>
+                                    经费来源：<input name="money" type="text">
+                                    购置部门：
+                                    <select name="shopdepartmentId" id="shopdepartmentId">
+                                        <option value="0">-请选择-</option>
+                                    </select>
+                                    使用方向：<input name="usedir" type="text">
+
                                 </form>
                             </div>
-                            基础信息
-                            <div style="border: 1px solid #0f0f0f;width: 100%;height: 105px" id="jichu">
-                                设备名称：<input type="text">
-                                规格型号：<input type="text">
-                                拼音简码：<input type="text">
-                                增加数量：<input type="text"><br>
-                                设备分类：<input type="text">
-                                设备品牌：<input type="text">
-                                设备原值：<input type="text">
-                                折旧方式：<input type="text"><br>
-                                生产厂商：<input type="text">
-                                生产日期：<input type="text">
-                                启用日期：<input type="text">
-                                净残值率：<input type="text">[%]
-                                <br>
-                                保修方式：<input type="text">
-                                保修到期：<input type="text">
-                                保修期限：<input type="text">
-                                折旧年限：<input type="text"><br>
-                            </div>
+                            <form id="addEquipment" method="post"
+                                  action="${pageContext.request.contextPath}/equipmentAddController/addEquipment">
+                                <div style="border: 1px solid #0f0f0f;width: 100%;height: 105px" id="jichu">
+                                    设备名称：<input name="equipmentName" type="text">
+                                    规格型号：<input name="equipmentStandard" type="text">
+                                    增加数量：<input name="count" type="text"><br>
+                                    设备分类：
+                                    <select name="equipmentType" id="equipmentType">
+                                        <option value="0">-请选择-</option>
+                                    </select>
+                                    设备品牌：<input name="equipmentBrand" type="text">
+                                    折旧方式：
+                                    <select name="depreciationtype" id="depreciationtype" >
+                                        <option value="0">直线法</option>
+                                        <option value="1">产量法</option>
+                                    </select><br>
+                                    生产厂商：
+                                    <select name="manufacturer" id="manufacturer">
+                                        <option value="0">-请选择</option>
+                                    </select>
+                                    生产日期：<input name="productdate" type="date">
+                                    启用日期：<input name="usedate" type="date">
+                                    <br>
+                                    保修方式：<input name="fixType" type="text">
+                                    保修到期：<input name="fixenddate" type="date">
+                                    保修期限：<input name="fixtime" type="text">
+                                </div>
+                            </form>
                             详细配置
                             <input style="border: 1px solid #0f0f0f;width: 100%;height: 35px">
-                            <%--</form>--%>
-                    </div>
+                        </div>
+                        基础信息
                     </div>
                     <div data-options="region:'south',title:'试用版'" style="height:20px;"></div>
+                </div>
             </div>
         </div>
-       </div>
     </div>
 </div>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../dist/metisMenu.min.js"></script>
 <script>
     $(function () {
-        $('#menu').metisMenu();
+        $("#menu").metisMenu();
     });
-    $('#dd1').datebox({
-        required:true
+    $(function () {
+        $("#dd1").required = true
     });
-    $('#dd2').datebox({
-        required:true
+
+    $(function () {
+        $("#dd2").required = true
     });
-    $('#dd3').draggable({
-        handle:'#title'
+    $(function () {
+        $("#dd3").required = true
     });
 
 </script>
+
 </body>
 </html>

@@ -7,6 +7,10 @@
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="telephone" jdbcType="VARCHAR" property="telephone" />
     <result column="relationperson" jdbcType="VARCHAR" property="relationperson" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="capacity" jdbcType="VARCHAR" property="capacity" />
+    <result column="usetime" jdbcType="TIMESTAMP" property="usetime" />
+    <result column="deletetime" jdbcType="TIMESTAMP" property="deletetime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, address, telephone, relationperson
+    id, name, address, telephone, relationperson, isdelete, capacity, usetime, deletetime
   </sql>
   <select id="selectByExample" parameterType="com.lynu.bean.TableStorageExample" resultMap="BaseResultMap">
     select
@@ -101,9 +105,13 @@
   </delete>
   <insert id="insert" parameterType="com.lynu.bean.TableStorage">
     insert into table_storage (id, name, address, 
-      telephone, relationperson)
+      telephone, relationperson, isdelete, 
+      capacity, usetime, deletetime
+      )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{telephone,jdbcType=VARCHAR}, #{relationperson,jdbcType=VARCHAR})
+      #{telephone,jdbcType=VARCHAR}, #{relationperson,jdbcType=VARCHAR}, #{isdelete,jdbcType=INTEGER}, 
+      #{capacity,jdbcType=VARCHAR}, #{usetime,jdbcType=TIMESTAMP}, #{deletetime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.lynu.bean.TableStorage">
     insert into table_storage
@@ -123,6 +131,18 @@
       <if test="relationperson != null">
         relationperson,
       </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="capacity != null">
+        capacity,
+      </if>
+      <if test="usetime != null">
+        usetime,
+      </if>
+      <if test="deletetime != null">
+        deletetime,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -139,6 +159,18 @@
       </if>
       <if test="relationperson != null">
         #{relationperson,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="capacity != null">
+        #{capacity,jdbcType=VARCHAR},
+      </if>
+      <if test="usetime != null">
+        #{usetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletetime != null">
+        #{deletetime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -166,6 +198,18 @@
       <if test="record.relationperson != null">
         relationperson = #{record.relationperson,jdbcType=VARCHAR},
       </if>
+      <if test="record.isdelete != null">
+        isdelete = #{record.isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.capacity != null">
+        capacity = #{record.capacity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usetime != null">
+        usetime = #{record.usetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletetime != null">
+        deletetime = #{record.deletetime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +221,11 @@
       name = #{record.name,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
       telephone = #{record.telephone,jdbcType=VARCHAR},
-      relationperson = #{record.relationperson,jdbcType=VARCHAR}
+      relationperson = #{record.relationperson,jdbcType=VARCHAR},
+      isdelete = #{record.isdelete,jdbcType=INTEGER},
+      capacity = #{record.capacity,jdbcType=VARCHAR},
+      usetime = #{record.usetime,jdbcType=TIMESTAMP},
+      deletetime = #{record.deletetime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +245,18 @@
       <if test="relationperson != null">
         relationperson = #{relationperson,jdbcType=VARCHAR},
       </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="capacity != null">
+        capacity = #{capacity,jdbcType=VARCHAR},
+      </if>
+      <if test="usetime != null">
+        usetime = #{usetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletetime != null">
+        deletetime = #{deletetime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -205,7 +265,11 @@
     set name = #{name,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       telephone = #{telephone,jdbcType=VARCHAR},
-      relationperson = #{relationperson,jdbcType=VARCHAR}
+      relationperson = #{relationperson,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      capacity = #{capacity,jdbcType=VARCHAR},
+      usetime = #{usetime,jdbcType=TIMESTAMP},
+      deletetime = #{deletetime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

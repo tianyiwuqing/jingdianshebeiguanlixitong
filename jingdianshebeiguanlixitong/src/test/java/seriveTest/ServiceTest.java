@@ -32,7 +32,7 @@ public class ServiceTest {
         employee.setPhotograph("");
         employee.setCreateTime(new Date());
         employee.setUpdateTime(new Date());
-        System.out.println(servcie.insertEmployee(employee));
+        servcie.insertEmployee(employee);
 
 
     }

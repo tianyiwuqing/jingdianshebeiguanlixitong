@@ -23,6 +23,8 @@ public class TableEmployee {
 
     private String description;
 
+    private String departmentId;
+
     private Integer type;
 
     private Integer delFlag;
@@ -111,6 +113,14 @@ public class TableEmployee {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId == null ? null : departmentId.trim();
     }
 
     public Integer getType() {

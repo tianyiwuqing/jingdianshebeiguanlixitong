@@ -1,5 +1,8 @@
 package com.lynu.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.lynu.tools.MyDateFormat;
+
 import java.util.Date;
 
 public class TableEquipmentDetalis {
@@ -13,15 +16,17 @@ public class TableEquipmentDetalis {
 
     private String equipmentBrand;
 
+    private Integer manufacturer;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date productdate;
-
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date usedate;
 
-    private Integer fixType;
-
+    private String fixType;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date fixenddate;
 
-    private Date fixtime;
+    private String fixtime;
 
     private String equipmentDetails;
 
@@ -35,7 +40,7 @@ public class TableEquipmentDetalis {
 
     private Date updateTime;
 
-    private String depreciationtype;
+    private Integer depreciationtype;
 
     public Integer getId() {
         return id;
@@ -77,27 +82,35 @@ public class TableEquipmentDetalis {
         this.equipmentBrand = equipmentBrand == null ? null : equipmentBrand.trim();
     }
 
+    public Integer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Integer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
     public Date getProductdate() {
         return productdate;
     }
 
-    public void setProductdate(Date productdate) {
-        this.productdate = productdate;
+    public void setProductdate(String productdate) {
+        this.productdate = MyDateFormat.dateFormat(productdate);
     }
 
     public Date getUsedate() {
         return usedate;
     }
 
-    public void setUsedate(Date usedate) {
-        this.usedate = usedate;
+    public void setUsedate(String usedate) {
+        this.usedate = MyDateFormat.dateFormat(usedate);
     }
 
-    public Integer getFixType() {
+    public String getFixType() {
         return fixType;
     }
 
-    public void setFixType(Integer fixType) {
+    public void setFixType(String fixType) {
         this.fixType = fixType;
     }
 
@@ -105,16 +118,16 @@ public class TableEquipmentDetalis {
         return fixenddate;
     }
 
-    public void setFixenddate(Date fixenddate) {
-        this.fixenddate = fixenddate;
+    public void setFixenddate(String fixenddate) {
+        this.fixenddate = MyDateFormat.dateFormat(fixenddate);
     }
 
-    public Date getFixtime() {
+    public String getFixtime() {
         return fixtime;
     }
 
-    public void setFixtime(Date fixtime) {
-        this.fixtime = fixtime;
+    public void setFixtime(String fixtime) {
+        this.fixtime = fixtime == null ? null : fixtime.trim();
     }
 
     public String getEquipmentDetails() {
@@ -165,12 +178,12 @@ public class TableEquipmentDetalis {
         this.updateTime = updateTime;
     }
 
-    public String getDepreciationtype() {
+    public Integer getDepreciationtype() {
         return depreciationtype;
     }
 
-    public void setDepreciationtype(String depreciationtype) {
-        this.depreciationtype = depreciationtype == null ? null : depreciationtype.trim();
+    public void setDepreciationtype(Integer depreciationtype) {
+        this.depreciationtype = depreciationtype;
     }
 
     @Override
@@ -181,18 +194,19 @@ public class TableEquipmentDetalis {
                 ", equipmentType=" + equipmentType +
                 ", equipmentFurnish=" + equipmentFurnish +
                 ", equipmentBrand='" + equipmentBrand + '\'' +
+                ", manufacturer=" + manufacturer +
                 ", productdate=" + productdate +
                 ", usedate=" + usedate +
                 ", fixType=" + fixType +
                 ", fixenddate=" + fixenddate +
-                ", fixtime=" + fixtime +
+                ", fixtime='" + fixtime + '\'' +
                 ", equipmentDetails='" + equipmentDetails + '\'' +
                 ", departmentId=" + departmentId +
                 ", employee=" + employee +
                 ", storage=" + storage +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
-                ", depreciationtype='" + depreciationtype + '\'' +
+                ", depreciationtype=" + depreciationtype +
                 '}';
     }
 }

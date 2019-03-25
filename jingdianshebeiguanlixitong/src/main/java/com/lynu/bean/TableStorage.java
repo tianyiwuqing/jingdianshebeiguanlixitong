@@ -1,5 +1,7 @@
 package com.lynu.bean;
 
+import java.util.Date;
+
 public class TableStorage {
     private Integer id;
 
@@ -10,6 +12,14 @@ public class TableStorage {
     private String telephone;
 
     private String relationperson;
+
+    private Integer isdelete;
+
+    private String capacity;
+
+    private Date usetime;
+
+    private Date deletetime;
 
     public Integer getId() {
         return id;
@@ -49,5 +59,37 @@ public class TableStorage {
 
     public void setRelationperson(String relationperson) {
         this.relationperson = relationperson == null ? null : relationperson.trim();
+    }
+
+    public Integer getIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(Integer isdelete) {
+        this.isdelete = isdelete;
+    }
+
+    public String getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(String capacity) {
+        this.capacity = capacity == null ? null : capacity.trim();
+    }
+
+    public Date getUsetime() {
+        return usetime;
+    }
+
+    public void setUsetime(Date usetime) {
+        this.usetime = usetime;
+    }
+
+    public Date getDeletetime() {
+        return deletetime;
+    }
+
+    public void setDeletetime(Date deletetime) {
+        this.deletetime = deletetime;
     }
 }

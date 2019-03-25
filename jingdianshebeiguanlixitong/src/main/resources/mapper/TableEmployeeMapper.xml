@@ -12,6 +12,7 @@
     <result column="is_valid" jdbcType="INTEGER" property="isValid" />
     <result column="is_leader" jdbcType="INTEGER" property="isLeader" />
     <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="department_id" jdbcType="VARCHAR" property="departmentId" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="del_flag" jdbcType="INTEGER" property="delFlag" />
     <result column="photograph" jdbcType="VARCHAR" property="photograph" />
@@ -78,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, employeename, username, password, sex, telephone, address, is_valid, is_leader, 
-    description, type, del_flag, photograph, create_time, update_time
+    description, department_id, type, del_flag, photograph, create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="com.lynu.bean.TableEmployeeExample" resultMap="BaseResultMap">
     select
@@ -114,15 +115,15 @@
     insert into table_employee (id, employeename, username, 
       password, sex, telephone, 
       address, is_valid, is_leader, 
-      description, type, del_flag, 
-      photograph, create_time, update_time
-      )
+      description, department_id, type, 
+      del_flag, photograph, create_time, 
+      update_time)
     values (#{id,jdbcType=INTEGER}, #{employeename,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{telephone,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{isValid,jdbcType=INTEGER}, #{isLeader,jdbcType=INTEGER}, 
-      #{description,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{delFlag,jdbcType=INTEGER}, 
-      #{photograph,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+      #{description,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{delFlag,jdbcType=INTEGER}, #{photograph,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.lynu.bean.TableEmployee">
     insert into table_employee
@@ -156,6 +157,9 @@
       </if>
       <if test="description != null">
         description,
+      </if>
+      <if test="departmentId != null">
+        department_id,
       </if>
       <if test="type != null">
         type,
@@ -203,6 +207,9 @@
       </if>
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
@@ -260,6 +267,9 @@
       <if test="record.description != null">
         description = #{record.description,jdbcType=VARCHAR},
       </if>
+      <if test="record.departmentId != null">
+        department_id = #{record.departmentId,jdbcType=VARCHAR},
+      </if>
       <if test="record.type != null">
         type = #{record.type,jdbcType=INTEGER},
       </if>
@@ -292,6 +302,7 @@
       is_valid = #{record.isValid,jdbcType=INTEGER},
       is_leader = #{record.isLeader,jdbcType=INTEGER},
       description = #{record.description,jdbcType=VARCHAR},
+      department_id = #{record.departmentId,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=INTEGER},
       del_flag = #{record.delFlag,jdbcType=INTEGER},
       photograph = #{record.photograph,jdbcType=VARCHAR},
@@ -331,6 +342,9 @@
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
+      <if test="departmentId != null">
+        department_id = #{departmentId,jdbcType=VARCHAR},
+      </if>
       <if test="type != null">
         type = #{type,jdbcType=INTEGER},
       </if>
@@ -360,6 +374,7 @@
       is_valid = #{isValid,jdbcType=INTEGER},
       is_leader = #{isLeader,jdbcType=INTEGER},
       description = #{description,jdbcType=VARCHAR},
+      department_id = #{departmentId,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
       del_flag = #{delFlag,jdbcType=INTEGER},
       photograph = #{photograph,jdbcType=VARCHAR},

@@ -7,18 +7,19 @@
     <result column="equipment_type" jdbcType="INTEGER" property="equipmentType" />
     <result column="equipment_furnish" jdbcType="INTEGER" property="equipmentFurnish" />
     <result column="equipment_brand" jdbcType="VARCHAR" property="equipmentBrand" />
+    <result column="manufacturer" jdbcType="INTEGER" property="manufacturer" />
     <result column="productDate" jdbcType="TIMESTAMP" property="productdate" />
     <result column="useDate" jdbcType="TIMESTAMP" property="usedate" />
     <result column="fix_type" jdbcType="INTEGER" property="fixType" />
     <result column="fixendDate" jdbcType="TIMESTAMP" property="fixenddate" />
-    <result column="fixtime" jdbcType="TIMESTAMP" property="fixtime" />
+    <result column="fixtime" jdbcType="VARCHAR" property="fixtime" />
     <result column="equipment_details" jdbcType="VARCHAR" property="equipmentDetails" />
     <result column="department_id" jdbcType="INTEGER" property="departmentId" />
     <result column="employee" jdbcType="INTEGER" property="employee" />
     <result column="storage" jdbcType="INTEGER" property="storage" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="depreciationtype" jdbcType="VARCHAR" property="depreciationtype" />
+    <result column="depreciationtype" jdbcType="INTEGER" property="depreciationtype" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -79,9 +80,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, equipment_id, equipment_type, equipment_furnish, equipment_brand, productDate, 
-    useDate, fix_type, fixendDate, fixtime, equipment_details, department_id, employee, 
-    storage, create_time, update_time, depreciationtype
+    id, equipment_id, equipment_type, equipment_furnish, equipment_brand, manufacturer, 
+    productDate, useDate, fix_type, fixendDate, fixtime, equipment_details, department_id, 
+    employee, storage, create_time, update_time, depreciationtype
   </sql>
   <select id="selectByExample" parameterType="com.lynu.bean.TableEquipmentDetalisExample" resultMap="BaseResultMap">
     select
@@ -115,17 +116,19 @@
   </delete>
   <insert id="insert" parameterType="com.lynu.bean.TableEquipmentDetalis">
     insert into table_equipment_detalis (id, equipment_id, equipment_type, 
-      equipment_furnish, equipment_brand, productDate, 
-      useDate, fix_type, fixendDate, 
-      fixtime, equipment_details, department_id, 
-      employee, storage, create_time, 
-      update_time, depreciationtype)
+      equipment_furnish, equipment_brand, manufacturer, 
+      productDate, useDate, fix_type, 
+      fixendDate, fixtime, equipment_details, 
+      department_id, employee, storage, 
+      create_time, update_time, depreciationtype
+      )
     values (#{id,jdbcType=INTEGER}, #{equipmentId,jdbcType=VARCHAR}, #{equipmentType,jdbcType=INTEGER}, 
-      #{equipmentFurnish,jdbcType=INTEGER}, #{equipmentBrand,jdbcType=VARCHAR}, #{productdate,jdbcType=TIMESTAMP}, 
-      #{usedate,jdbcType=TIMESTAMP}, #{fixType,jdbcType=INTEGER}, #{fixenddate,jdbcType=TIMESTAMP}, 
-      #{fixtime,jdbcType=TIMESTAMP}, #{equipmentDetails,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}, 
-      #{employee,jdbcType=INTEGER}, #{storage,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{depreciationtype,jdbcType=VARCHAR})
+      #{equipmentFurnish,jdbcType=INTEGER}, #{equipmentBrand,jdbcType=VARCHAR}, #{manufacturer,jdbcType=INTEGER}, 
+      #{productdate,jdbcType=TIMESTAMP}, #{usedate,jdbcType=TIMESTAMP}, #{fixType,jdbcType=INTEGER}, 
+      #{fixenddate,jdbcType=TIMESTAMP}, #{fixtime,jdbcType=VARCHAR}, #{equipmentDetails,jdbcType=VARCHAR}, 
+      #{departmentId,jdbcType=INTEGER}, #{employee,jdbcType=INTEGER}, #{storage,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{depreciationtype,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.lynu.bean.TableEquipmentDetalis">
     insert into table_equipment_detalis
@@ -144,6 +147,9 @@
       </if>
       <if test="equipmentBrand != null">
         equipment_brand,
+      </if>
+      <if test="manufacturer != null">
+        manufacturer,
       </if>
       <if test="productdate != null">
         productDate,
@@ -198,6 +204,9 @@
       <if test="equipmentBrand != null">
         #{equipmentBrand,jdbcType=VARCHAR},
       </if>
+      <if test="manufacturer != null">
+        #{manufacturer,jdbcType=INTEGER},
+      </if>
       <if test="productdate != null">
         #{productdate,jdbcType=TIMESTAMP},
       </if>
@@ -211,7 +220,7 @@
         #{fixenddate,jdbcType=TIMESTAMP},
       </if>
       <if test="fixtime != null">
-        #{fixtime,jdbcType=TIMESTAMP},
+        #{fixtime,jdbcType=VARCHAR},
       </if>
       <if test="equipmentDetails != null">
         #{equipmentDetails,jdbcType=VARCHAR},
@@ -232,7 +241,7 @@
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="depreciationtype != null">
-        #{depreciationtype,jdbcType=VARCHAR},
+        #{depreciationtype,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -260,6 +269,9 @@
       <if test="record.equipmentBrand != null">
         equipment_brand = #{record.equipmentBrand,jdbcType=VARCHAR},
       </if>
+      <if test="record.manufacturer != null">
+        manufacturer = #{record.manufacturer,jdbcType=INTEGER},
+      </if>
       <if test="record.productdate != null">
         productDate = #{record.productdate,jdbcType=TIMESTAMP},
       </if>
@@ -273,7 +285,7 @@
         fixendDate = #{record.fixenddate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.fixtime != null">
-        fixtime = #{record.fixtime,jdbcType=TIMESTAMP},
+        fixtime = #{record.fixtime,jdbcType=VARCHAR},
       </if>
       <if test="record.equipmentDetails != null">
         equipment_details = #{record.equipmentDetails,jdbcType=VARCHAR},
@@ -294,7 +306,7 @@
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.depreciationtype != null">
-        depreciationtype = #{record.depreciationtype,jdbcType=VARCHAR},
+        depreciationtype = #{record.depreciationtype,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -308,18 +320,19 @@
       equipment_type = #{record.equipmentType,jdbcType=INTEGER},
       equipment_furnish = #{record.equipmentFurnish,jdbcType=INTEGER},
       equipment_brand = #{record.equipmentBrand,jdbcType=VARCHAR},
+      manufacturer = #{record.manufacturer,jdbcType=INTEGER},
       productDate = #{record.productdate,jdbcType=TIMESTAMP},
       useDate = #{record.usedate,jdbcType=TIMESTAMP},
       fix_type = #{record.fixType,jdbcType=INTEGER},
       fixendDate = #{record.fixenddate,jdbcType=TIMESTAMP},
-      fixtime = #{record.fixtime,jdbcType=TIMESTAMP},
+      fixtime = #{record.fixtime,jdbcType=VARCHAR},
       equipment_details = #{record.equipmentDetails,jdbcType=VARCHAR},
       department_id = #{record.departmentId,jdbcType=INTEGER},
       employee = #{record.employee,jdbcType=INTEGER},
       storage = #{record.storage,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      depreciationtype = #{record.depreciationtype,jdbcType=VARCHAR}
+      depreciationtype = #{record.depreciationtype,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -339,6 +352,9 @@
       <if test="equipmentBrand != null">
         equipment_brand = #{equipmentBrand,jdbcType=VARCHAR},
       </if>
+      <if test="manufacturer != null">
+        manufacturer = #{manufacturer,jdbcType=INTEGER},
+      </if>
       <if test="productdate != null">
         productDate = #{productdate,jdbcType=TIMESTAMP},
       </if>
@@ -352,7 +368,7 @@
         fixendDate = #{fixenddate,jdbcType=TIMESTAMP},
       </if>
       <if test="fixtime != null">
-        fixtime = #{fixtime,jdbcType=TIMESTAMP},
+        fixtime = #{fixtime,jdbcType=VARCHAR},
       </if>
       <if test="equipmentDetails != null">
         equipment_details = #{equipmentDetails,jdbcType=VARCHAR},
@@ -373,7 +389,7 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="depreciationtype != null">
-        depreciationtype = #{depreciationtype,jdbcType=VARCHAR},
+        depreciationtype = #{depreciationtype,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -384,18 +400,19 @@
       equipment_type = #{equipmentType,jdbcType=INTEGER},
       equipment_furnish = #{equipmentFurnish,jdbcType=INTEGER},
       equipment_brand = #{equipmentBrand,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=INTEGER},
       productDate = #{productdate,jdbcType=TIMESTAMP},
       useDate = #{usedate,jdbcType=TIMESTAMP},
       fix_type = #{fixType,jdbcType=INTEGER},
       fixendDate = #{fixenddate,jdbcType=TIMESTAMP},
-      fixtime = #{fixtime,jdbcType=TIMESTAMP},
+      fixtime = #{fixtime,jdbcType=VARCHAR},
       equipment_details = #{equipmentDetails,jdbcType=VARCHAR},
       department_id = #{departmentId,jdbcType=INTEGER},
       employee = #{employee,jdbcType=INTEGER},
       storage = #{storage,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      depreciationtype = #{depreciationtype,jdbcType=VARCHAR}
+      depreciationtype = #{depreciationtype,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
