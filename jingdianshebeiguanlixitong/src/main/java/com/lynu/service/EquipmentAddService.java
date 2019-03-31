@@ -15,7 +15,7 @@ public interface EquipmentAddService {
      * @param addequipmentbills ,count
      * @return
      */
-   boolean   addEquipment(TableAddequipmentbills addequipmentbills,String count);
+   boolean   addEquipment(TableAddequipmentbills addequipmentbills,TableEquipment equipment,TableEquipmentDetalis equipmentDetalis);
 
     /**
      * 查询所有部门
@@ -66,4 +66,17 @@ public interface EquipmentAddService {
      * @return
      */
     List<TableEquipmentType> chaEquipmentType();
+
+    /**
+     * 查询所有的增加订单
+     * @return
+     */
+    List<TableAddequipmentbills> chaAddequipmentbills();
+
+    /**
+     * 根据设备增加订单id 删除增加订单
+     * @param aid
+     * @return
+     */
+    boolean delAddquipmentbills(String aid);
 }

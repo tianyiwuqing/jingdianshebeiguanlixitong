@@ -235,6 +235,66 @@ public class TableAddequipmentbillsExample {
             return (Criteria) this;
         }
 
+        public Criteria andEquipmentIdIsNull() {
+            addCriterion("equipment_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEquipmentIdIsNotNull() {
+            addCriterion("equipment_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEquipmentIdEqualTo(Integer value) {
+            addCriterion("equipment_id =", value, "equipmentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEquipmentIdNotEqualTo(Integer value) {
+            addCriterion("equipment_id <>", value, "equipmentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEquipmentIdGreaterThan(Integer value) {
+            addCriterion("equipment_id >", value, "equipmentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEquipmentIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("equipment_id >=", value, "equipmentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEquipmentIdLessThan(Integer value) {
+            addCriterion("equipment_id <", value, "equipmentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEquipmentIdLessThanOrEqualTo(Integer value) {
+            addCriterion("equipment_id <=", value, "equipmentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEquipmentIdIn(List<Integer> values) {
+            addCriterion("equipment_id in", values, "equipmentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEquipmentIdNotIn(List<Integer> values) {
+            addCriterion("equipment_id not in", values, "equipmentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEquipmentIdBetween(Integer value1, Integer value2) {
+            addCriterion("equipment_id between", value1, value2, "equipmentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEquipmentIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("equipment_id not between", value1, value2, "equipmentId");
+            return (Criteria) this;
+        }
+
         public Criteria andDepartmentIdIsNull() {
             addCriterion("department_id is null");
             return (Criteria) this;
@@ -1242,6 +1302,66 @@ public class TableAddequipmentbillsExample {
 
         public Criteria andAddressNotBetween(String value1, String value2) {
             addCriterion("address not between", value1, value2, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountIsNull() {
+            addCriterion("count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountIsNotNull() {
+            addCriterion("count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountEqualTo(Integer value) {
+            addCriterion("count =", value, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountNotEqualTo(Integer value) {
+            addCriterion("count <>", value, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountGreaterThan(Integer value) {
+            addCriterion("count >", value, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("count >=", value, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountLessThan(Integer value) {
+            addCriterion("count <", value, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountLessThanOrEqualTo(Integer value) {
+            addCriterion("count <=", value, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountIn(List<Integer> values) {
+            addCriterion("count in", values, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountNotIn(List<Integer> values) {
+            addCriterion("count not in", values, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountBetween(Integer value1, Integer value2) {
+            addCriterion("count between", value1, value2, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("count not between", value1, value2, "count");
             return (Criteria) this;
         }
     }

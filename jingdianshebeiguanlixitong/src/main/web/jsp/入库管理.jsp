@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,11 +27,9 @@
             font-size: 16px;
             margin-right: 10px;
         }
-
         #xin a:hover {
             color: #bfbfbf;
         }
-
         #xin-x {
             position: absolute;
             top: 2px;
@@ -61,6 +59,10 @@
             margin-bottom: 1px;
         }
     </style>
+
+
+    <%--引人公共部分--%>
+    <include src="./设备增加.jsp"></include>
 </head>
 <body>
 <div id="win" class="easyui-window" title="医疗设备管理系统 - [功能导航]" style="width:1300px;height:600px"
@@ -72,87 +74,9 @@
                     <h2 class="panel-title" style="color: #ffffff;font-size: 22px">医疗设备管理系统</h2>
                 </div>
                 <div class="easyui-layout" style="height: 521px;width: 100%" id="xin">
-                    <div data-options="region:'west',title:'功能导航',split:true" style="width:200px;">
-                        <div class="clearfix">
-                            <aside class="sidebar">
-                                <nav class="sidebar-nav">
-                                    <ul class="metismenu" id="menu">
-                                        <li>
-                                            <a href="设备管理.html" aria-expanded="false" id="shebei">设备管理<span
-                                                    class="glyphicon arrow"></span></a>
-                                            <ul aria-expanded="false">
-                                                <li><a href="设备增加.jsp">设备增加</a></li>
-                                                <li><a href="出库管理.html">出库管理</a></li>
-                                                <li><a href="出库查询.html">出库查询</a></li>
-                                                <li><a href="入库管理.html">入库管理</a></li>
-                                                <li><a href="入库查询.html">入库查询</a></li>
-                                                <li><a href="设备盘点.html">设备盘点</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#" aria-expanded="false">运行管理<span class="glyphicon arrow"></span></a>
-                                            <ul aria-expanded="false">
-                                                <li><a href="t设备故障登记.html">设备故障登记</a></li>
-                                                <li><a href="t故障维修管理.html">故障维修管理</a></li>
-                                                <li><a href="维修记录查询.html">维修记录查询</a></li>
-                                                <li><a href="t设备启用管理.html">设备启用管理</a></li>
-                                                <li><a href="t启用记录查询.html">启用记录查询</a></li>
-                                                <li><a href="t设备封存管理.html">设备封存管理</a></li>
-                                                <li><a href="t封存记录查询.html">封存记录查询</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#" aria-expanded="false">报废管理<span class="glyphicon arrow"></span></a>
-                                            <ul aria-expanded="false">
-                                                <li><a href="#">到期设备查询</a></li>
-                                                <li><a href="#">设备报废管理</a></li>
-                                                <li><a href="#">报废设备查询</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#" aria-expanded="false">预防维护<span class="glyphicon arrow"></span></a>
-                                            <ul aria-expanded="false">
-                                                <li><a href="#">到期维护设备查询</a></li>
-                                                <li><a href="#">设备预防维护计划</a></li>
-                                                <li><a href="#">设备预防维护管理</a></li>
-                                                <li><a href="#">设备预防维护查询</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#" aria-expanded="false">基础信息<span class="glyphicon arrow"></span></a>
-                                            <ul aria-expanded="false">
-                                                <li><a href="#">系统参数设置</a></li>
-                                                <li><a href="#">组织机构设置</a></li>
-                                                <li><a href="#">职工档案设置</a></li>
-                                                <li><a href="#">所在仓库管理</a></li>
-                                                <li><a href="#">供应厂商维护</a></li>
-                                                <li><a href="#">生产厂商维护</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#" aria-expanded="false">系统维护<span class="glyphicon arrow"></span></a>
-                                            <ul aria-expanded="false">
-                                                <li><a href="#">角色授权管理</a></li>
-                                                <li><a href="#">查询操作记录</a></li>
-                                                <li><a href="#">操作数据清理</a></li>
-                                                <li><a href="#">数据备份恢复</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#" aria-expanded="false">权限管理<span class="glyphicon arrow"></span></a>
-                                            <ul aria-expanded="false">
-                                                <li><a href="#">角色授权管理</a></li>
-                                                <li><a href="#">查询操作记录</a></li>
-                                                <li><a href="#">操作数据清理</a></li>
-                                                <li><a href="#">数据备份恢复</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </aside>
-                        </div>
-
-                    </div>
+                    //功能导航
+                    <jsp:include page="daohanggongneng.jsp"/>
+                    //
                     <div id="xin-y" data-options="region:'center',title:' '" style="padding:3px;background:white;">
                         <div id="xin--x">设备入库管理</div>
                         <div id="xin-x">
@@ -162,7 +86,6 @@
                             <a href="">关于</a>
                             <a href="../html/tcdl.html">退出</a>
                         </div>
-
                         <div id="shebeizengjia1">
                             <div id="dd3" style="width:100%;height:27px;background:#f9f9f9;">
                                 <div id="title">
@@ -180,25 +103,20 @@
                                 <a href=""><img src="../fontimg/chaxun.png" alt="">查询</a>
                             </div>
                             <div>
-
                             </div>
-
                             <div style="border: 1px solid #0f0f0f;width: 100%;height: 100px">
                                 <table border="1" style="width: 900px;height: 20px;text-align: center">
                                     <tr>
                                         <td>序号</td>
                                         <td>
-
                                             <select name="areaCode" style="width:100%;height:30px;">
                                                 <option value="" selected="selected">单据编号</option>
-
                                             </select>
                                         </td>
                                         <td style="width: 200px">摘要</td>
                                         <td>
                                             <select name="areaCode" style="width:100%;height:30px;">
                                                 <option value="" selected="selected">调入部门</option>
-
                                             </select>
                                         </td>
                                         <td><select name="areaCode" style="width:100%;height:30px;">
@@ -209,19 +127,16 @@
                                         <td>
                                             <select name="areaCode" style="width:100%;height:30px;">
                                                 <option value="" selected="selected">制单日期</option>
-
                                             </select>
                                         </td>
                                         <td>
                                             <select name="areaCode" style="width:100%;height:30px;">
                                                 <option value="" selected="selected">制单人</option>
-
                                             </select>
                                         </td>
                                         <td>
                                             <select name="areaCode" style="width:100%;height:30px;">
                                                 <option value="" selected="selected">单据状态</option>
-
                                             </select>
                                         </td>
                                     </tr>
@@ -246,14 +161,10 @@
                                 单据状态：<input type="text">
                                 登账人员：<input type="text">
                                 登账日期：<input type="text"><br>
-
                             </div>
-
                             <div style="border: 1px solid #eee8e5;width: 98%;height: 30px;text-align: center;line-height: 30px;font-size: 15px;">
                                 设备明细
-                                <a style="display:inline-block;float: right;font-size: 10px;">批量修改</a>
                             </div>
-
                             <div style="overflow:scroll; width:100%;height: 300px" id="jichu">
                                 <table border="1" style="width: 1800px;">
                                     <tr>
@@ -301,7 +212,6 @@
 
                                 </table>
                             </div>
-
                         </div>
                     </div>
                     <div data-options="region:'south',title:'试用版'" style="height:20px;"></div>

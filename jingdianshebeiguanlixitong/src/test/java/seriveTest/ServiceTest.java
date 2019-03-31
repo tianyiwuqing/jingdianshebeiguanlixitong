@@ -2,6 +2,7 @@ package seriveTest;
 
 import com.lynu.bean.TableEmployee;
 import com.lynu.service.TableEmployeeServcie;
+import com.lynu.tools.MathRandomUUID;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -33,6 +34,13 @@ public class ServiceTest {
         employee.setCreateTime(new Date());
         employee.setUpdateTime(new Date());
         servcie.insertEmployee(employee);
+    }
+
+    @Test
+    public void lingTest() {
+
+        int i = Integer.parseInt(MathRandomUUID.UUidRandom(11));
+        System.out.println(i);
 
 
     }

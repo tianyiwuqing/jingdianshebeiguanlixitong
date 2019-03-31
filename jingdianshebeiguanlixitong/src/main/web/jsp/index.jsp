@@ -57,12 +57,12 @@
                     <li>
                       <a href="#" aria-expanded="false" id="shebei">设备管理<span class="glyphicon arrow"></span></a>
                       <ul aria-expanded="false">
-                        <li><a href="#" id="shebeizengjia">设备增加</a></li>
-                        <li><a href="#">出库管理</a></li>
-                        <li><a href="#">出库查询</a></li>
-                        <li><a href="#">入库管理</a></li>
-                        <li><a href="#">入库查询</a></li>
-                        <li><a href="#">设备盘点</a></li>
+                        <li><a href="${pageContext.request.contextPath}/jsp/设备增加.jsp" id="shebeizengjia">设备增加</a></li>
+                        <li><a href="${pageContext.request.contextPath}/jsp/出库管理.html">出库管理</a></li>
+                        <li><a href="${pageContext.request.contextPath}/jsp/出库查询.html">出库查询</a></li>
+                        <li><a href="${pageContext.request.contextPath}/jsp/入库管理.jsp">入库管理</a></li>
+                        <li><a href="${pageContext.request.contextPath}/jsp/入库查询.html">入库查询</a></li>
+                        <li><a href="${pageContext.request.contextPath}/jsp/设备盘点.html">设备盘点</a></li>
                       </ul>
                     </li>
                     <li>
