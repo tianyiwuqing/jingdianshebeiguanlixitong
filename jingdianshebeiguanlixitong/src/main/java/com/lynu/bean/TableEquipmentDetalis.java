@@ -17,13 +17,13 @@ public class TableEquipmentDetalis {
     private String equipmentBrand;
 
     private Integer manufacturer;
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date productdate;
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date usedate;
 
     private String fixType;
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date fixenddate;
 
     private String fixtime;
@@ -35,7 +35,7 @@ public class TableEquipmentDetalis {
     private Integer employee;
 
     private Integer storage;
-
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date createTime;
 
     private Date updateTime;
@@ -166,8 +166,8 @@ public class TableEquipmentDetalis {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreateTime(String  createTime) {
+        this.createTime = MyDateFormat.dateFormat(createTime);
     }
 
     public Date getUpdateTime() {
@@ -197,7 +197,7 @@ public class TableEquipmentDetalis {
                 ", manufacturer=" + manufacturer +
                 ", productdate=" + productdate +
                 ", usedate=" + usedate +
-                ", fixType=" + fixType +
+                ", fixType='" + fixType + '\'' +
                 ", fixenddate=" + fixenddate +
                 ", fixtime='" + fixtime + '\'' +
                 ", equipmentDetails='" + equipmentDetails + '\'' +

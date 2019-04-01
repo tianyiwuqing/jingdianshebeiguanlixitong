@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lynu.tools.MyDateFormat;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -16,12 +14,14 @@ public class TableAddequipmentbills implements Serializable {
 
     private String billsnumber;
 
+    private Integer equipmentId;
+
     private String departmentId;
 
     private String shopdepartmentId;
 
     private String receptionperson;
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date purchaseTime;
 
     private String abstractdetails;
@@ -37,24 +37,53 @@ public class TableAddequipmentbills implements Serializable {
     private String money;
 
     private String usedir;
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date createTime;
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date updateTime;
 
     private String checkingperson;
 
     private String address;
 
-    private TableEquipment equipment;
+    private TableFurnish furnish;
 
-    public TableEquipment getEquipment() {
-        return equipment;
+    private TableEmployee billsEmployee;
+
+    public TableEmployee getBillsEmployee() {
+        return billsEmployee;
     }
 
-    public void setEquipment(TableEquipment equipment) {
-        this.equipment = equipment;
+    public void setBillsEmployee(TableEmployee billsEmployee) {
+        this.billsEmployee = billsEmployee;
     }
+
+    public TableFurnish getFurnish() {
+        return furnish;
+    }
+
+    public void setFurnish(TableFurnish furnish) {
+        this.furnish = furnish;
+    }
+
+    public Integer getEquipmentId() {
+        return equipmentId;
+    }
+
+    public void setEquipmentId(Integer equipmentId) {
+        this.equipmentId = equipmentId;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    private Integer count;
+
+
 
     public Integer getId() {
         return id;
@@ -102,7 +131,7 @@ public class TableAddequipmentbills implements Serializable {
 
 
     public void setPurchaseTime(String purchaseTime) {
-            this.purchaseTime = MyDateFormat.dateFormat(purchaseTime);
+        this.purchaseTime= MyDateFormat.dateFormat(purchaseTime);
     }
 
     public String getAbstractdetails() {
@@ -166,8 +195,7 @@ public class TableAddequipmentbills implements Serializable {
     }
 
     public void setCreateTime(String createTime) {
-
-        this.createTime = MyDateFormat.dateFormat(createTime);
+        this.createTime= MyDateFormat.dateFormat(createTime);
     }
 
     public Date getUpdateTime() {
@@ -214,7 +242,7 @@ public class TableAddequipmentbills implements Serializable {
                 ", updateTime=" + updateTime +
                 ", checkingperson='" + checkingperson + '\'' +
                 ", address='" + address + '\'' +
-                ", equipment=" + equipment +
+                ", count=" + count +
                 '}';
     }
 }

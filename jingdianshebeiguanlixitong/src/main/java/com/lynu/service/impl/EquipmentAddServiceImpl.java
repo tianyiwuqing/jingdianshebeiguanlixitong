@@ -3,8 +3,9 @@ package com.lynu.service.impl;
 import com.lynu.bean.*;
 import com.lynu.dao.*;
 import com.lynu.service.EquipmentAddService;
+import com.lynu.tools.MathRandomUUID;
+import com.lynu.tools.MyDateFormat;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -47,23 +48,40 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
 
 
     @Override
-    public boolean addEquipment(TableAddequipmentbills addequipmentbills, String count) {
-        TableEquipment equipment = addequipmentbills.getEquipment();
-        equipment.getEquipmentDetalis().setCreateTime(new Date());
-        equipment.getEquipmentDetalis().setUpdateTime(new Date());
-        //查询设备表中是否有设备属性
+    public boolean addEquipment(TableAddequipmentbills addequipmentbills, TableEquipment equipment, TableEquipmentDetalis equipmentDetalis) {
+        System.out.println("serviceimpl yunxing");
+        addequipmentbills.setCreateTime(MyDateFormat.StringFormat(new Date()));
+        addequipmentbills.setIsDelate(0);
+        addequipmentbills.setUpdateTime(new Date());
+        //设置生成增加订单id
+        addequipmentbills.setId(Integer.parseInt(MathRandomUUID.UUidRandom(9)));
         TableEquipmentExample equipmentExample = new TableEquipmentExample();
         TableEquipmentExample.Criteria criteria = equipmentExample.createCriteria();
         criteria.andEquipmentNameEqualTo(equipment.getEquipmentName());
         criteria.andEquipmentStandardEqualTo(equipment.getEquipmentStandard());
         List<TableEquipment> tableEquipments = equipmentMapper.selectByExample(equipmentExample);
-        //如果有设备表中有设备属性就只添加添加设备表，否者都三张表都参加信息
-        if (tableEquipments.size() > 1) {
-            return addequipmentbillsMapper.insert(addequipmentbills)>0;
+        System.out.println(tableEquipments.size() + "   :tableEquipments.size()");
+        if (tableEquipments.size() > 0) {
+            //获取设备id
+            addequipmentbills.setEquipmentId(Integer.parseInt(tableEquipments.get(0).getId()));
+            return addequipmentbillsMapper.insert(addequipmentbills) > 0;
         } else {
-            int insert = addequipmentbillsMapper.insert(addequipmentbills);
-            int insert1 = equipmentMapper.insert(equipment);
-            int insert2 = equipmentDetalisMapper.insert(equipment.getEquipmentDetalis());
+            equipmentDetalis.setUpdateTime(new Date());
+            //生成并设置设备id
+            equipment.setId(MathRandomUUID.UUidRandom(9));
+            //插入设备
+            int insert = equipmentMapper.insert(equipment);
+            //设备详情关联设备id
+            equipmentDetalis.setEquipmentId(equipment.getId());
+            //生成并设置设备详情id
+            equipmentDetalis.setId(Integer.parseInt(MathRandomUUID.UUidRandom(9)));
+            //插入设备详情
+            int insert1 = equipmentDetalisMapper.insert(equipmentDetalis);
+            //添加订单和设备进行id关联
+            addequipmentbills.setEquipmentId(Integer.parseInt(equipment.getId()));
+            //插入增加订单
+            int insert2 = addequipmentbillsMapper.insert(addequipmentbills);
+            System.out.println("end!");
             return insert + insert1 + insert2 == 3;
         }
     }
@@ -120,5 +138,37 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
     @Override
     public List<TableEquipmentType> chaEquipmentType() {
         return equipmentTypeMapper.selectByExample(null);
+    }
+
+    @Override
+    public List<TableAddequipmentbills> chaAddequipmentbills() {
+        List<TableAddequipmentbills> tableAddequipmentbills = addequipmentbillsMapper.selectByExample(null);
+        for (TableAddequipmentbills tableAddequipmentbill : tableAddequipmentbills) {
+                //            通过id查询对象
+                TableEmployee tableEmployee = employeeMapper.selectByPrimaryKey(Integer.parseInt(tableAddequipmentbill.getBillsperson()));
+                TableFurnish tableFurnish = furnishMapper.selectByPrimaryKey(Integer.parseInt(tableAddequipmentbill.getEquipmentFurnish()));
+//            把查询对象插入增加订单中
+                tableAddequipmentbill.setFurnish(tableFurnish);
+                tableAddequipmentbill.setBillsEmployee(tableEmployee);
+        }
+        return tableAddequipmentbills;
+    }
+
+    @Override
+    public List<TableAddequipmentbills> chaDateAddEquipmentbills(String startTime, String endTime) {
+        TableAddequipmentbillsExample example=new TableAddequipmentbillsExample();
+        TableAddequipmentbillsExample.Criteria criteria = example.createCriteria();
+        criteria.andCreateTimeBetween(MyDateFormat.dateFormat(startTime),MyDateFormat.dateFormat(endTime));
+        return addequipmentbillsMapper.selectByExample(example);
+    }
+
+    @Override
+    public boolean delAddquipmentbills(String aid) {
+        return addequipmentbillsMapper.deleteByPrimaryKey(Integer.parseInt(aid))>0;
+    }
+
+    @Override
+    public boolean delAllAddquipmentbills() {
+        return addequipmentbillsMapper.deleteByExample(null)>0;
     }
 }

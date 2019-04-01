@@ -2,10 +2,12 @@ package com.lynu.controller;
 
 import com.lynu.bean.*;
 import com.lynu.service.EquipmentAddService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,19 +18,17 @@ import java.util.List;
 @RequestMapping("equipmentAddController")
 public class EquipmentAddController {
 
-    @Autowired
+    @Resource
     private EquipmentAddService equipmentAddService;
 
-    @RequestMapping(value = "addEquipment", method= RequestMethod.POST)
-    public void   addEquipment(TableAddequipmentbills addequipmentbills,TableEquipment equipment,TableEquipmentDetalis equipmentDetalis,String count) {
+    @RequestMapping(value = "addEquipment", method = RequestMethod.POST)
+    public void addEquipment(TableAddequipmentbills addequipmentbills, TableEquipment equipment, TableEquipmentDetalis equipmentDetalis ) {
         System.out.println("ok");
         System.out.println(addequipmentbills);
         System.out.println(equipment);
         System.out.println(equipmentDetalis);
-        equipment.setEquipmentDetalis(equipmentDetalis);
-        addequipmentbills.setEquipment(equipment);
-        System.out.println(count);
-//        boolean b = equipmentAddService.addEquipment(addequipmentbills, count);
+        boolean b = equipmentAddService.addEquipment(addequipmentbills, equipment,equipmentDetalis);
+        System.out.println(b);
     }
 
     /**
@@ -45,46 +45,75 @@ public class EquipmentAddController {
     private List<TableDepartment> chaAllDepartment() {
         return equipmentAddService.chaAllDepartment();
     }
+
     @RequestMapping("departmentOfEmployee")
     @ResponseBody
-    private List<TableEmployee> departmentOfEmployee(String did){
+    private List<TableEmployee> departmentOfEmployee(String did) {
         return equipmentAddService.departmentOfEmployee(did);
 
     }
+
     @RequestMapping("chaCheckingperson")
     @ResponseBody
-    List<TableEmployee> chaCheckingperson(){
+    List<TableEmployee> chaCheckingperson() {
         return equipmentAddService.chaCheckingperson();
     }
 
     @RequestMapping("chaStorage")
     @ResponseBody
-    public List<TableStorage> chaStorage(){
+    public List<TableStorage> chaStorage() {
         return equipmentAddService.chaStorage();
     }
 
     @RequestMapping("chaOperatorpersonAddBillsperson")
     @ResponseBody
-    public List<TableEmployee> chaOperatorpersonAddBillsperson(){
+    public List<TableEmployee> chaOperatorpersonAddBillsperson() {
         return equipmentAddService.chaOperatorpersonAddBillsperson();
     }
 
     @RequestMapping("chaFurnish")
     @ResponseBody
-    public List<TableFurnish> chaFurnish(){
-        return  equipmentAddService.chaFurnish();
+    public List<TableFurnish> chaFurnish() {
+        return equipmentAddService.chaFurnish();
     }
 
     @RequestMapping("chaAllManufacturer")
     @ResponseBody
-    List<TableManufacturer> chaAllManufacturer(){
-        return  equipmentAddService.chaAllManufacturer();
+    List<TableManufacturer> chaAllManufacturer() {
+        return equipmentAddService.chaAllManufacturer();
     }
 
     @RequestMapping("chaEquipmentType")
     @ResponseBody
-    List<TableEquipmentType> chaEquipmentType(){
+    List<TableEquipmentType> chaEquipmentType() {
         return equipmentAddService.chaEquipmentType();
     }
 
+    @RequestMapping("chaAddequipmentbills")
+    @ResponseBody
+    public List<TableAddequipmentbills> chaAddequipmentbills(){
+        return equipmentAddService.chaAddequipmentbills();
+    }
+
+    @RequestMapping("delAddquipmentbills")
+    @ResponseBody
+    public boolean delAddquipmentbills(String aid){
+        System.out.println("controller come on "+aid);
+       return equipmentAddService.delAddquipmentbills(aid);
+    }
+    @RequestMapping("delAllAddquipmentbills")
+    @ResponseBody
+    public boolean delAllAddquipmentbills(){
+        return equipmentAddService.delAllAddquipmentbills();
+    }
+    @RequestMapping("chaDateAddEquipmentbills")
+    @ResponseBody
+    public List<TableAddequipmentbills> chaDateAddEquipmentbills(String startTime, String endTime){
+        System.out.println(startTime+":"+endTime);
+        List<TableAddequipmentbills> tableAddequipmentbills = equipmentAddService.chaDateAddEquipmentbills(startTime, endTime);
+        for (TableAddequipmentbills tableAddequipmentbill : tableAddequipmentbills) {
+            System.out.println(tableAddequipmentbill);
+        }
+        return  equipmentAddService.chaDateAddEquipmentbills(startTime,endTime);
+    }
 }
