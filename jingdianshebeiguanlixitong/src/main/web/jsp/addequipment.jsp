@@ -29,7 +29,7 @@
         function add() {
             alert("是否提交项目");
             $("#add").submit();
-            /*$("#addEquipment").submit();*/
+            $("#addEquipment").submit();
         }
 
         //部门ajax
@@ -160,54 +160,7 @@
                 }
             })
         });
-        //设备添加订单列表chaAddequipmentbills
-        $(function () {
-            $.ajax({
-                type: "GET",
-                url: "${pageContext.request.contextPath}/equipmentAddController/chaAddequipmentbills",
-                dataType: "json",
-                success: function (returnData) {
-                    var i = 0;
-                    console.log(returnData);
-                    $(returnData).each(function (index, item) {
-                        i++;
-                        var option = "<tr id='" + item.id + "'>" +
-                            "<td>" + i + "</td>" +
-                            "<td >" + item.billsnumber + "</td>" +
-                            "<td >" + item.furnish.name + "</td>" +
-                            "<td >" + item.abstractdetails + "</td> " +
-                            "<td >" + item.createTime + "</td>" +
-                            "<td >"+item.billsEmployee.employeename+"</td>" +
-                            "<td >"+item.isDelate+"</td>" +
-                            "<td ><a href='javascript:addBillsDelete("+ item.id +")'><img src='../fontimg/shanchu.png' alt=''>删除</a></td>" +
-                        "</tr>";
-                        $("#table").append(option);
-                    })
-                },
-                error: function () {
-                    console.log("error！")
-                }
-            })
-        });
 
-        //删除订单
-        function addBillsDelete(obj) {
-            $.ajax({
-                type: "GET",
-                url: "${pageContext.request.contextPath}/equipmentAddController/delAddquipmentbills",
-                data: {"aid": obj},
-                dataType: "json",
-                success: function (returnData) {
-                    if (returnData) {
-                        $("#table").find("tr[id=" + obj + "]").remove()
-                    }
-                },
-                error: function () {
-                    console.log("error！")
-                }
-            })
-        }
-        //选择select控件
         function employeeChang() {
             var obj = $("#departmentId").val();
             $.ajax({
@@ -222,12 +175,15 @@
                     $(returnData).each(function (index, item) {
                         var option = "<option value=" + item.id + ">" + item.employeename + "</option>";
                         $("#receptionperson").append(option);
+
                     })
                 },
                 error: function () {
                     console.log("error！")
                 }
             })
+
+
         }
 
     </script>
@@ -282,6 +238,88 @@
                 <div class="panel-heading">
                     <h2 class="panel-title" style="color: #ffffff;font-size: 22px">医疗设备管理系统</h2>
                 </div>
+                <div class="easyui-layout" style="height: 521px;width: 100%" id="xin">
+                    <div data-options="region:'west',title:'功能导航',split:true" style="width:200px;">
+                        <div class="clearfix">
+                            <aside class="sidebar">
+                                <nav class="sidebar-nav">
+                                    <ul class="metismenu" id="menu">
+                                        <li>
+                                            <a href="../html/设备管理.html" aria-expanded="false" id="shebei">设备管理<span
+                                                    class="glyphicon arrow"></span></a>
+                                            <ul aria-expanded="false">
+                                                <li><a href="设备增加.html">设备增加</a></li>
+                                                <li><a href="出库管理.html">出库管理</a></li>
+                                                <li><a href="出库查询.html">出库查询</a></li>
+                                                <li><a href="入库管理.html">入库管理</a></li>
+                                                <li><a href="入库查询.html">入库查询</a></li>
+                                                <li><a href="设备盘点.html">设备盘点</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#" aria-expanded="false">运行管理<span class="glyphicon arrow"></span></a>
+                                            <ul aria-expanded="false">
+                                                <li><a href="t设备故障登记.html">设备故障登记</a></li>
+                                                <li><a href="t故障维修管理.html">故障维修管理</a></li>
+                                                <li><a href="维修记录查询.html">维修记录查询</a></li>
+                                                <li><a href="t设备启用管理.html">设备启用管理</a></li>
+                                                <li><a href="t启用记录查询.html">启用记录查询</a></li>
+                                                <li><a href="t设备封存管理.html">设备封存管理</a></li>
+                                                <li><a href="t封存记录查询.html">封存记录查询</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#" aria-expanded="false">报废管理<span class="glyphicon arrow"></span></a>
+                                            <ul aria-expanded="false">
+                                                <li><a href="#">到期设备查询</a></li>
+                                                <li><a href="#">设备报废管理</a></li>
+                                                <li><a href="#">报废设备查询</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#" aria-expanded="false">预防维护<span class="glyphicon arrow"></span></a>
+                                            <ul aria-expanded="false">
+                                                <li><a href="#">到期维护设备查询</a></li>
+                                                <li><a href="#">设备预防维护计划</a></li>
+                                                <li><a href="#">设备预防维护管理</a></li>
+                                                <li><a href="#">设备预防维护查询</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#" aria-expanded="false">基础信息<span class="glyphicon arrow"></span></a>
+                                            <ul aria-expanded="false">
+                                                <li><a href="#">系统参数设置</a></li>
+                                                <li><a href="#">组织机构设置</a></li>
+                                                <li><a href="#">职工档案设置</a></li>
+                                                <li><a href="#">所在仓库管理</a></li>
+                                                <li><a href="#">供应厂商维护</a></li>
+                                                <li><a href="#">生产厂商维护</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#" aria-expanded="false">系统维护<span class="glyphicon arrow"></span></a>
+                                            <ul aria-expanded="false">
+                                                <li><a href="#">角色授权管理</a></li>
+                                                <li><a href="#">查询操作记录</a></li>
+                                                <li><a href="#">操作数据清理</a></li>
+                                                <li><a href="#">数据备份恢复</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#" aria-expanded="false">权限管理<span class="glyphicon arrow"></span></a>
+                                            <ul aria-expanded="false">
+                                                <li><a href="#">角色授权管理</a></li>
+                                                <li><a href="#">查询操作记录</a></li>
+                                                <li><a href="#">操作数据清理</a></li>
+                                                <li><a href="#">数据备份恢复</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </aside>
+                        </div>
+
+                    </div>
                     <div id="xin-y" data-options="region:'center',title:' '" style="padding:3px;background:white;">
                         <div id="xin--x">设备增加管理</div>
                         <div id="xin-x">
@@ -289,15 +327,18 @@
                             <a href="xgmm.html">修改密码</a>
                             <a href="">帮助</a>
                             <a href="">关于</a>
-                            <a href="${pageContext.request.contextPath}/jsp/index.jsp">退出</a>
+                            <a href="tcdl.html">退出</a>
                         </div>
 
                         <div id="shebeizengjia1">
                             <div id="dd3" style="width:100%;height:27px;background:#f9f9f9;">
                                 <div id="title">
                                     <a href="JavaScript:add()"><img src="../fontimg/add.png" alt="">添加</a>
+                                    <a href=""><img src="../fontimg/shanchu.png" alt="">删除</a>
                                     <a href=""><img src="../fontimg/baocun.png" alt="">保存</a>
+                                    <a href=""><img src="../fontimg/dengzhang.png" alt="">登账</a>
                                     <a href=""><img src="../fontimg/dayin.png" alt="">打印</a>
+                                    <a href=""><img src="../fontimg/sheji.png" alt="">设计</a>
                                     <a href="newindex.html"><img src="../fontimg/fanhui.png" alt="">返回</a><br>
                                 </div>
                             </div>
@@ -306,51 +347,51 @@
                                 <a href=""><img src="../fontimg/chaxun.png" alt="">查询</a>
                             </div>
                             <div style="border: 1px solid #0f0f0f;width: 100%;height: 100px">
-                                <table id="table" border="1" style="width: 900px;height: 20px">
-                                    <tr id="trtitle">
+                                <table border="1" style="width: 900px;height: 20px">
+                                    <tr>
                                         <td>序号</td>
                                         <td>
                                             <select name="areaCode" style="width:100%;height:30px;">
                                                 <option value="" selected="selected">单据编号</option>
+
                                             </select>
                                         </td>
                                         <td>
                                             <select name="areaCode" style="width:100%;height:30px;">
                                                 <option value="" selected="selected">供应商</option>
+
                                             </select>
                                         </td>
                                         <td style="width: 200px">摘要</td>
                                         <td>
                                             <select name="areaCode" style="width:100%;height:30px;">
                                                 <option value="" selected="selected">制单日期</option>
+
                                             </select>
                                         </td>
                                         <td>
                                             <select name="areaCode" style="width:100%;height:30px;">
                                                 <option value="" selected="selected">制单人</option>
+
                                             </select>
                                         </td>
                                         <td>
                                             <select name="areaCode" style="width:100%;height:30px;">
                                                 <option value="" selected="selected">单据状态</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select name="areaCode" style="width:100%;height:30px;">
-                                                <option value="" selected="selected">其他</option>
+
                                             </select>
                                         </td>
                                     </tr>
                                 </table>
-                                <div style="text-align: center;line-height: 100px">
+                                <div style="text-align: center;line-height: 100px"> 无数据显示
                                     <div>
                                     </div>
                                 </div>
-                            </div>                            单据信息
-
-                            <form id="add" method="post"
-                                  action="${pageContext.request.contextPath}/equipmentAddController/addEquipment">
-                                <div style="border: 1px solid #0f0f0f;width: 100%;height: 130px" id="danju">
+                            </div>
+                            单据信息
+                            <div style="border: 1px solid #0f0f0f;width: 100%;height: 130px" id="danju">
+                                <form id="add" method="post"
+                                      action="${pageContext.request.contextPath}/equipmentAddController/addEquipment">
                                     单据编号：<input name="billsnumber" type="text">
                                     接收部门：
                                     <select name="departmentId" id="departmentId" onblur="employeeChang()">
@@ -397,10 +438,10 @@
                                     </select>
                                     使用方向：<input name="usedir" type="text">
 
-                                    <%--</form>--%>
-                                </div>
-                                <%--<form id="addEquipment" method="post"--%>
-                                <%--action="${pageContext.request.contextPath}/equipmentAddController/addEquipment">--%>
+                                </form>
+                            </div>
+                            <form id="addEquipment" method="post"
+                                  action="${pageContext.request.contextPath}/equipmentAddController/addEquipment">
                                 <div style="border: 1px solid #0f0f0f;width: 100%;height: 105px" id="jichu">
                                     设备名称：<input name="equipmentName" type="text">
                                     规格型号：<input name="equipmentStandard" type="text">
@@ -411,7 +452,7 @@
                                     </select>
                                     设备品牌：<input name="equipmentBrand" type="text">
                                     折旧方式：
-                                    <select name="depreciationtype" id="depreciationtype">
+                                    <select name="depreciationtype" id="depreciationtype" >
                                         <option value="0">直线法</option>
                                         <option value="1">产量法</option>
                                     </select><br>
@@ -426,10 +467,9 @@
                                     保修到期：<input name="fixenddate" type="date">
                                     保修期限：<input name="fixtime" type="text">
                                 </div>
-                                详细配置
-                                <input name="equipmentDetails" type="text"
-                                       style="border: 1px solid #0f0f0f;width: 100%;height: 35px">
                             </form>
+                            详细配置
+                            <input style="border: 1px solid #0f0f0f;width: 100%;height: 35px">
                         </div>
                         基础信息
                     </div>

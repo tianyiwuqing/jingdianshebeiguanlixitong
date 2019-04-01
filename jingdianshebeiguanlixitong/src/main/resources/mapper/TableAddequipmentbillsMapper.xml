@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.lynu.bean.TableAddequipmentbills">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="billsnumber" jdbcType="VARCHAR" property="billsnumber" />
+    <result column="equipment_id" jdbcType="INTEGER" property="equipmentId" />
     <result column="department_id" jdbcType="VARCHAR" property="departmentId" />
     <result column="shopdepartment_id" jdbcType="VARCHAR" property="shopdepartmentId" />
     <result column="receptionperson" jdbcType="VARCHAR" property="receptionperson" />
@@ -19,6 +20,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="checkingperson" jdbcType="VARCHAR" property="checkingperson" />
     <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="count" jdbcType="INTEGER" property="count" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -79,9 +81,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, billsnumber, department_id, shopdepartment_id, receptionperson, purchase_time, 
-    abstractdetails, equipment_furnish, operatorperson, is_delate, billsperson, money, 
-    usedir, create_time, update_time, checkingperson, address
+    id, billsnumber, equipment_id, department_id, shopdepartment_id, receptionperson, 
+    purchase_time, abstractdetails, equipment_furnish, operatorperson, is_delate, billsperson, 
+    money, usedir, create_time, update_time, checkingperson, address, count
   </sql>
   <select id="selectByExample" parameterType="com.lynu.bean.TableAddequipmentbillsExample" resultMap="BaseResultMap">
     select
@@ -114,18 +116,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.lynu.bean.TableAddequipmentbills">
-    insert into table_addequipmentbills (id, billsnumber, department_id, 
-      shopdepartment_id, receptionperson, purchase_time, 
-      abstractdetails, equipment_furnish, operatorperson, 
-      is_delate, billsperson, money, 
-      usedir, create_time, update_time, 
-      checkingperson, address)
-    values (#{id,jdbcType=INTEGER}, #{billsnumber,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, 
-      #{shopdepartmentId,jdbcType=VARCHAR}, #{receptionperson,jdbcType=VARCHAR}, #{purchaseTime,jdbcType=TIMESTAMP}, 
-      #{abstractdetails,jdbcType=VARCHAR}, #{equipmentFurnish,jdbcType=VARCHAR}, #{operatorperson,jdbcType=VARCHAR}, 
-      #{isDelate,jdbcType=INTEGER}, #{billsperson,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, 
-      #{usedir,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{checkingperson,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR})
+    insert into table_addequipmentbills (id, billsnumber, equipment_id, 
+      department_id, shopdepartment_id, receptionperson, 
+      purchase_time, abstractdetails, equipment_furnish, 
+      operatorperson, is_delate, billsperson, 
+      money, usedir, create_time, 
+      update_time, checkingperson, address, 
+      count)
+    values (#{id,jdbcType=INTEGER}, #{billsnumber,jdbcType=VARCHAR}, #{equipmentId,jdbcType=INTEGER}, 
+      #{departmentId,jdbcType=VARCHAR}, #{shopdepartmentId,jdbcType=VARCHAR}, #{receptionperson,jdbcType=VARCHAR}, 
+      #{purchaseTime,jdbcType=TIMESTAMP}, #{abstractdetails,jdbcType=VARCHAR}, #{equipmentFurnish,jdbcType=VARCHAR}, 
+      #{operatorperson,jdbcType=VARCHAR}, #{isDelate,jdbcType=INTEGER}, #{billsperson,jdbcType=VARCHAR}, 
+      #{money,jdbcType=VARCHAR}, #{usedir,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{checkingperson,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{count,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lynu.bean.TableAddequipmentbills">
     insert into table_addequipmentbills
@@ -135,6 +139,9 @@
       </if>
       <if test="billsnumber != null">
         billsnumber,
+      </if>
+      <if test="equipmentId != null">
+        equipment_id,
       </if>
       <if test="departmentId != null">
         department_id,
@@ -181,6 +188,9 @@
       <if test="address != null">
         address,
       </if>
+      <if test="count != null">
+        count,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -188,6 +198,9 @@
       </if>
       <if test="billsnumber != null">
         #{billsnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentId != null">
+        #{equipmentId,jdbcType=INTEGER},
       </if>
       <if test="departmentId != null">
         #{departmentId,jdbcType=VARCHAR},
@@ -234,6 +247,9 @@
       <if test="address != null">
         #{address,jdbcType=VARCHAR},
       </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.lynu.bean.TableAddequipmentbillsExample" resultType="java.lang.Long">
@@ -250,6 +266,9 @@
       </if>
       <if test="record.billsnumber != null">
         billsnumber = #{record.billsnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipmentId != null">
+        equipment_id = #{record.equipmentId,jdbcType=INTEGER},
       </if>
       <if test="record.departmentId != null">
         department_id = #{record.departmentId,jdbcType=VARCHAR},
@@ -296,6 +315,9 @@
       <if test="record.address != null">
         address = #{record.address,jdbcType=VARCHAR},
       </if>
+      <if test="record.count != null">
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -305,6 +327,7 @@
     update table_addequipmentbills
     set id = #{record.id,jdbcType=INTEGER},
       billsnumber = #{record.billsnumber,jdbcType=VARCHAR},
+      equipment_id = #{record.equipmentId,jdbcType=INTEGER},
       department_id = #{record.departmentId,jdbcType=VARCHAR},
       shopdepartment_id = #{record.shopdepartmentId,jdbcType=VARCHAR},
       receptionperson = #{record.receptionperson,jdbcType=VARCHAR},
@@ -319,7 +342,8 @@
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       checkingperson = #{record.checkingperson,jdbcType=VARCHAR},
-      address = #{record.address,jdbcType=VARCHAR}
+      address = #{record.address,jdbcType=VARCHAR},
+      count = #{record.count,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -329,6 +353,9 @@
     <set>
       <if test="billsnumber != null">
         billsnumber = #{billsnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentId != null">
+        equipment_id = #{equipmentId,jdbcType=INTEGER},
       </if>
       <if test="departmentId != null">
         department_id = #{departmentId,jdbcType=VARCHAR},
@@ -375,12 +402,16 @@
       <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
       </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lynu.bean.TableAddequipmentbills">
     update table_addequipmentbills
     set billsnumber = #{billsnumber,jdbcType=VARCHAR},
+      equipment_id = #{equipmentId,jdbcType=INTEGER},
       department_id = #{departmentId,jdbcType=VARCHAR},
       shopdepartment_id = #{shopdepartmentId,jdbcType=VARCHAR},
       receptionperson = #{receptionperson,jdbcType=VARCHAR},
@@ -395,7 +426,8 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       checkingperson = #{checkingperson,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR}
+      address = #{address,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
