@@ -3,6 +3,8 @@ package com.lynu.controller;
 import com.lynu.bean.*;
 import com.lynu.service.EquipmentAddService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,13 +24,13 @@ public class EquipmentAddController {
     private EquipmentAddService equipmentAddService;
 
     @RequestMapping(value = "addEquipment", method = RequestMethod.POST)
-    public void addEquipment(TableAddequipmentbills addequipmentbills, TableEquipment equipment, TableEquipmentDetalis equipmentDetalis ) {
-        System.out.println("ok");
-        System.out.println(addequipmentbills);
-        System.out.println(equipment);
-        System.out.println(equipmentDetalis);
+    public String addEquipment(TableAddequipmentbills addequipmentbills, TableEquipment equipment, TableEquipmentDetalis equipmentDetalis ) {
         boolean b = equipmentAddService.addEquipment(addequipmentbills, equipment,equipmentDetalis);
-        System.out.println(b);
+        if (b){
+            return "member-list";
+        }else {
+            return "error";
+        }
     }
 
     /**
@@ -115,5 +117,14 @@ public class EquipmentAddController {
             System.out.println(tableAddequipmentbill);
         }
         return  equipmentAddService.chaDateAddEquipmentbills(startTime,endTime);
+    }
+
+    @RequestMapping("chaKeyAddEquipment")
+    public String  chaKeyAddEquipment(String aid, ModelMap modelMap){
+        System.out.println(aid+"chakeyaddEquipment ok");
+        TableAddequipmentbills addequipmentbills = equipmentAddService.chaKeyAddEquipment(aid);
+        System.out.println(addequipmentbills);
+        modelMap.addAttribute("addequipmentbills",addequipmentbills);
+        return "equipment-edit";
     }
 }

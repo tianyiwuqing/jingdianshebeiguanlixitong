@@ -1,6 +1,7 @@
 package com.lynu.tools;
 
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * @author 天意无情
@@ -24,6 +25,8 @@ public class MathRandomUUID {
         }
         return sb.toString();
     }
-
+    public static String myUUid(){
+        return UUID.randomUUID().toString().replace("-","");
+    }
 
 }

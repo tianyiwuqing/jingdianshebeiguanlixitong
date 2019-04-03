@@ -8,12 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
-    <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/xadmin.css">
-    <script type="text/javascript" src="./js/jquery-2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./js/xadmin.js"></script>
-    <script type="text/javascript" src="./js/cookie.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/xadmin.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/xadmin.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -21,8 +21,8 @@
     <![endif]-->
     <script type="text/javascript">
         //表单提交
-        function add() {
-            alert("是否提交项目");
+        function update() {
+            alert("是否保存修改");
             $("#addequipment").submit();
 //                 获得frame索引
             var index = parent.layer.getFrameIndex(window.name);
@@ -63,14 +63,14 @@
 <body>
 <div class="x-body">
     <form class="layui-form" id="addequipment" method="post"
-          action="${pageContext.request.contextPath}/equipmentAddController/addEquipment">
+          action="${pageContext.request.contextPath}/equipmentAddController/updateEquipment">
         <div class="layui-form-item">
             <label for="billsnumber" class="layui-form-label">
                 <span class="x-red">*</span>单据编号
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="billsnumber" name="billsnumber" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.billsnumber}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -79,7 +79,7 @@
             </label>
             <div class="layui-input-inline" onblur="employeeChang()">
                 <select name="departmentId" id="departmentId" lay-verify="required">
-                    <option value="0">-请选择-</option>
+                    <option value="${addequipmentbills.departmentId}">${addequipmentbills.department.name}</option>
                 </select>
             </div>
         </div>
@@ -89,6 +89,7 @@
             </label>
             <div class="layui-input-inline">
                 <select name="receptionperson" id="receptionperson">
+                    <option value="${addequipmentbills.receptionperson}">${addequipmentbills.receptionEmployee.employeename}</option>
                 </select>
             </div>
         </div>
@@ -98,7 +99,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="date" id="purchaseTime" name="purchaseTime" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.purchaseTime}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -107,7 +108,7 @@
             </label>
             <div class="layui-input-inline">
                 <select id="equipmentFurnish" name="equipmentFurnish" class="valid">
-                    <option value="0">-请选择-</option>
+                    <option value="${addequipmentbills.equipmentFurnish}">${addequipmentbills.furnish.name}</option>
                 </select>
             </div>
         </div>
@@ -117,7 +118,7 @@
             </label>
             <div class="layui-input-inline">
                 <select name="checkingperson" id="checkingperson">
-                    <option value="0">-请选择-</option>
+                    <option value="${addequipmentbills.checkingperson}">${addequipmentbills.checkingpersonEmployee.employeename}</option>
                 </select>
             </div>
         </div>
@@ -127,7 +128,7 @@
             </label>
             <div class="layui-input-inline">
                 <select name="address" id="address">
-                    <option value="0">-请选择-</option>
+                    <option value="${addequipmentbills.address}">${addequipmentbills.storage.name}</option>
                 </select>
             </div>
         </div>
@@ -137,7 +138,7 @@
             </label>
             <div class="layui-input-inline">
                 <select name="operatorperson" id="operatorperson">
-                    <option value="0">-请选择-</option>
+                    <option value="${addequipmentbills.operatorperson}">${addequipmentbills.operatorpersonEmployee.employeename}</option>
                 </select>
             </div>
         </div>
@@ -147,7 +148,7 @@
             </label>
             <div class="layui-input-inline">
                 <select name="billsperson" id="billsperson">
-                    <option value="0">-请选择-</option>
+                    <option value="${addequipmentbills.billsperson}">${addequipmentbills.billsEmployee.employeename}</option>
                 </select>
             </div>
         </div>
@@ -157,7 +158,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="date" id="createTime" name="createTime" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.createTime}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -177,7 +178,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="L_email" name="money" required=""
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.money}">
             </div>
             <div class="layui-form-mid layui-word-aux">
                 <span class="x-red">*</span>
@@ -189,7 +190,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="abstractdetails" name="abstractdetails" required=""
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.money}">
             </div>
             <div class="layui-form-mid layui-word-aux">
                 <span class="x-red">*</span>
@@ -200,8 +201,8 @@
                 <span class="x-red">*</span>购置部门
             </label>
             <div class="layui-input-inline">
-                <select name="shopdepartmentId" id="shopdepartmentId">
-                    <option value="0">-请选择-</option>
+                <select name="shopdepartmentId" id="shopdepartmentId">shopdepartment
+                    <option value="${addequipmentbills.shopdepartmentId}">${addequipmentbills.shopdepartment.name}</option>
                 </select>
             </div>
         </div>
@@ -211,7 +212,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="usedir" name="usedir" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.usedir}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -220,7 +221,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="equipmentName" name="equipmentName" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.equipment.equipmentName}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -229,24 +230,16 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="equipmentStandard" name="equipmentStandard" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.equipment.equipmentStandard}">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="count" class="layui-form-label">
-                <span class="x-red">*</span>增加数量
+                <span class="x-red">*</span>
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="count" name="count" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
-            </div>
-        <div class="layui-form-item">
-            <label for="equipmentBrand" class="layui-form-label">
-                <span class="x-red">*</span>设备品牌
-            </label>
-            <div class="layui-input-inline">
-                <input type="text" id="equipmentBrand" name="equipmentBrand" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.count}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -255,7 +248,7 @@
             </label>
             <div class="layui-input-inline">
                 <select name="equipmentType" id="equipmentType">
-                    <option value="0">-请选择-</option>
+                    <option value="${addequipmentbills.equipmentType}">${addequipmentbills.tableEquipmentType.name}</option>
                 </select>
             </div>
         </div>
@@ -276,7 +269,7 @@
             </label>
             <div class="layui-input-inline">
                 <select name="manufacturer" id="manufacturer">
-                    <option value="0">-请选择-</option>
+                    <option value="${addequipmentbills.manufacturer}">${addequipmentbills.tableManufacturer.name}</option>
                 </select>
             </div>
         </div>
@@ -286,7 +279,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="date" id="productdate" name="productdate" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.equipment.equipmentDetalis.productdate}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -295,7 +288,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="date" id="usedate" name="usedate" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.equipment.equipmentDetalis.usedate}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -304,7 +297,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="fixType" name="fixType" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.equipment.equipmentDetalis.fixType}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -313,7 +306,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="date" id="fixenddate" name="fixenddate" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.equipment.equipmentDetalis.fixenddate}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -322,7 +315,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="fixtime" name="fixtime" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${addequipmentbills.equipment.equipmentDetalis.fixtime}">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
@@ -331,54 +324,20 @@
             </label>
             <div class="layui-input-block">
                 <textarea placeholder="请输入内容" id="equipmentDetails" name="equipmentDetails"
-                          class="layui-textarea"></textarea>
+                          class="layui-textarea" ><s:property value="${addequipmentbills.equipment.equipmentDetalis.equipmentDetails}"/></textarea>
             </div>
         </div>
     </form>
     <div class="layui-form-item">
         <label for="addbutton" class="layui-form-label">
         </label>
-        <button id="addbutton" onclick="add()" class="layui-btn">
-            增加
+        <button id="addbutton" onclick="update()" class="layui-btn">
+            修改
         </button>
     </div>
     </form>
 </div>
 <script>
-    // layui.use(['form', 'layer'], function () {
-    //     $ = layui.jquery;
-    //     var form = layui.form
-    //         , layer = layui.layer;
-
-    //自定义验证规则
-    //          form.verify({
-    //            nikename: function(value){
-    //              if(value.length < 5){
-    //                return '昵称至少得5个字符啊';
-    //              }
-    //            }
-    //            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-    //            ,repass: function(value){
-    //                if($('#L_pass').val()!=$('#L_repass').val()){
-    //                    return '两次密码不一致';
-    //                }
-    //            }
-    //          });
-
-
-    //          //监听提交
-    //          form.on('submit(add)', function(data){
-    //            console.log(data);
-    //            //发异步，把数据提交给php
-    //            layer.alert("增加成功", {icon: 6},function () {
-    //                // 获得frame索引
-    //                var index = parent.layer.getFrameIndex(window.name);
-    //                //关闭当前frame
-    //                parent.layer.close(index);
-    //            });
-    //            return false;
-    //          });
-    //     });
 
     //部门ajax
     $(function () {
@@ -509,27 +468,7 @@
         })
     });
 
-    //接收人员ajax
-    //选择select控件
-    <%--$(function () {--%>
-    <%--console.log("employeechang ok");--%>
-    <%--$.ajax({--%>
-    <%--type: "POST",--%>
-    <%--url: "${pageContext.request.contextPath}/equipmentAddController/departmentOfEmployee",--%>
-    <%--data: {"did": "110"},--%>
-    <%--dataType: "json",--%>
-    <%--success: function (returnData) {--%>
-    <%--console.log(returnData);--%>
-    <%--$(returnData).each(function (index, item) {--%>
-    <%--var option = "<option value=" + item.id + ">" + item.employeename + "</option>";--%>
-    <%--$("#receptionperson").append(option);--%>
-    <%--})--%>
-    <%--},--%>
-    <%--error: function () {--%>
-    <%--console.log("error！")--%>
-    <%--}--%>
-    <%--})--%>
-    <%--})--%>
+
 
 
 </script>

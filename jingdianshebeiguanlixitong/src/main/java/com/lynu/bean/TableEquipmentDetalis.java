@@ -42,6 +42,17 @@ public class TableEquipmentDetalis {
 
     private Integer depreciationtype;
 
+    private TableManufacturer tableManufacturer;
+
+    public TableManufacturer getTableManufacturer() {
+        return tableManufacturer;
+    }
+
+    public void setTableManufacturer(TableManufacturer tableManufacturer) {
+        this.tableManufacturer = tableManufacturer;
+    }
+
+
     public Integer getId() {
         return id;
     }

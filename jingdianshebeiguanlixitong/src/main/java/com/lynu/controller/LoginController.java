@@ -21,9 +21,9 @@ public class LoginController {
     @RequestMapping("login")
     public String login(@RequestParam("name") String name, @RequestParam("password") String password){
         if (loginService.login(name, password)){
-            return "index.jsp";
+            return "index";
         }
-        return "error.jsp";
+        return "error";
     }
 
 

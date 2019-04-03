@@ -49,7 +49,6 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
 
     @Override
     public boolean addEquipment(TableAddequipmentbills addequipmentbills, TableEquipment equipment, TableEquipmentDetalis equipmentDetalis) {
-        System.out.println("serviceimpl yunxing");
         addequipmentbills.setCreateTime(MyDateFormat.StringFormat(new Date()));
         addequipmentbills.setIsDelate(0);
         addequipmentbills.setUpdateTime(new Date());
@@ -150,6 +149,7 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
 //            把查询对象插入增加订单中
                 tableAddequipmentbill.setFurnish(tableFurnish);
                 tableAddequipmentbill.setBillsEmployee(tableEmployee);
+                tableAddequipmentbill.setEquipment(equipmentMapper.selectByPrimaryKey(tableAddequipmentbill.getEquipmentId().toString()));
         }
         return tableAddequipmentbills;
     }
@@ -170,5 +170,32 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
     @Override
     public boolean delAllAddquipmentbills() {
         return addequipmentbillsMapper.deleteByExample(null)>0;
+    }
+
+    @Override
+    public TableAddequipmentbills chaKeyAddEquipment(String aid) {
+        TableAddequipmentbills addequipmentbills = addequipmentbillsMapper.selectByPrimaryKey(Integer.parseInt(aid));
+        addequipmentbills.setBillsEmployee(employeeMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getBillsperson())));
+        addequipmentbills.setFurnish(furnishMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getEquipmentFurnish())));
+        System.out.println("测试"+addequipmentbills.getEquipmentId());
+        TableEquipment tableEquipment = equipmentMapper.selectByPrimaryKey(Integer.toString(addequipmentbills.getEquipmentId()));
+        TableEquipmentDetalisExample equipmentDetalisExample=new TableEquipmentDetalisExample();
+        TableEquipmentDetalisExample.Criteria criteria = equipmentDetalisExample.createCriteria();
+        criteria.andEquipmentIdEqualTo(tableEquipment.getId());
+        List<TableEquipmentDetalis> tableEquipmentDetaliss = equipmentDetalisMapper.selectByExample(equipmentDetalisExample);
+        System.out.println("测试size：2——"+tableEquipmentDetaliss.size());
+        TableEquipmentDetalis tableEquipmentDetalis = tableEquipmentDetaliss.get(0);
+        //获取equipmentdetails 并加入到equipment类中
+        tableEquipment.setEquipmentDetalis(tableEquipmentDetalis);
+        //将对象设备到订单类中
+        addequipmentbills.setEquipment(tableEquipment);
+        addequipmentbills.setDepartment(departmentMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getDepartmentId())));
+        addequipmentbills.setCheckingpersonEmployee(employeeMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getCheckingperson())));
+        addequipmentbills.setOperatorpersonEmployee(employeeMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getOperatorperson())));
+        addequipmentbills.setReceptionEmployee(employeeMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getReceptionperson())));
+        addequipmentbills.setShopdepartment(departmentMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getDepartmentId())));
+        addequipmentbills.setStorage(tableStorageMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getAddress())));
+        addequipmentbills.setTableManufacturer(manufacturerMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getEquipmentFurnish())));
+        return addequipmentbills ;
     }
 }

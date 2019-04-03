@@ -21,6 +21,9 @@ public class TableAddequipmentbills implements Serializable {
     private String shopdepartmentId;
 
     private String receptionperson;
+
+    private TableEmployee receptionEmployee;
+
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date purchaseTime;
 
@@ -37,17 +40,109 @@ public class TableAddequipmentbills implements Serializable {
     private String money;
 
     private String usedir;
+
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date createTime;
+
     private Date updateTime;
 
     private String checkingperson;
 
     private String address;
 
+    private Integer count;
+
     private TableFurnish furnish;
 
     private TableEmployee billsEmployee;
+
+    private TableDepartment department;
+
+    private TableEmployee checkingpersonEmployee;
+
+    private TableEmployee operatorpersonEmployee;
+
+    private TableStorage storage;
+
+    private TableDepartment shopdepartment;
+
+    private TableEquipment equipment;
+
+    private TableEquipmentType tableEquipmentType;
+
+    private TableManufacturer tableManufacturer;
+
+    public TableManufacturer getTableManufacturer() {
+        return tableManufacturer;
+    }
+
+    public void setTableManufacturer(TableManufacturer tableManufacturer) {
+        this.tableManufacturer = tableManufacturer;
+    }
+
+    public TableEquipmentType getTableEquipmentType() {
+        return tableEquipmentType;
+    }
+
+    public void setTableEquipmentType(TableEquipmentType tableEquipmentType) {
+        this.tableEquipmentType = tableEquipmentType;
+    }
+
+    public TableEquipment getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(TableEquipment equipment) {
+        this.equipment = equipment;
+    }
+
+    public TableDepartment getShopdepartment() {
+        return shopdepartment;
+    }
+
+    public void setShopdepartment(TableDepartment shopdepartment) {
+        this.shopdepartment = shopdepartment;
+    }
+
+    public TableEmployee getOperatorpersonEmployee() {
+        return operatorpersonEmployee;
+    }
+
+    public void setOperatorpersonEmployee(TableEmployee operatorpersonEmployee) {
+        this.operatorpersonEmployee = operatorpersonEmployee;
+    }
+
+    public TableStorage getStorage() {
+        return storage;
+    }
+
+    public void setStorage(TableStorage storage) {
+        this.storage = storage;
+    }
+
+    public TableEmployee getCheckingpersonEmployee() {
+        return checkingpersonEmployee;
+    }
+
+    public void setCheckingpersonEmployee(TableEmployee checkingpersonEmployee) {
+        this.checkingpersonEmployee = checkingpersonEmployee;
+    }
+
+    public TableEmployee getReceptionEmployee() {
+        return receptionEmployee;
+    }
+
+    public void setReceptionEmployee(TableEmployee receptionEmployee) {
+        this.receptionEmployee = receptionEmployee;
+    }
+
+    public TableDepartment getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(TableDepartment department) {
+        this.department = department;
+    }
 
     public TableEmployee getBillsEmployee() {
         return billsEmployee;
@@ -80,10 +175,6 @@ public class TableAddequipmentbills implements Serializable {
     public void setCount(Integer count) {
         this.count = count;
     }
-
-    private Integer count;
-
-
 
     public Integer getId() {
         return id;
@@ -131,7 +222,7 @@ public class TableAddequipmentbills implements Serializable {
 
 
     public void setPurchaseTime(String purchaseTime) {
-        this.purchaseTime= MyDateFormat.dateFormat(purchaseTime);
+        this.purchaseTime = MyDateFormat.dateFormat(purchaseTime);
     }
 
     public String getAbstractdetails() {
@@ -195,7 +286,7 @@ public class TableAddequipmentbills implements Serializable {
     }
 
     public void setCreateTime(String createTime) {
-        this.createTime= MyDateFormat.dateFormat(createTime);
+        this.createTime = MyDateFormat.dateFormat(createTime);
     }
 
     public Date getUpdateTime() {

@@ -95,6 +95,13 @@ public interface EquipmentAddService {
      */
     boolean delAllAddquipmentbills();
 
+    /**
+     * 根据id查询增加订单
+     * @param aid
+     * @return
+     */
+    TableAddequipmentbills chaKeyAddEquipment(String aid);
+
 
 
 }

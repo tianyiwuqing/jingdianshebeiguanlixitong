@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynu.dao.TableRepertoryMapper">
+  <resultMap id="BaseResultMap" type="com.lynu.bean.TableRepertory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="equipmentuniquecode" jdbcType="VARCHAR" property="equipmentuniquecode" />
+    <result column="equipment_id" jdbcType="INTEGER" property="equipmentId" />
+    <result column="address_stong_id" jdbcType="INTEGER" property="addressStongId" />
+    <result column="create_intime" jdbcType="DATE" property="createIntime" />
+    <result column="create_outtime" jdbcType="DATE" property="createOuttime" />
+    <result column="shop_time" jdbcType="DATE" property="shopTime" />
+    <result column="update_time" jdbcType="DATE" property="updateTime" />
+    <result column="department_out_id" jdbcType="INTEGER" property="departmentOutId" />
+    <result column="employee_out_id" jdbcType="INTEGER" property="employeeOutId" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="owndepartment" jdbcType="INTEGER" property="owndepartment" />
+    <result column="functionary" jdbcType="INTEGER" property="functionary" />
+    <result column="is_deleter" jdbcType="INTEGER" property="isDeleter" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, equipmentuniquecode, equipment_id, address_stong_id, create_intime, create_outtime, 
+    shop_time, update_time, department_out_id, employee_out_id, telephone, state, owndepartment, 
+    functionary, is_deleter
+  </sql>
+  <select id="selectByExample" parameterType="com.lynu.bean.TableRepertoryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from table_repertory
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from table_repertory
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_repertory
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lynu.bean.TableRepertoryExample">
+    delete from table_repertory
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lynu.bean.TableRepertory">
+    insert into table_repertory (id, equipmentuniquecode, equipment_id, 
+      address_stong_id, create_intime, create_outtime, 
+      shop_time, update_time, department_out_id, 
+      employee_out_id, telephone, state, 
+      owndepartment, functionary, is_deleter
+      )
+    values (#{id,jdbcType=INTEGER}, #{equipmentuniquecode,jdbcType=VARCHAR}, #{equipmentId,jdbcType=INTEGER}, 
+      #{addressStongId,jdbcType=INTEGER}, #{createIntime,jdbcType=DATE}, #{createOuttime,jdbcType=DATE}, 
+      #{shopTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{departmentOutId,jdbcType=INTEGER}, 
+      #{employeeOutId,jdbcType=INTEGER}, #{telephone,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{owndepartment,jdbcType=INTEGER}, #{functionary,jdbcType=INTEGER}, #{isDeleter,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lynu.bean.TableRepertory">
+    insert into table_repertory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="equipmentuniquecode != null">
+        equipmentuniquecode,
+      </if>
+      <if test="equipmentId != null">
+        equipment_id,
+      </if>
+      <if test="addressStongId != null">
+        address_stong_id,
+      </if>
+      <if test="createIntime != null">
+        create_intime,
+      </if>
+      <if test="createOuttime != null">
+        create_outtime,
+      </if>
+      <if test="shopTime != null">
+        shop_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="departmentOutId != null">
+        department_out_id,
+      </if>
+      <if test="employeeOutId != null">
+        employee_out_id,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="owndepartment != null">
+        owndepartment,
+      </if>
+      <if test="functionary != null">
+        functionary,
+      </if>
+      <if test="isDeleter != null">
+        is_deleter,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentuniquecode != null">
+        #{equipmentuniquecode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentId != null">
+        #{equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="addressStongId != null">
+        #{addressStongId,jdbcType=INTEGER},
+      </if>
+      <if test="createIntime != null">
+        #{createIntime,jdbcType=DATE},
+      </if>
+      <if test="createOuttime != null">
+        #{createOuttime,jdbcType=DATE},
+      </if>
+      <if test="shopTime != null">
+        #{shopTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="departmentOutId != null">
+        #{departmentOutId,jdbcType=INTEGER},
+      </if>
+      <if test="employeeOutId != null">
+        #{employeeOutId,jdbcType=INTEGER},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="owndepartment != null">
+        #{owndepartment,jdbcType=INTEGER},
+      </if>
+      <if test="functionary != null">
+        #{functionary,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleter != null">
+        #{isDeleter,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lynu.bean.TableRepertoryExample" resultType="java.lang.Long">
+    select count(*) from table_repertory
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update table_repertory
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.equipmentuniquecode != null">
+        equipmentuniquecode = #{record.equipmentuniquecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipmentId != null">
+        equipment_id = #{record.equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressStongId != null">
+        address_stong_id = #{record.addressStongId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createIntime != null">
+        create_intime = #{record.createIntime,jdbcType=DATE},
+      </if>
+      <if test="record.createOuttime != null">
+        create_outtime = #{record.createOuttime,jdbcType=DATE},
+      </if>
+      <if test="record.shopTime != null">
+        shop_time = #{record.shopTime,jdbcType=DATE},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=DATE},
+      </if>
+      <if test="record.departmentOutId != null">
+        department_out_id = #{record.departmentOutId,jdbcType=INTEGER},
+      </if>
+      <if test="record.employeeOutId != null">
+        employee_out_id = #{record.employeeOutId,jdbcType=INTEGER},
+      </if>
+      <if test="record.telephone != null">
+        telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.owndepartment != null">
+        owndepartment = #{record.owndepartment,jdbcType=INTEGER},
+      </if>
+      <if test="record.functionary != null">
+        functionary = #{record.functionary,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDeleter != null">
+        is_deleter = #{record.isDeleter,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update table_repertory
+    set id = #{record.id,jdbcType=INTEGER},
+      equipmentuniquecode = #{record.equipmentuniquecode,jdbcType=VARCHAR},
+      equipment_id = #{record.equipmentId,jdbcType=INTEGER},
+      address_stong_id = #{record.addressStongId,jdbcType=INTEGER},
+      create_intime = #{record.createIntime,jdbcType=DATE},
+      create_outtime = #{record.createOuttime,jdbcType=DATE},
+      shop_time = #{record.shopTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=DATE},
+      department_out_id = #{record.departmentOutId,jdbcType=INTEGER},
+      employee_out_id = #{record.employeeOutId,jdbcType=INTEGER},
+      telephone = #{record.telephone,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      owndepartment = #{record.owndepartment,jdbcType=INTEGER},
+      functionary = #{record.functionary,jdbcType=INTEGER},
+      is_deleter = #{record.isDeleter,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lynu.bean.TableRepertory">
+    update table_repertory
+    <set>
+      <if test="equipmentuniquecode != null">
+        equipmentuniquecode = #{equipmentuniquecode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentId != null">
+        equipment_id = #{equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="addressStongId != null">
+        address_stong_id = #{addressStongId,jdbcType=INTEGER},
+      </if>
+      <if test="createIntime != null">
+        create_intime = #{createIntime,jdbcType=DATE},
+      </if>
+      <if test="createOuttime != null">
+        create_outtime = #{createOuttime,jdbcType=DATE},
+      </if>
+      <if test="shopTime != null">
+        shop_time = #{shopTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="departmentOutId != null">
+        department_out_id = #{departmentOutId,jdbcType=INTEGER},
+      </if>
+      <if test="employeeOutId != null">
+        employee_out_id = #{employeeOutId,jdbcType=INTEGER},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="owndepartment != null">
+        owndepartment = #{owndepartment,jdbcType=INTEGER},
+      </if>
+      <if test="functionary != null">
+        functionary = #{functionary,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleter != null">
+        is_deleter = #{isDeleter,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lynu.bean.TableRepertory">
+    update table_repertory
+    set equipmentuniquecode = #{equipmentuniquecode,jdbcType=VARCHAR},
+      equipment_id = #{equipmentId,jdbcType=INTEGER},
+      address_stong_id = #{addressStongId,jdbcType=INTEGER},
+      create_intime = #{createIntime,jdbcType=DATE},
+      create_outtime = #{createOuttime,jdbcType=DATE},
+      shop_time = #{shopTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE},
+      department_out_id = #{departmentOutId,jdbcType=INTEGER},
+      employee_out_id = #{employeeOutId,jdbcType=INTEGER},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      owndepartment = #{owndepartment,jdbcType=INTEGER},
+      functionary = #{functionary,jdbcType=INTEGER},
+      is_deleter = #{isDeleter,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

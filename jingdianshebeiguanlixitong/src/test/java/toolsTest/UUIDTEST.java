@@ -3,6 +3,7 @@ package toolsTest;
 import org.junit.Test;
 
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * @author 天意无情
@@ -21,5 +22,11 @@ public class UUIDTEST {
         }
         System.out.println(sb.toString());
         }
+
+    @Test
+    public void uuidTest() {
+        System.out.println(UUID.randomUUID().toString().replace("-",""));
+
+    }
     }
 

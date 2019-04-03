@@ -42,26 +42,31 @@
     </div>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加设备','./equipment-add.jsp',600,400)"><i class="layui-icon"></i>添加
+        <button class="layui-btn" onclick="x_admin_show('添加设备','./repertory-add.jsp',600,400)"><i class="layui-icon"></i>添加
         </button>
         <span class="x-right" style="line-height:40px">共有数据：88 条</span>
     </xblock>
     <table id="" class="layui-table x-admin">
-        <thead>
+        <thead >
         <tr>
             <th>
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
                         class="layui-icon">&#xe605;</i></div>
             </th>
             <th>序号</th>
-            <th>单据编号</th>
+            <th>设备编号</th>
+            <th>设备型号</th>
+            <th>状态</th>
+            <th>所属部门</th>
+            <th>责任人</th>
+            <th>存放位置</th>
+            <th>生产日期</th>
+            <th>详细配置</th>
+            <th>品牌</th>
+            <th>生产厂家</th>
+            <th>购置日期</th>
             <th>供应商</th>
-            <th>摘要</th>
-            <th>制单日期</th>
-            <th>制单人</th>
-            <th>单据状态</th>
             <th>操作</th>
-            <th>其他</th>
         </tr>
         </thead>
         <tbody id="tbody">
@@ -102,7 +107,7 @@
         $(function () {
             $.ajax({
                 type: "GET",
-                url: "${pageContext.request.contextPath}/equipmentAddController/chaDateAddEquipmentbills",
+                url: "${pageContext.request.contextPath}/repertoryController/chaDateAddEquipmentbills",
                 data:{"startTime":start,"endTime":end},
                 dataType: "json",
                 success: function (returnData) {
@@ -142,56 +147,46 @@
             })
         });
     }
-    /*订单-删除*/
-    function addBillsDelete(obj) {
-        $.ajax({
-            type: "GET",
-            url: "${pageContext.request.contextPath}/equipmentAddController/delAddquipmentbills",
-            data: {"aid": obj},
-            dataType: "json",
-            success: function (returnData) {
-                if (returnData) {
-                    $("#tbody").find("tr[id=" + obj + "]").remove()
-                }
-            },
-            error: function () {
-                console.log("error！")
-            }
-        })
-    }
+
 
     //设备添加订单列表chaAddequipmentbills
     $(function () {
         $.ajax({
             type: "GET",
-            url: "${pageContext.request.contextPath}/equipmentAddController/chaAddequipmentbills",
+            url: "${pageContext.request.contextPath}/repertoryController/chaAllRepertory",
             dataType: "json",
             success: function (returnData) {
                 var i = 0;
                 console.log(returnData);
                 $(returnData).each(function (index, item) {
                     i++;
-                    var option = "<tr id='" + item.id + "'>" +
-                        "<td>" +
-                        "<div class='layui-unselect layui-form-checkbox' lay-skin='primary' data-id='2'><i class='layui-icon'>&#xe605;</i></div>" +
-                        "</td>" +
-                        "<td>" + i + "</td>" +
-                        "<td>" + item.billsnumber + "</td>" +
-                        "<td>" + item.furnish.name + "</td>" +
-                        "<td>" + item.abstractdetails + "</td>" +
-                        "<td>" + item.createTime + "</td>" +
-                        "<td>" + item.billsEmployee.employeename + "</td>" +
-                        "<td class='td-status'>" +item.isDelate+"</td>" +
-                        "<td class='td-manage'>" +
-                        "<a title='编辑'  onclick='x_admin_show('编辑','member-edit.html',600,400)' href='javascript:;'>" +
+                    var option = "<tr id="+item.id+">" +
+                        " <th>" +
+                        "<div class=\"layui-unselect header layui-form-checkbox\" lay-skin=\"primary\"><i\n" +
+                        "                        class=\"layui-icon\">&#xe605;</i></div>" +
+                        "</th>" +
+                        "<th>"+i+"</th>\n" +
+                        "<th>"+item.equipmentuniquecode+"</th>" +
+                        "<th>"+item.equipment.equipmentName+"</th>" +
+                        "<th>"+item.state+"</th>\n" +
+                        "<th>"+item.department.name+"</th>" +
+                        "<th>"+item.functionaryEmployee.employeename+"</th>" +
+                        "<th>"+item.storage.name+"</th>\n" +
+                        "<th>"+item.equipment.equipmentDetalis.productdate+"</th>" +
+                        "<th>"+item.equipment.equipmentDetalis.equipmentDetails+"</th>" +
+                        "<th>"+item.equipment.equipmentDetalis.equipmentBrand+"</th>" +
+                        "<th>"+item.equipment.equipmentDetalis.tableManufacturer.name+"</th>" +
+                        "<th>"+item.shopTime+"</th>" +
+                        "<th>"+item.furnish.name+"</th>" +
+                        "<th class='td-manage'>" +
+                        "<a title='编辑'  onclick=\"x_admin_show('编辑','${pageContext.request.contextPath}/equipmentAddController/chaKeyAddEquipment?aid="+item.id+"')\" href='javascript:;'>" +
                         "<i class='layui-icon'>" +
                         "&#xe642;" +
                         "</i>" +
                         "<a title='删除' onclick='member_del(this,'要删除的id')' href='javascript:addBillsDelete("+item.id +");'> " +
                         "<i class='layui-icon'>&#xe640;</i> " +
                         "</a> " +
-                        "</td> " +
-                        "<td></td> " +
+                        "</th> " +
                         "</tr>";
                     $("#tbody").append(option);
                 })
