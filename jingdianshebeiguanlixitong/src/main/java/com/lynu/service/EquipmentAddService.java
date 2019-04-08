@@ -68,10 +68,16 @@ public interface EquipmentAddService {
     List<TableEquipmentType> chaEquipmentType();
 
     /**
-     * 查询所有的增加订单
+     * 查询所有有效的增加订单
      * @return
      */
     List<TableAddequipmentbills> chaAddequipmentbills();
+
+    /**
+     * 查询所有的订单
+     * @return
+     */
+    List<TableAddequipmentbills> chaAllAddequipmentbills();
 
     /**
      * 根据时间范围查询订单
@@ -103,5 +109,10 @@ public interface EquipmentAddService {
     TableAddequipmentbills chaKeyAddEquipment(String aid);
 
 
+    /**
+     * 添加订单数量
+     * @return
+     */
+    Integer chaCount();
 
 }

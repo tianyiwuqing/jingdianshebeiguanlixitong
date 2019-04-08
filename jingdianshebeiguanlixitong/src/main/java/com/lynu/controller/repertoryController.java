@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -24,7 +25,6 @@ public class repertoryController {
 
     @RequestMapping("addRepertory")
     public String addRepertory(String aid){
-        System.out.println(aid);
         boolean b = repertoryService.addRepertory(aid);
         if (b){
             return "repertory";
@@ -39,7 +39,25 @@ public class repertoryController {
         return repertoryService.chaAllRepertory();
     }
 
+    @RequestMapping("delAllRepertory")
+    @ResponseBody
+    public boolean delAllRepertory(){
+        return repertoryService.delAllRepertory();
+    }
 
+    @RequestMapping("delRepertory")
+    @ResponseBody
+    public boolean delRepertory(String rid){
+        return repertoryService.delRepertory(rid);
+    }
+
+    @RequestMapping("chaCount")
+    @ResponseBody
+    public Integer chaCount(HttpSession session){
+        Integer l = repertoryService.chaCount();
+        session.setAttribute("count",l);
+        return l;
+    }
 
 
 

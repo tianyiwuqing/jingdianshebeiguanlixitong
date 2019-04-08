@@ -33,16 +33,14 @@
         //选择select控件
         function employeeChang() {
             var obj = $("#departmentId").val();
-            console.log(obj+"employeechang ok");
+            $("#receptionperson").empty();
+            $("#receptionperson").append("<option value='0'>-请选择-</option>");
             $.ajax({
                 type: "POST",
                 url: "${pageContext.request.contextPath}/equipmentAddController/departmentOfEmployee",
                 data: {"did": obj},
                 dataType: "json",
                 success: function (returnData) {
-                    // $("#receptionperson").empty();
-                    // $("#receptionperson").append("<option value='0'>-请选择-</option>");
-                    console.log(returnData);
                     $(returnData).each(function (index, item) {
                         var option = "<option value='" + item.id + "'>" + item.employeename + "</option>";
                         $("#receptionperson").append(option);
@@ -62,7 +60,7 @@
 
 <body>
 <div class="x-body">
-    <form class="layui-form" id="addequipment" method="post"
+    <form  id="addequipment" method="post"
           action="${pageContext.request.contextPath}/equipmentAddController/addEquipment">
         <div class="layui-form-item">
             <label for="billsnumber" class="layui-form-label">
@@ -77,8 +75,8 @@
             <label for="departmentId" class="layui-form-label">
                 <span class="x-red">*</span>接收部门
             </label>
-            <div class="layui-input-inline" onblur="employeeChang()">
-                <select name="departmentId" id="departmentId" lay-verify="required">
+            <div class="layui-input-inline" >
+                <select name="departmentId" id="departmentId" lay-verify="required" onblur="employeeChang()">
                     <option value="0">-请选择-</option>
                 </select>
             </div>
@@ -240,6 +238,7 @@
                 <input type="text" id="count" name="count" required="" lay-verify="required"
                        autocomplete="off" class="layui-input">
             </div>
+        </div>
         <div class="layui-form-item">
             <label for="equipmentBrand" class="layui-form-label">
                 <span class="x-red">*</span>设备品牌
@@ -342,44 +341,8 @@
             增加
         </button>
     </div>
-    </form>
 </div>
 <script>
-    // layui.use(['form', 'layer'], function () {
-    //     $ = layui.jquery;
-    //     var form = layui.form
-    //         , layer = layui.layer;
-
-    //自定义验证规则
-    //          form.verify({
-    //            nikename: function(value){
-    //              if(value.length < 5){
-    //                return '昵称至少得5个字符啊';
-    //              }
-    //            }
-    //            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-    //            ,repass: function(value){
-    //                if($('#L_pass').val()!=$('#L_repass').val()){
-    //                    return '两次密码不一致';
-    //                }
-    //            }
-    //          });
-
-
-    //          //监听提交
-    //          form.on('submit(add)', function(data){
-    //            console.log(data);
-    //            //发异步，把数据提交给php
-    //            layer.alert("增加成功", {icon: 6},function () {
-    //                // 获得frame索引
-    //                var index = parent.layer.getFrameIndex(window.name);
-    //                //关闭当前frame
-    //                parent.layer.close(index);
-    //            });
-    //            return false;
-    //          });
-    //     });
-
     //部门ajax
     $(function () {
         $.ajax({

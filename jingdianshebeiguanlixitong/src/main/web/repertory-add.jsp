@@ -31,14 +31,16 @@
                 success:function (returndate) {
                     if (returndate){
                         $("#tbody").find("tr[id="+obj+"]").remove();
-                        var index = parent.layer.getFrameIndex(window.name);
-                        parent.layer.close(index);
                     }
                 },
                 error:function (returndate) {
                     console.log(returndate+"error!")
                 }
             });
+            var index = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(index);
+            console.log("测试窗口是否关闭")
+
         }
     </script>
 </head>
@@ -84,7 +86,7 @@
                         "<td>" + item.createTime + "</td>" +
                         "<td>" +
                         "<button id='addbutton' onclick='addRepertory(" + item.id + ")' class='layui-btn'>" +
-                        "增加" +
+                        "入库" +
                         "</button>" +
                         "</td>" +
                         "</tr>";

@@ -22,5 +22,24 @@ public interface RepertoryService {
      */
     boolean addRepertory(String aid);
 
+    /**
+     * 删除所有库存
+     * @return
+     */
+    boolean delAllRepertory();
+
+    /**
+     * 根据id删除库存
+     * @param rid
+     * @return
+     */
+    boolean delRepertory(String rid);
+
+    /**
+     * 查询数据数量
+     * @return
+     */
+    Integer chaCount();
+
 
 }

@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>欢迎页面-向阳花医疗设备管理系统</title>
+    <title>库存界面-向阳花医疗设备管理系统</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -14,16 +14,14 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/xadmin.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-    <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <script type="text/javascript">
         //仓库列表数量
         $(function () {
             $.ajax({
                 type: "GET",
-                url: "${pageContext.request.contextPath}/equipmentAddController/chaCount",
+                url: "${pageContext.request.contextPath}/delRepertoryController/chacount",
                 dataType: "json",
                 success: function (returnData) {
                     console.log(returnData);
@@ -40,9 +38,9 @@
 <div class="x-nav">
       <span class="layui-breadcrumb">
         <a href="">首页</a>
-        <a href="">设备管理</a>
+        <a href="">出库管理</a>
         <a>
-          <cite>设备增加列表</cite></a>
+          <cite>出库订单列表</cite></a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
        href="javascript:location.replace(location.href);" title="刷新">
@@ -58,12 +56,12 @@
     <%--</div>--%>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加设备','./equipment-add.jsp',600,400)"><i class="layui-icon"></i>添加
+        <button class="layui-btn" onclick="x_admin_show('添加设备','./repertory-addout.jsp',600,400)"><i class="layui-icon"></i>出库
         </button>
-        <span class="x-right" style="line-height:40px">共有数据：${sessionScope.addEquipmendcount} 条</span>
+        <span id="count" class="x-right" style="line-height:40px">共有数据：${sessionScope.deRepertorycount} 条</span>
     </xblock>
     <table id="" class="layui-table x-admin">
-        <thead>
+        <thead >
         <tr>
             <th>
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
@@ -71,13 +69,13 @@
             </th>
             <th>序号</th>
             <th>单据编号</th>
-            <th>供应商</th>
             <th>摘要</th>
-            <th>制单日期</th>
+            <th>领用部门</th>
+            <th>领用人员</th>
+            <th>制单时间</th>
             <th>制单人</th>
             <th>单据状态</th>
             <th>操作</th>
-            <th>其他</th>
         </tr>
         </thead>
         <tbody id="tbody">
@@ -118,7 +116,7 @@
         $(function () {
             $.ajax({
                 type: "GET",
-                url: "${pageContext.request.contextPath}/equipmentAddController/chaDateAddEquipmentbills",
+                url: "${pageContext.request.contextPath}/repertoryController/chaDateAddEquipmentbills",
                 data:{"startTime":start,"endTime":end},
                 dataType: "json",
                 success: function (returnData) {
@@ -139,12 +137,11 @@
                             "<td>" + item.billsEmployee.employeename + "</td>" +
                             "<td class='td-status'>" +item.isDelate+"</td>" +
                             "<td class='td-manage'>" +
-                        // onclick='x_admin_show('编辑','member-edit.html',600,400)'
-                            "<a title='编辑'   href='${pageContext.request.contextPath}/equipmentAddController/chaKeyAddEquipment?aid="+item.id+"'>" +
+                            "<a title='编辑'  onclick='x_admin_show('编辑','member-edit.html',600,400)' href='javascript:;'>" +
                             "<i class='layui-icon'>" +
                             "&#xe642;" +
                             "</i>" +
-                            "<a title='删除' onclick='member_del(this,'要删除的id')' href='javascript:addBillsDelete("+item.id +");'> " +
+                            "<a title='删除' onclick='member_del(this,'要删除的id')' href='javascript:repertoryDelete("+item.id +");'> " +
                             "<i class='layui-icon'>&#xe640;</i> " +
                             "</a> " +
                             "</td> " +
@@ -159,12 +156,13 @@
             })
         });
     }
-    /*订单-删除*/
-    function addBillsDelete(obj) {
+
+    /*库存-删除*/
+    function repertoryDelete(obj) {
         $.ajax({
             type: "GET",
-            url: "${pageContext.request.contextPath}/equipmentAddController/delAddquipmentbills",
-            data: {"aid": obj},
+            url: "${pageContext.request.contextPath}/delRepertoryController/delKeyIdDelRepertory",
+            data: {"did": obj},
             dataType: "json",
             success: function (returnData) {
                 if (returnData) {
@@ -177,38 +175,35 @@
         })
     }
 
-    //设备添加订单列表chaAddequipmentbills
+    //出库列表chaAllRepertoryOut
     $(function () {
         $.ajax({
             type: "GET",
-            url: "${pageContext.request.contextPath}/equipmentAddController/chaAllAddequipmentbills",
+            url: "${pageContext.request.contextPath}/delRepertoryController/chaAllRepertoryOut",
             dataType: "json",
             success: function (returnData) {
                 var i = 0;
                 console.log(returnData);
                 $(returnData).each(function (index, item) {
                     i++;
-                    var option = "<tr id='" + item.id + "'>" +
-                        "<td>" +
-                        "<div class='layui-unselect layui-form-checkbox' lay-skin='primary' data-id='2'><i class='layui-icon'>&#xe605;</i></div>" +
-                        "</td>" +
-                        "<td>" + i + "</td>" +
-                        "<td>" + item.billsnumber + "</td>" +
-                        "<td>" + item.furnish.name + "</td>" +
-                        "<td>" + item.abstractdetails + "</td>" +
-                        "<td>" + item.createTime + "</td>" +
-                        "<td>" + item.billsEmployee.employeename + "</td>" +
-                        "<td class='td-status'>" +item.isDelate+"</td>" +
-                        "<td class='td-manage'>" +
-                        "<a title='编辑'  onclick=\"x_admin_show('编辑','${pageContext.request.contextPath}/equipmentAddController/chaKeyAddEquipment?aid="+item.id+"')\" href='javascript:;'>" +
-                        "<i class='layui-icon'>" +
-                        "&#xe642;" +
-                        "</i>" +
-                        "<a title='删除' onclick='member_del(this,'要删除的id')' href='javascript:addBillsDelete("+item.id +");'> " +
+                    var option = "<tr id="+item.id+">" +
+                        " <th>" +
+                        "<div class=\"layui-unselect header layui-form-checkbox\" lay-skin=\"primary\"><i\n" +
+                        "                        class=\"layui-icon\">&#xe605;</i></div>" +
+                        "</th>" +
+                        "<th>"+i+"</th>\n" +
+                        "<th>"+item.repertoryoutbills+"</th>" +
+                        "<th>"+item.codeabstract+"</th>" +
+                        "<th>"+item.receiveDepartment.name+"</th>\n" +
+                        "<th>"+item.receiveEmployee.employeename+"</th>" +
+                        "<th>"+item.createTime+"</th>\n" +
+                        "<th>"+item.createEmployee.employeename+"</th>" +
+                        "<th>"+item.isDelate+"</th>" +
+                        "<th class='td-manage'>" +
+                        "<a title='删除' onclick='member_del(this,'要删除的id')' href='javascript:repertoryDelete("+item.id +");'> " +
                         "<i class='layui-icon'>&#xe640;</i> " +
                         "</a> " +
-                        "</td> " +
-                        "<td></td> " +
+                        "</th> " +
                         "</tr>";
                     $("#tbody").append(option);
                 })
@@ -219,10 +214,12 @@
         })
     });
 
-    function delAll(argument) {
+
+    //删除全部
+    function delAll() {
             $.ajax({
                 type: "GET",
-                url: "${pageContext.request.contextPath}/equipmentAddController/delAllAddquipmentbills",
+                url: "${pageContext.request.contextPath}/delRepertoryController/delAllDelRepertory",
                 dataType: "json",
                 success: function (returnData) {
                     if (returnData) {

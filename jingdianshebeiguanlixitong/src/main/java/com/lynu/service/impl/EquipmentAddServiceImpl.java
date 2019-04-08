@@ -142,34 +142,57 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
     @Override
     public List<TableAddequipmentbills> chaAddequipmentbills() {
         List<TableAddequipmentbills> tableAddequipmentbills = addequipmentbillsMapper.selectByExample(null);
+        int size = tableAddequipmentbills.size();
+        for (int i = 0; i < size; ) {
+            TableAddequipmentbills addequipmentbills = tableAddequipmentbills.get(i);
+            if (addequipmentbills.getIsDelate() == 1) {
+                tableAddequipmentbills.remove(i);
+                size--;
+            } else {
+                //通过id查询对象
+                TableEmployee tableEmployee = employeeMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getBillsperson()));
+                TableFurnish tableFurnish = furnishMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getEquipmentFurnish()));
+                // 把查询对象插入增加订单中
+                addequipmentbills.setFurnish(tableFurnish);
+                addequipmentbills.setBillsEmployee(tableEmployee);
+                addequipmentbills.setEquipment(equipmentMapper.selectByPrimaryKey(addequipmentbills.getEquipmentId().toString()));
+                i++;
+            }
+        }
+        return tableAddequipmentbills;
+    }
+
+    @Override
+    public List<TableAddequipmentbills> chaAllAddequipmentbills() {
+        List<TableAddequipmentbills> tableAddequipmentbills = addequipmentbillsMapper.selectByExample(null);
         for (TableAddequipmentbills tableAddequipmentbill : tableAddequipmentbills) {
-                //            通过id查询对象
-                TableEmployee tableEmployee = employeeMapper.selectByPrimaryKey(Integer.parseInt(tableAddequipmentbill.getBillsperson()));
-                TableFurnish tableFurnish = furnishMapper.selectByPrimaryKey(Integer.parseInt(tableAddequipmentbill.getEquipmentFurnish()));
-//            把查询对象插入增加订单中
-                tableAddequipmentbill.setFurnish(tableFurnish);
-                tableAddequipmentbill.setBillsEmployee(tableEmployee);
-                tableAddequipmentbill.setEquipment(equipmentMapper.selectByPrimaryKey(tableAddequipmentbill.getEquipmentId().toString()));
+            //通过id查询对象
+            TableEmployee tableEmployee = employeeMapper.selectByPrimaryKey(Integer.parseInt(tableAddequipmentbill.getBillsperson()));
+            TableFurnish tableFurnish = furnishMapper.selectByPrimaryKey(Integer.parseInt(tableAddequipmentbill.getEquipmentFurnish()));
+            // 把查询对象插入增加订单中
+            tableAddequipmentbill.setFurnish(tableFurnish);
+            tableAddequipmentbill.setBillsEmployee(tableEmployee);
+            tableAddequipmentbill.setEquipment(equipmentMapper.selectByPrimaryKey(tableAddequipmentbill.getEquipmentId().toString()));
         }
         return tableAddequipmentbills;
     }
 
     @Override
     public List<TableAddequipmentbills> chaDateAddEquipmentbills(String startTime, String endTime) {
-        TableAddequipmentbillsExample example=new TableAddequipmentbillsExample();
+        TableAddequipmentbillsExample example = new TableAddequipmentbillsExample();
         TableAddequipmentbillsExample.Criteria criteria = example.createCriteria();
-        criteria.andCreateTimeBetween(MyDateFormat.dateFormat(startTime),MyDateFormat.dateFormat(endTime));
+        criteria.andCreateTimeBetween(MyDateFormat.dateFormat(startTime), MyDateFormat.dateFormat(endTime));
         return addequipmentbillsMapper.selectByExample(example);
     }
 
     @Override
     public boolean delAddquipmentbills(String aid) {
-        return addequipmentbillsMapper.deleteByPrimaryKey(Integer.parseInt(aid))>0;
+        return addequipmentbillsMapper.deleteByPrimaryKey(Integer.parseInt(aid)) > 0;
     }
 
     @Override
     public boolean delAllAddquipmentbills() {
-        return addequipmentbillsMapper.deleteByExample(null)>0;
+        return addequipmentbillsMapper.deleteByExample(null) > 0;
     }
 
     @Override
@@ -177,13 +200,12 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
         TableAddequipmentbills addequipmentbills = addequipmentbillsMapper.selectByPrimaryKey(Integer.parseInt(aid));
         addequipmentbills.setBillsEmployee(employeeMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getBillsperson())));
         addequipmentbills.setFurnish(furnishMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getEquipmentFurnish())));
-        System.out.println("测试"+addequipmentbills.getEquipmentId());
         TableEquipment tableEquipment = equipmentMapper.selectByPrimaryKey(Integer.toString(addequipmentbills.getEquipmentId()));
-        TableEquipmentDetalisExample equipmentDetalisExample=new TableEquipmentDetalisExample();
+        TableEquipmentDetalisExample equipmentDetalisExample = new TableEquipmentDetalisExample();
         TableEquipmentDetalisExample.Criteria criteria = equipmentDetalisExample.createCriteria();
         criteria.andEquipmentIdEqualTo(tableEquipment.getId());
         List<TableEquipmentDetalis> tableEquipmentDetaliss = equipmentDetalisMapper.selectByExample(equipmentDetalisExample);
-        System.out.println("测试size：2——"+tableEquipmentDetaliss.size());
+        System.out.println("测试size：2——" + tableEquipmentDetaliss.size());
         TableEquipmentDetalis tableEquipmentDetalis = tableEquipmentDetaliss.get(0);
         //获取equipmentdetails 并加入到equipment类中
         tableEquipment.setEquipmentDetalis(tableEquipmentDetalis);
@@ -196,6 +218,12 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
         addequipmentbills.setShopdepartment(departmentMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getDepartmentId())));
         addequipmentbills.setStorage(tableStorageMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getAddress())));
         addequipmentbills.setTableManufacturer(manufacturerMapper.selectByPrimaryKey(Integer.parseInt(addequipmentbills.getEquipmentFurnish())));
-        return addequipmentbills ;
+        return addequipmentbills;
+    }
+
+    @Override
+    public Integer chaCount() {
+        Integer l = (int) addequipmentbillsMapper.countByExample(null);
+        return l;
     }
 }

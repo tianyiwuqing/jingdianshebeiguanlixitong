@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -100,7 +101,6 @@ public class EquipmentAddController {
     @RequestMapping("delAddquipmentbills")
     @ResponseBody
     public boolean delAddquipmentbills(String aid){
-        System.out.println("controller come on "+aid);
        return equipmentAddService.delAddquipmentbills(aid);
     }
     @RequestMapping("delAllAddquipmentbills")
@@ -111,7 +111,6 @@ public class EquipmentAddController {
     @RequestMapping("chaDateAddEquipmentbills")
     @ResponseBody
     public List<TableAddequipmentbills> chaDateAddEquipmentbills(String startTime, String endTime){
-        System.out.println(startTime+":"+endTime);
         List<TableAddequipmentbills> tableAddequipmentbills = equipmentAddService.chaDateAddEquipmentbills(startTime, endTime);
         for (TableAddequipmentbills tableAddequipmentbill : tableAddequipmentbills) {
             System.out.println(tableAddequipmentbill);
@@ -121,10 +120,22 @@ public class EquipmentAddController {
 
     @RequestMapping("chaKeyAddEquipment")
     public String  chaKeyAddEquipment(String aid, ModelMap modelMap){
-        System.out.println(aid+"chakeyaddEquipment ok");
         TableAddequipmentbills addequipmentbills = equipmentAddService.chaKeyAddEquipment(aid);
-        System.out.println(addequipmentbills);
         modelMap.addAttribute("addequipmentbills",addequipmentbills);
         return "equipment-edit";
+    }
+
+    @RequestMapping("chaCount")
+    @ResponseBody
+    public Integer chaCount(HttpSession session) {
+        Integer integer = equipmentAddService.chaCount();
+        session.setAttribute("addEquipmendcount",integer);
+        return integer;
+    }
+
+    @RequestMapping("chaAllAddequipmentbills")
+    @ResponseBody
+    public List<TableAddequipmentbills> chaAllAddequipmentbills(){
+        return equipmentAddService.chaAllAddequipmentbills();
     }
 }
