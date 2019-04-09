@@ -62,7 +62,7 @@
 
 <body>
 <div class="x-body">
-    <form class="layui-form" id="addequipment" method="post"
+    <form  id="addequipment" method="post"
           action="${pageContext.request.contextPath}/equipmentAddController/updateEquipment">
         <div class="layui-form-item">
             <label for="billsnumber" class="layui-form-label">

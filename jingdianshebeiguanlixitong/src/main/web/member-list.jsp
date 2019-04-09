@@ -200,7 +200,7 @@
                         "<td>" + item.billsEmployee.employeename + "</td>" +
                         "<td class='td-status'>" +item.isDelate+"</td>" +
                         "<td class='td-manage'>" +
-                        "<a title='编辑'  onclick=\"x_admin_show('编辑','${pageContext.request.contextPath}/equipmentAddController/chaKeyAddEquipment?aid="+item.id+"')\" href='javascript:;'>" +
+                        "<a title='编辑'   href='${pageContext.request.contextPath}/equipmentAddController/chaKeyAddEquipment?aid="+item.id+"'>" +
                         "<i class='layui-icon'>" +
                         "&#xe642;" +
                         "</i>" +
