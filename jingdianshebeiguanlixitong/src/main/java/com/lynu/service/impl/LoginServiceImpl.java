@@ -34,12 +34,12 @@ public class LoginServiceImpl implements LoginService {
         criteria.andUsernameEqualTo(user);
         criteria.andPasswordEqualTo(password);
         List<TableEmployee> tableEmployees = tableEmployeeMapper.selectByExample(tableEmployeeExample);
-        TableEmployee tableEmployee = tableEmployees.get(0);
-        if (tableEmployee!=null){
-            tableEmployee.setDepartment(departmentMapper.selectByPrimaryKey(Integer.parseInt(tableEmployee.getDepartmentId())));
-            session.setAttribute("LoginUser",tableEmployee);
-            return true;
-        }
+            if (tableEmployees!=null&&tableEmployees.size()>0) {
+                TableEmployee tableEmployee =tableEmployees.get(0) ;
+                tableEmployee.setDepartment(departmentMapper.selectByPrimaryKey(Integer.parseInt(tableEmployee.getDepartmentId())));
+                session.setAttribute("LoginUser", tableEmployee);
+                return true;
+            }
         return false;
     }
 
