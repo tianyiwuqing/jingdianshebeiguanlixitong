@@ -8,6 +8,7 @@ import com.lynu.tools.MathRandomUUID;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -130,7 +131,7 @@ public class RepertoryServiceImpl implements RepertoryService {
     }
 
     @Override
-    public Integer chaCount() {
+    public Integer chaCount(HttpSession session) {
         List<TableRepertory> tableRepertories = repertoryMapper.selectByExample(null);
         int count=0;
         for (TableRepertory tableRepertory : tableRepertories) {
@@ -138,6 +139,7 @@ public class RepertoryServiceImpl implements RepertoryService {
                 count++;
             }
         }
+        session.setAttribute("count",count);
         return count;
     }
 }
