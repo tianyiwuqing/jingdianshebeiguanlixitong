@@ -54,8 +54,7 @@ public class repertoryController {
     @RequestMapping("chaCount")
     @ResponseBody
     public Integer chaCount(HttpSession session){
-        Integer l = repertoryService.chaCount();
-        session.setAttribute("count",l);
+        Integer l = repertoryService.chaCount(session);
         return l;
     }
 
