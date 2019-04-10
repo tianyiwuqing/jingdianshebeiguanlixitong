@@ -80,7 +80,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="run_faultRegister.jsp">
+                        <a _href="${pageContext.request.contextPath}/run_faultRegister.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>设备故障登记</cite>
                         </a>
