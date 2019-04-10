@@ -94,8 +94,10 @@ public class EquipmentAddController {
 
     @RequestMapping("chaAddequipmentbills")
     @ResponseBody
-    public List<TableAddequipmentbills> chaAddequipmentbills(){
-        return equipmentAddService.chaAddequipmentbills();
+    public List<TableAddequipmentbills> chaAddequipmentbills(HttpSession session){
+        List<TableAddequipmentbills> tableAddequipmentbills = equipmentAddService.chaAddequipmentbills();
+        session.setAttribute("InRepertory",tableAddequipmentbills.size());
+        return tableAddequipmentbills;
     }
 
     @RequestMapping("delAddquipmentbills")

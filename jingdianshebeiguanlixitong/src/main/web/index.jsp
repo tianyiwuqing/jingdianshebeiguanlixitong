@@ -8,13 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="stylesheet" href="./css/font.css">
-	<link rel="stylesheet" href="./css/xadmin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/xadmin.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript"src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
-    <script src="./lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./js/xadmin.js"></script>
-    <script type="text/javascript" src="./js/cookie.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/xadmin.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
     <script>
         // 是否开启刷新记忆tab功能
         // var is_remember = false;
@@ -30,11 +30,11 @@
 
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;">${sessionScope.LoginUser.username}</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
-              <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
-              <dd><a href="./login.html">退出</a></dd>
+              <dd><a onclick="x_admin_show('个人信息','${pageContext.request.contextPath}/member-password.jsp')">个人信息</a></dd>
+              <dd><a href="${pageContext.request.contextPath}/loginController/returnLogin">切换帐号</a></dd>
+              <dd><a href="${pageContext.request.contextPath}/loginController/returnLogin">退出</a></dd>
             </dl>
           </li>
         </ul>
@@ -53,19 +53,19 @@
                 </a>
                 <ul class="sub-menu">
                     <li date-refresh="1">
-                        <a _href="member-list.jsp">
+                        <a _href="${pageContext.request.contextPath}/member-list.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>设备增加列表</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="repertory.jsp">
+                        <a _href="${pageContext.request.contextPath}/repertory.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>库存管理</cite>
                         </a>
                     </li >
                     <li date-refresh="1">
-                        <a _href="repertory_out.jsp">
+                        <a _href="${pageContext.request.contextPath}/repertory_out.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>出库管理</cite>
                         </a>
@@ -267,7 +267,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="login.html" target="_blank">
+                        <a href="login.jsp" target="_blank">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>登录页面</cite>
                         </a>
@@ -300,7 +300,7 @@
           </div>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='./welcome.html' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src='${pageContext.request.contextPath}/welcome.jsp' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
           </div>
           <div id="tab_show"></div>

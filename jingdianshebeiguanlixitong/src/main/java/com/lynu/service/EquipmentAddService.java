@@ -115,4 +115,5 @@ public interface EquipmentAddService {
      */
     Integer chaCount();
 
+
 }

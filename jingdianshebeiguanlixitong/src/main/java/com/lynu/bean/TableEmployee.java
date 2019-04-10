@@ -35,6 +35,16 @@ public class TableEmployee {
 
     private Date updateTime;
 
+    private TableDepartment department;
+
+    public TableDepartment getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(TableDepartment department) {
+        this.department = department;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -161,5 +171,27 @@ public class TableEmployee {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "TableEmployee{" +
+                "id=" + id +
+                ", employeename='" + employeename + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", sex=" + sex +
+                ", telephone='" + telephone + '\'' +
+                ", address='" + address + '\'' +
+                ", isValid=" + isValid +
+                ", isLeader=" + isLeader +
+                ", description='" + description + '\'' +
+                ", departmentId='" + departmentId + '\'' +
+                ", type=" + type +
+                ", delFlag=" + delFlag +
+                ", photograph='" + photograph + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
     }
 }
