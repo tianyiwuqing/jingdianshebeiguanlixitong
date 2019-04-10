@@ -75,16 +75,53 @@
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
-                    <cite>订单管理</cite>
+                    <cite>运行管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="run_faultRegister.jsp">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>订单列表</cite>
+                            <cite>设备故障登记</cite>
                         </a>
                     </li >
+                    <li>
+                        <a _href="order-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>故障维修管理</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="order-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>维修记录查询</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="order-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>设备启用管理</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="order-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>启用记录查询</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="order-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>设备封存管理</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="order-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>封存记录查询</cite>
+                        </a>
+                    </li >
+
                 </ul>
             </li>
             <li>
