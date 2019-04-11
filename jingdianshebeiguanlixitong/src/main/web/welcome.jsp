@@ -11,6 +11,54 @@
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
         <link rel="stylesheet" href="./css/font.css">
         <link rel="stylesheet" href="./css/xadmin.css">
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            //查询员工人数
+            $(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "${pageContext.request.contextPath}/EmployeeController/chaEmployeeCount",
+                    dataType: "json",
+                    success: function (returnData) {
+                        console.log("ajax on");
+                        console.log(returnData)
+                    },
+                    error: function () {
+                        console.log("error！")
+                    }
+                })
+            });
+
+            //设备数ajax
+            $(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "${pageContext.request.contextPath}/repertoryController/chaCount",
+                    dataType: "json",
+                    success: function (returnData) {
+                        console.log(returnData)
+                    },
+                    error: function () {
+                        console.log("error！")
+                    }
+                })
+            });
+            //需要入库的人数ajax
+            $(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "${pageContext.request.contextPath}/equipmentAddController/chaAddequipmentbills",
+                    dataType: "json",
+                    success: function (returnData) {
+                        console.log("ajax on cs");
+                        console.log(returnData)
+                    },
+                    error: function () {
+                        console.log("error！")
+                    }
+                })
+            })
+        </script>
     </head>
     <body>
     <div class="x-body">
@@ -21,6 +69,9 @@
             request.setAttribute("nowDate", format); %>
             <span class="x-red">你好</span>！当前时间:${nowDate};
         </blockquote>
+        <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+           href="javascript:location.replace(location.href);" title="刷新">
+            <i class="layui-icon" style="line-height:30px">ဂ</i></a>
         <fieldset class="layui-elem-field">
             <legend>数据统计</legend>
             <div class="layui-field-box">
@@ -125,57 +176,6 @@
         <blockquote class="layui-elem-quote layui-quote-nm">感谢layui,jquery,</blockquote>
     </div>
         <script>
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
-
-        //查询员工人数
-        function employeeCount() {
-            $.ajax({
-                type: "GET",
-                url: "${pageContext.request.contextPath}/EmployeeController/chaEmployeeCount",
-                dataType: "json",
-                success: function (returnData) {
-                    console.log(returnData)
-                },
-                error: function () {
-                    console.log("error！")
-                }
-            })
-        }
-
-        //设备数ajax
-        function equipmentCount() {
-            $.ajax({
-                type: "GET",
-                url: "${pageContext.request.contextPath}/repertoryController/chaCount",
-                dataType: "json",
-                success: function (returnData) {
-                    console.log(returnData)
-                },
-                error: function () {
-                    console.log("error！")
-                }
-            })
-        }
-        //设备数ajax
-        function equipmentCount() {
-            $.ajax({
-                type: "GET",
-                url: "${pageContext.request.contextPath}/equipmentAddController/chaAddequipmentbills",
-                dataType: "json",
-                success: function (returnData) {
-                    console.log(returnData)
-                },
-                error: function () {
-                    console.log("error！")
-                }
-            })
-        }
 
 
         </script>

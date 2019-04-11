@@ -16,8 +16,21 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/xadmin.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
     <script>
-        // 是否开启刷新记忆tab功能
-        // var is_remember = false;
+        //需要入库的人数ajax
+        function equipmentCount() {
+            $.ajax({
+                type: "GET",
+                url: "${pageContext.request.contextPath}/equipmentAddController/chaAddequipmentbills",
+                dataType: "json",
+                success: function (returnData) {
+                    console.log("ajax on cs")
+                    console.log(returnData)
+                },
+                error: function () {
+                    console.log("error！")
+                }
+            })
+        }
     </script>
 </head>
 <body>
@@ -80,7 +93,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="run_faultRegister.jsp">
+                        <a _href="${pageContext.request.contextPath}/run_faultRegister.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>设备故障登记</cite>
                         </a>
@@ -323,6 +336,8 @@
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
+
+
     </script>
 </body>
 </html>

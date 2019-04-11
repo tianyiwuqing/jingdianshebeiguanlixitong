@@ -2,6 +2,7 @@ package com.lynu.service;
 
 import com.lynu.bean.TableRepertory;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public interface RepertoryService {
      * 查询数据数量
      * @return
      */
-    Integer chaCount();
+    Integer chaCount(HttpSession session);
 
 
 }
