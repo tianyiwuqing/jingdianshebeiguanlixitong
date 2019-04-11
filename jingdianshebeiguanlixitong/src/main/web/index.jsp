@@ -99,37 +99,37 @@
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="${pageContext.request.contextPath}/order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>故障维修管理</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="${pageContext.request.contextPath}/order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>维修记录查询</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="${pageContext.request.contextPath}/order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>设备启用管理</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="${pageContext.request.contextPath}/order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>启用记录查询</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="${pageContext.request.contextPath}/order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>设备封存管理</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="${pageContext.request.contextPath}/order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>封存记录查询</cite>
                         </a>
