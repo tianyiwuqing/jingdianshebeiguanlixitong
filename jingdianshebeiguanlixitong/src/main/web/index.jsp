@@ -93,43 +93,43 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="run_faultRegister.jsp">
+                        <a _href="${pageContext.request.contextPath}/run_faultRegister.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>设备故障登记</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="${pageContext.request.contextPath}/order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>故障维修管理</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="${pageContext.request.contextPath}/order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>维修记录查询</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="${pageContext.request.contextPath}/order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>设备启用管理</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="${pageContext.request.contextPath}/order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>启用记录查询</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="${pageContext.request.contextPath}/order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>设备封存管理</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="${pageContext.request.contextPath}/order-list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>封存记录查询</cite>
                         </a>
@@ -140,14 +140,14 @@
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
-                    <cite>分类管理</cite>
+                    <cite>报废管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="cate.html">
+                        <a _href="${pageContext.request.contextPath}/srcap.jsp">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>多级分类</cite>
+                            <cite>设备报废管理</cite>
                         </a>
                     </li >
                 </ul>

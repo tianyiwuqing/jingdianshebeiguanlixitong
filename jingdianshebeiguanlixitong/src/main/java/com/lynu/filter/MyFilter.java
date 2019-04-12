@@ -36,9 +36,9 @@ public class MyFilter implements Filter {
         ctxPath = filterConfig.getServletContext().getContextPath();
         System.out.println("ctx = " + ctxPath);
         System.out.println("不拦截的URL包括:");
-        for (String url : passUrls) {
-            System.out.println(url);
-        }
+//        for (String url : passUrls) {
+//            System.out.println(url);
+//        }
     }
 
     @Override

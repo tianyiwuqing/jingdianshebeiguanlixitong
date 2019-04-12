@@ -21,7 +21,7 @@
         $(function () {
             $.ajax({
                 type: "GET",
-                url: "${pageContext.request.contextPath}/delRepertoryController/chacount",
+                url: "${pageContext.request.contextPath}/srcapController/scrapCount",
                 dataType: "json",
                 success: function (returnData) {
                     console.log(returnData);
@@ -38,9 +38,9 @@
 <div class="x-nav">
       <span class="layui-breadcrumb">
         <a href="">首页</a>
-        <a href="">出库管理</a>
+        <a href="">报废管理</a>
         <a>
-          <cite>出库订单列表</cite></a>
+          <cite>报废单管理</cite></a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
        href="javascript:location.replace(location.href);" title="刷新">
@@ -48,23 +48,18 @@
 </div>
 <div class="x-body">
     <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加设备','./repertory-addout.jsp',600,400)"><i class="layui-icon"></i>借出出库</button>
-        <button class="layui-btn" onclick="x_admin_show('添加设备','./repertory-scrapout.jsp',600,400)"><i class="layui-icon"></i>报废出库</button>
-        <span id="count" class="x-right" style="line-height:40px">共有数据：${sessionScope.deRepertorycount} 条</span>
+        <button class="layui-btn" onclick="x_admin_show('报废设备','./srcap_add.jsp',600,400)"><i class="layui-icon"></i>填写报废设备
+        </button>
+        <span id="count" class="x-right" style="line-height:40px">共有数据：${sessionScope.scrapcount} 条</span>
     </xblock>
     <table id="" class="layui-table x-admin">
         <thead >
         <tr>
-            <th>
-                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
-                        class="layui-icon">&#xe605;</i></div>
-            </th>
             <th>序号</th>
             <th>单据编号</th>
+            <th>设备名</th>
             <th>摘要</th>
-            <th>领用部门</th>
-            <th>领用人员</th>
+            <th>审核部门</th>
             <th>制单时间</th>
             <th>制单人</th>
             <th>单据状态</th>
@@ -75,44 +70,21 @@
         <%--ajax添加列表--%>
         </tbody>
     </table>
-    <%--<div class="page">--%>
-        <%--<div>--%>
-            <%--<a class="prev" href="">&lt;&lt;</a>--%>
-            <%--<a class="num" href="">1</a>--%>
-            <%--<span class="current">2</span>--%>
-            <%--<a class="num" href="">3</a>--%>
-            <%--<a class="num" href="">489</a>--%>
-            <%--<a class="next" href="">&gt;&gt;</a>--%>
-        <%--</div>--%>
-    <%--</div>--%>
 
 </div>
 <script>
-    layui.use('laydate', function () {
-        var laydate = layui.laydate;
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#start' //指定元素
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#end' //指定元素
-        });
-    });
 
 
-    /*库存-删除*/
-    function repertoryDelete(obj) {
+    /*订单-删除*/
+    function scrapDelete(obj) {
         $.ajax({
             type: "GET",
-            url: "${pageContext.request.contextPath}/delRepertoryController/delKeyIdDelRepertory",
+            url: "${pageContext.request.contextPath}/srcapController/delKeyScrapbills",
             data: {"did": obj},
             dataType: "json",
             success: function (returnData) {
                 if (returnData) {
-                    $("#tbody").find("tr[id=" + obj + "]").remove()
+                    window.location.reload();
                 }
             },
             error: function () {
@@ -121,11 +93,11 @@
         })
     }
 
-    //出库列表chaAllRepertoryOut
+    //报废单列表
     $(function () {
         $.ajax({
             type: "GET",
-            url: "${pageContext.request.contextPath}/delRepertoryController/chaAllRepertoryOut",
+            url: "${pageContext.request.contextPath}/srcapController/chaAllScrap",
             dataType: "json",
             success: function (returnData) {
                 var i = 0;
@@ -133,20 +105,16 @@
                 $(returnData).each(function (index, item) {
                     i++;
                     var option = "<tr id="+item.id+">" +
-                        " <th>" +
-                        "<div class=\"layui-unselect header layui-form-checkbox\" lay-skin=\"primary\"><i\n" +
-                        "                        class=\"layui-icon\">&#xe605;</i></div>" +
-                        "</th>" +
                         "<th>"+i+"</th>\n" +
-                        "<th>"+item.repertoryoutbills+"</th>" +
-                        "<th>"+item.codeabstract+"</th>" +
-                        "<th>"+item.receiveDepartment.name+"</th>\n" +
-                        "<th>"+item.receiveEmployee.employeename+"</th>" +
+                        "<th>"+item.scrapbills+"</th>" +
+                        "<th>"+item.equipment.equipmentName+"</th>" +
+                        "<th>"+item.scrapAbstract+"</th>\n" +
+                        "<th>"+item.department.name+"</th>" +
                         "<th>"+item.createTime+"</th>\n" +
                         "<th>"+item.createEmployee.employeename+"</th>" +
-                        "<th>"+item.isDelate+"</th>" +
+                        "<th>"+item.isDelateStr+"</th>" +
                         "<th class='td-manage'>" +
-                        "<a title='删除' onclick='member_del(this,'要删除的id')' href='javascript:repertoryDelete("+item.id +");'> " +
+                        "<a title='删除' href='javascript:scrapDelete("+item.id +");'> " +
                         "<i class='layui-icon'>&#xe640;</i> " +
                         "</a> " +
                         "</th> " +
@@ -161,23 +129,7 @@
     });
 
 
-    //删除全部
-    function delAll() {
-            $.ajax({
-                type: "GET",
-                url: "${pageContext.request.contextPath}/delRepertoryController/delAllDelRepertory",
-                dataType: "json",
-                success: function (returnData) {
-                    if (returnData) {
-                        layer.msg('删除成功', {icon: 1});
-                        $("#tbody").find("tr").remove();
-                    }
-                },
-                error: function () {
-                    console.log("error！")
-                }
-            })
-        }
+
 </script>
 <script>var _hmt = _hmt || [];
 (function () {

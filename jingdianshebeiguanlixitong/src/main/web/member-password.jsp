@@ -1,3 +1,4 @@
+<%@ page import="com.lynu.bean.TableEmployee" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -25,13 +26,14 @@
 
 <body>
 <div class="x-body">
-    <form class="layui-form">
+    <form>
         <div class="layui-form-item">
             <label for="L_username" class="layui-form-label">
                 昵称
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_username" name="username" disabled="" value="${sessionScope.LoginUser.username}" class="layui-input">
+                <input type="text" id="L_username" name="username" disabled=""
+                       value="${sessionScope.LoginUser.username}" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -45,19 +47,20 @@
         </div>
         <div class="layui-form-item">
             <label for="sex" class="layui-form-label">
-                <span class="x-red">*</span>性别
+                <span class="x-red">*</span>性别${sessionScope.LoginUser.sex};
             </label>
-            <div class="layui-input-inline">
-                <c:choose>
-                    <c:when test="${sessionScope.LoginUser.sex=0}">
-                        <input type="text" id="sex" name="sex" required="" lay-verify="required"
-                               autocomplete="off" class="layui-input" value="男">
-                    </c:when>
-                    <c:when test="${sessionScope.LoginUser.sex=1}">
-                        <input type="text" id="sex" name="sex" required="" lay-verify="required"
-                               autocomplete="off" class="layui-input" value="女">
-                    </c:when>
-                </c:choose>
+            <div class="layui-form-item">
+                <%
+                    TableEmployee employee = (TableEmployee) session.getAttribute("LoginUser");
+                    int sexid = employee.getSex();
+                    if (sexid == 0) {
+                        session.setAttribute("Sex", "男");
+                    } else {
+                        session.setAttribute("Sex", "女");
+                    }
+                %>
+                <input type="text" id="sex" name="sex" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input" value='${sessionScope.Sex}'>
             </div>
         </div>
         <div class="layui-form-item">

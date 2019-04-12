@@ -82,10 +82,6 @@ public class RepertoryServiceImpl implements RepertoryService {
                 i++;
             }
         }
-        for (TableRepertory tableRepertory : tableRepertories) {
-
-
-        }
         return tableRepertories;
 
     }

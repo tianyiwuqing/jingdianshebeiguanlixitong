@@ -16,6 +16,7 @@
     <result column="state" jdbcType="INTEGER" property="state" />
     <result column="owndepartment" jdbcType="INTEGER" property="owndepartment" />
     <result column="functionary" jdbcType="INTEGER" property="functionary" />
+    <result column="is_damage" jdbcType="INTEGER" property="isDamage" />
     <result column="is_deleter" jdbcType="INTEGER" property="isDeleter" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -79,7 +80,7 @@
   <sql id="Base_Column_List">
     id, equipmentuniquecode, equipment_id, address_stong_id, create_intime, create_outtime, 
     shop_time, update_time, department_out_id, employee_out_id, telephone, state, owndepartment, 
-    functionary, is_deleter
+    functionary, is_damage, is_deleter
   </sql>
   <select id="selectByExample" parameterType="com.lynu.bean.TableRepertoryExample" resultMap="BaseResultMap">
     select
@@ -116,14 +117,14 @@
       address_stong_id, create_intime, create_outtime, 
       shop_time, update_time, department_out_id, 
       employee_out_id, telephone, state, 
-      owndepartment, functionary, is_deleter
-      )
+      owndepartment, functionary, is_damage, 
+      is_deleter)
     values (#{id,jdbcType=INTEGER}, #{equipmentuniquecode,jdbcType=VARCHAR}, #{equipmentId,jdbcType=INTEGER}, 
       #{addressStongId,jdbcType=INTEGER}, #{createIntime,jdbcType=DATE}, #{createOuttime,jdbcType=DATE}, 
       #{shopTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{departmentOutId,jdbcType=INTEGER}, 
       #{employeeOutId,jdbcType=INTEGER}, #{telephone,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
-      #{owndepartment,jdbcType=INTEGER}, #{functionary,jdbcType=INTEGER}, #{isDeleter,jdbcType=INTEGER}
-      )
+      #{owndepartment,jdbcType=INTEGER}, #{functionary,jdbcType=INTEGER}, #{isDamage,jdbcType=INTEGER}, 
+      #{isDeleter,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lynu.bean.TableRepertory">
     insert into table_repertory
@@ -169,6 +170,9 @@
       </if>
       <if test="functionary != null">
         functionary,
+      </if>
+      <if test="isDamage != null">
+        is_damage,
       </if>
       <if test="isDeleter != null">
         is_deleter,
@@ -216,6 +220,9 @@
       </if>
       <if test="functionary != null">
         #{functionary,jdbcType=INTEGER},
+      </if>
+      <if test="isDamage != null">
+        #{isDamage,jdbcType=INTEGER},
       </if>
       <if test="isDeleter != null">
         #{isDeleter,jdbcType=INTEGER},
@@ -273,6 +280,9 @@
       <if test="record.functionary != null">
         functionary = #{record.functionary,jdbcType=INTEGER},
       </if>
+      <if test="record.isDamage != null">
+        is_damage = #{record.isDamage,jdbcType=INTEGER},
+      </if>
       <if test="record.isDeleter != null">
         is_deleter = #{record.isDeleter,jdbcType=INTEGER},
       </if>
@@ -297,6 +307,7 @@
       state = #{record.state,jdbcType=INTEGER},
       owndepartment = #{record.owndepartment,jdbcType=INTEGER},
       functionary = #{record.functionary,jdbcType=INTEGER},
+      is_damage = #{record.isDamage,jdbcType=INTEGER},
       is_deleter = #{record.isDeleter,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -344,6 +355,9 @@
       <if test="functionary != null">
         functionary = #{functionary,jdbcType=INTEGER},
       </if>
+      <if test="isDamage != null">
+        is_damage = #{isDamage,jdbcType=INTEGER},
+      </if>
       <if test="isDeleter != null">
         is_deleter = #{isDeleter,jdbcType=INTEGER},
       </if>
@@ -365,6 +379,7 @@
       state = #{state,jdbcType=INTEGER},
       owndepartment = #{owndepartment,jdbcType=INTEGER},
       functionary = #{functionary,jdbcType=INTEGER},
+      is_damage = #{isDamage,jdbcType=INTEGER},
       is_deleter = #{isDeleter,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
