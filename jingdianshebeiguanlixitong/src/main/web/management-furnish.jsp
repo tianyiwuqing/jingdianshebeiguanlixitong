@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>欢迎页面-向阳花医疗设备管理系统</title>
+    <title>职工信息表单</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -18,22 +18,6 @@
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript">
-        //仓库列表数量
-        $(function () {
-            $.ajax({
-                type: "GET",
-                url: "${pageContext.request.contextPath}/equipmentAddController/chaCount",
-                dataType: "json",
-                success: function (returnData) {
-                    console.log(returnData);
-                },
-                error: function () {
-                    console.log("error！")
-                }
-            })
-        });
-    </script>
 </head>
 
 <body>
@@ -49,18 +33,18 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-    <%--<div class="layui-row">--%>
-    <%--<form class="layui-form layui-col-md12 x-so">--%>
-    <%--<input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start" type="date">--%>
-    <%--<input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end" type="date">--%>
-    <%--<button class="layui-btn" lay-submit="" onclick="sreach()" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>--%>
-    <%--</form>--%>
-    <%--</div>--%>
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so">
+            <input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start" type="date">
+            <input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end" type="date">
+            <button class="layui-btn" lay-submit="" onclick="sreach()" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+        </form>
+    </div>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加设备','./equipment-add.jsp',600,400)"><i class="layui-icon"></i>添加
+        <button class="layui-btn" onclick="x_admin_show('添加设备','./management-furnish-add.jsp',600,400)"><i class="layui-icon"></i>添加
         </button>
-        <span class="x-right" style="line-height:40px">共有数据：${sessionScope.addEquipmendcount} 条</span>
+        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
     </xblock>
     <table id="" class="layui-table x-admin">
         <thead>
@@ -69,33 +53,27 @@
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
                         class="layui-icon">&#xe605;</i></div>
             </th>
-            <th>序号</th>
-            <th>单据编号</th>
-            <th>故障现象</th>
-            <th>设备编号</th>
-            <th>设备名称</th>
-            <th>规格型号</th>
-            <th>单位</th>
-            <th>出厂编号</th>
-            <th>制单日期</th>
-            <th>制单人员</th>
-            <th>单据状态</th>
+            <th>供应商名称</th>
+            <th>供应商地址</th>
+            <th>供应商联系电话</th>
+            <th>联系人</th>
+
         </tr>
         </thead>
         <tbody id="tbody">
         <%--ajax添加列表--%>
         </tbody>
     </table>
-    <%--<div class="page">--%>
-    <%--<div>--%>
-    <%--<a class="prev" href="">&lt;&lt;</a>--%>
-    <%--<a class="num" href="">1</a>--%>
-    <%--<span class="current">2</span>--%>
-    <%--<a class="num" href="">3</a>--%>
-    <%--<a class="num" href="">489</a>--%>
-    <%--<a class="next" href="">&gt;&gt;</a>--%>
-    <%--</div>--%>
-    <%--</div>--%>
+    <div class="page">
+        <div>
+            <a class="prev" href="">&lt;&lt;</a>
+            <a class="num" href="">1</a>
+            <span class="current">2</span>
+            <a class="num" href="">3</a>
+            <a class="num" href="">489</a>
+            <a class="next" href="">&gt;&gt;</a>
+        </div>
+    </div>
 
 </div>
 <script>
@@ -183,7 +161,7 @@
     $(function () {
         $.ajax({
             type: "GET",
-            url: "${pageContext.request.contextPath}/equipmentAddController/chaAllAddequipmentbills",
+            url: "${pageContext.request.contextPath}/equipmentAddController/chaAddequipmentbills",
             dataType: "json",
             success: function (returnData) {
                 var i = 0;
@@ -198,14 +176,19 @@
                         "<td>" + item.billsnumber + "</td>" +
                         "<td>" + item.furnish.name + "</td>" +
                         "<td>" + item.abstractdetails + "</td>" +
-                        "<td>" + item.furnish.name + "</td>" +
-                        "<td>" + item.abstractdetails + "</td>" +
                         "<td>" + item.createTime + "</td>" +
                         "<td>" + item.billsEmployee.employeename + "</td>" +
-                        "<td>" + item.abstractdetails + "</td>" +
-                        "<td>" + item.abstractdetails + "</td>" +
-                        "<td>" + item.abstractdetails + "</td>" +
-
+                        "<td class='td-status'>" +item.isDelate+"</td>" +
+                        "<td class='td-manage'>" +
+                        "<a title='编辑'  onclick=\"x_admin_show('编辑','${pageContext.request.contextPath}/equipmentAddController/chaKeyAddEquipment?aid="+item.id+"')\" href='javascript:;'>" +
+                        "<i class='layui-icon'>" +
+                        "&#xe642;" +
+                        "</i>" +
+                        "<a title='删除' onclick='member_del(this,'要删除的id')' href='javascript:addBillsDelete("+item.id +");'> " +
+                        "<i class='layui-icon'>&#xe640;</i> " +
+                        "</a> " +
+                        "</td> " +
+                        "<td></td> " +
                         "</tr>";
                     $("#tbody").append(option);
                 })
