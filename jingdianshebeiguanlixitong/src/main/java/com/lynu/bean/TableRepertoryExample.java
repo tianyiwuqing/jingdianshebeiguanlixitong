@@ -1051,6 +1051,66 @@ public class TableRepertoryExample {
             addCriterion("is_deleter not between", value1, value2, "isDeleter");
             return (Criteria) this;
         }
+
+        public Criteria andIsSrcapIsNull() {
+            addCriterion("is_srcap is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSrcapIsNotNull() {
+            addCriterion("is_srcap is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSrcapEqualTo(Integer value) {
+            addCriterion("is_srcap =", value, "isSrcap");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSrcapNotEqualTo(Integer value) {
+            addCriterion("is_srcap <>", value, "isSrcap");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSrcapGreaterThan(Integer value) {
+            addCriterion("is_srcap >", value, "isSrcap");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSrcapGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_srcap >=", value, "isSrcap");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSrcapLessThan(Integer value) {
+            addCriterion("is_srcap <", value, "isSrcap");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSrcapLessThanOrEqualTo(Integer value) {
+            addCriterion("is_srcap <=", value, "isSrcap");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSrcapIn(List<Integer> values) {
+            addCriterion("is_srcap in", values, "isSrcap");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSrcapNotIn(List<Integer> values) {
+            addCriterion("is_srcap not in", values, "isSrcap");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSrcapBetween(Integer value1, Integer value2) {
+            addCriterion("is_srcap between", value1, value2, "isSrcap");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSrcapNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_srcap not between", value1, value2, "isSrcap");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

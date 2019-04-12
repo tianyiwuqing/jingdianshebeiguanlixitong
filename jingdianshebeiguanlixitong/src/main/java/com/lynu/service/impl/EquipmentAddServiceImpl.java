@@ -59,7 +59,6 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
         criteria.andEquipmentNameEqualTo(equipment.getEquipmentName());
         criteria.andEquipmentStandardEqualTo(equipment.getEquipmentStandard());
         List<TableEquipment> tableEquipments = equipmentMapper.selectByExample(equipmentExample);
-        System.out.println(tableEquipments.size() + "   :tableEquipments.size()");
         if (tableEquipments.size() > 0) {
             //获取设备id
             addequipmentbills.setEquipmentId(Integer.parseInt(tableEquipments.get(0).getId()));
@@ -80,7 +79,6 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
             addequipmentbills.setEquipmentId(Integer.parseInt(equipment.getId()));
             //插入增加订单
             int insert2 = addequipmentbillsMapper.insert(addequipmentbills);
-            System.out.println("end!");
             return insert + insert1 + insert2 == 3;
         }
     }
@@ -205,7 +203,6 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
         TableEquipmentDetalisExample.Criteria criteria = equipmentDetalisExample.createCriteria();
         criteria.andEquipmentIdEqualTo(tableEquipment.getId());
         List<TableEquipmentDetalis> tableEquipmentDetaliss = equipmentDetalisMapper.selectByExample(equipmentDetalisExample);
-        System.out.println("测试size：2——" + tableEquipmentDetaliss.size());
         TableEquipmentDetalis tableEquipmentDetalis = tableEquipmentDetaliss.get(0);
         //获取equipmentdetails 并加入到equipment类中
         tableEquipment.setEquipmentDetalis(tableEquipmentDetalis);

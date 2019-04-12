@@ -27,11 +27,19 @@ public class TableRepertory {
 
     private Integer state;
 
+    private String startstr;
+
     private Integer owndepartment;
 
     private Integer functionary;
 
     private Integer isDeleter;
+
+    private String isDeleterStr;
+
+    private Integer isDamage;
+
+    private String isDamageStr;
 
     private TableEquipment equipment;
 
@@ -42,6 +50,39 @@ public class TableRepertory {
     private TableFurnish furnish;
 
     private TableEmployee functionaryEmployee;
+
+
+    public String getIsDeleterStr() {
+        return isDeleterStr;
+    }
+
+    public void setIsDeleterStr(String isDeleterStr) {
+        this.isDeleterStr = isDeleterStr;
+    }
+
+    public String getStartstr() {
+        return startstr;
+    }
+
+    public void setStartstr(String startstr) {
+        this.startstr = startstr;
+    }
+
+    public Integer getIsDamage() {
+        return isDamage;
+    }
+
+    public void setIsDamage(Integer isDamage) {
+        this.isDamage = isDamage;
+    }
+
+    public String getIsDamageStr() {
+        return isDamageStr;
+    }
+
+    public void setIsDamageStr(String isDamageStr) {
+        this.isDamageStr = isDamageStr;
+    }
 
     public TableEmployee getFunctionaryEmployee() {
         return functionaryEmployee;
@@ -201,5 +242,35 @@ public class TableRepertory {
 
     public void setIsDeleter(Integer isDeleter) {
         this.isDeleter = isDeleter;
+    }
+
+    @Override
+    public String toString() {
+        return "TableRepertory{" +
+                "id=" + id +
+                ", equipmentuniquecode='" + equipmentuniquecode + '\'' +
+                ", equipmentId=" + equipmentId +
+                ", addressStongId=" + addressStongId +
+                ", createIntime=" + createIntime +
+                ", createOuttime=" + createOuttime +
+                ", shopTime=" + shopTime +
+                ", updateTime=" + updateTime +
+                ", departmentOutId=" + departmentOutId +
+                ", employeeOutId=" + employeeOutId +
+                ", telephone='" + telephone + '\'' +
+                ", state=" + state +
+                ", startstr='" + startstr + '\'' +
+                ", owndepartment=" + owndepartment +
+                ", functionary=" + functionary +
+                ", isDeleter=" + isDeleter +
+                ", isDeleterStr='" + isDeleterStr + '\'' +
+                ", isDamage=" + isDamage +
+                ", isDamageStr='" + isDamageStr + '\'' +
+                ", equipment=" + equipment +
+                ", storage=" + storage +
+                ", department=" + department +
+                ", furnish=" + furnish +
+                ", functionaryEmployee=" + functionaryEmployee +
+                '}';
     }
 }

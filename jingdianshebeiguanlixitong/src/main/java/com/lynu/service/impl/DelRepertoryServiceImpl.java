@@ -110,10 +110,8 @@ public class DelRepertoryServiceImpl implements DelRepertoryService {
     public List<TableRepertoryOut> chaAllRepertoryOut() {
         List<TableRepertoryOut> tableRepertoryOuts = repertoryOutMapper.selectByExample(null);
         int size = tableRepertoryOuts.size();
-        System.out.println(size);
         for (int i=0;i<size;){
             TableRepertoryOut tableRepertoryOut = tableRepertoryOuts.get(i);
-            System.out.println(tableRepertoryOut.getIsDelate()==1);
             if (tableRepertoryOut.getIsDelate()==1){
                 tableRepertoryOuts.remove(i);
                 size--;
