@@ -23,6 +23,17 @@
         $(function () {
             $.ajax({
                 type: "GET",
+                url: "${pageContext.request.contextPath}/execute/deviceErrorList",
+                dataType: "json",
+                success: function (returnData) {
+                    console.log("测试",returnData);
+                },
+                error: function () {
+                    console.log("error！")
+                }
+            });
+            $.ajax({
+                type: "GET",
                 url: "${pageContext.request.contextPath}/equipmentAddController/chaCount",
                 dataType: "json",
                 success: function (returnData) {
