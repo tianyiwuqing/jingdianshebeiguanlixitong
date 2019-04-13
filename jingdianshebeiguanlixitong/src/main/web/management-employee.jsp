@@ -130,7 +130,7 @@
                         "<td class='td-status'>" +item.isValidStr+"</td>" +
                         "<td class='td-status'>" +item.isLeaderStr+"</td>" +
                         "<td class='td-manage'>" +
-                        "<a title='编辑'  onclick=\"x_admin_show('编辑','${pageContext.request.contextPath}/equipmentAddController/chaKeyAddEquipment?aid="+item.id+"')\" href='javascript:;'>" +
+                        "<a title='编辑' onclick=\"x_admin_show('编辑','${pageContext.request.contextPath}/EmployeeController/chaEmployee?eid="+item.id+"')\" href='javascript:;'>" +
                         "<i class='layui-icon'>&#xe642;</i>" +
                         "</a> " +
                         "<a title='删除' onclick='member_del(this,'要删除的id')' href='javascript:delEmployee("+item.id +");'> " +

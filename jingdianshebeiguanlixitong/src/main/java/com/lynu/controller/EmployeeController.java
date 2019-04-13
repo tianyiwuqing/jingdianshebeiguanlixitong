@@ -56,11 +56,19 @@ public class EmployeeController {
     public boolean uodateEmployee(String eid) {
         return employeeService.uodateEmployee(eid);
     }
+
     @RequestMapping("chaEmployee")
-    @ResponseBody
     public String chaEmployee(String eid,HttpSession session) {
         TableEmployee tableEmployee = employeeService.chaEmployee(eid);
         session.setAttribute("tableEmployee",tableEmployee);
         return "management-employee-edit";
+    }
+    @RequestMapping("xiugaiEmployee")
+    public String xiugaiEmployee(TableEmployee employee) {
+        boolean b = employeeService.xiugaiEmployee(employee);
+        if (b){
+            return "management-employee";
+        }
+        return "error";
     }
 }

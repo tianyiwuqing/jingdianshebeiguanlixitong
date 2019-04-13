@@ -129,6 +129,24 @@ public class EmployeeServiceImpl implements EmployeeService {
         return tableEmployee;
     }
 
+    @Override
+    public boolean xiugaiEmployee(TableEmployee employee) {
+        TableEmployee tableEmployee = employeeMapper.selectByPrimaryKey(employee.getId());
+        if (employee.getNewsex()!=2){
+            tableEmployee.setSex(employee.getNewsex());
+        }
+        if (!employee.getNewdepartmentId().equals("0")){
+            tableEmployee.setDepartmentId(employee.getNewdepartmentId());
+        }
+        tableEmployee.setAddress(employee.getAddress());
+        tableEmployee.setPassword(employee.getPassword());
+        tableEmployee.setDescription(employee.getDescription());
+        tableEmployee.setEmployeename(employee.getEmployeename());
+        tableEmployee.setUsername(employee.getUsername());
+        tableEmployee.setTelephone(employee.getTelephone());
+        return employeeMapper.updateByPrimaryKey(tableEmployee)>0;
+    }
+
 
 }
 

@@ -8,12 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
-    <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/xadmin.css">
-    <script type="text/javascript" src="./js/jquery-2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./js/xadmin.js"></script>
-    <script type="text/javascript" src="./js/cookie.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/xadmin.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/xadmin.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -21,9 +21,9 @@
     <![endif]-->
     <script type="text/javascript">
         //表单提交
-        function add() {
+        function update() {
             alert("是否修改员工");
-            $("#addemployee").submit();
+            $("#xiugaiemployee").submit();
 //                 获得frame索引
             var index = parent.layer.getFrameIndex(window.name);
             //关闭当前frame
@@ -35,8 +35,8 @@
 
 <body>
 <div class="x-body">
-    <form  id="addemployee" method="post"
-          action="${pageContext.request.contextPath}/EmployeeController/addEmployee">
+    <form  id="xiugaiemployee" method="post"
+          action="${pageContext.request.contextPath}/EmployeeController/xiugaiEmployee">
         <div class="layui-form-item" style="display: none">
             <label for="id" class="layui-form-label">
                 <span class="x-red">*</span>员工编号
@@ -69,8 +69,9 @@
                 <span class="x-red">*</span>性别
             </label>
             <div class="layui-input-inline">
-                <input name="sex" value="${sessionScope.tableEmployee.sex}">
+                <input name="sex" value="${sessionScope.tableEmployee.sex}" style="display: none">
                 <select id="newsex" name="newsex" class="valid">
+                    <option value="2">-请选择-</option>
                     <option value="0">-男-</option>
                     <option value="1">-女-</option>
                 </select>
@@ -91,7 +92,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="telephone" name="telephone" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${sessionScope.tableEmployee.telephone}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -100,49 +101,17 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="address" name="address" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                       autocomplete="off" class="layui-input" value="${sessionScope.tableEmployee.address}">
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="departmentId" class="layui-form-label">
+            <label for="newdepartmentId" class="layui-form-label">
                 <span class="x-red">*</span>部门
             </label>
+            <input name="departmentId" value="${sessionScope.tableEmployee.departmentId}" style="display: none">
             <div class="layui-input-inline">
-                <select name="departmentId" id="departmentId">
+                <select name="newdepartmentId" id="newdepartmentId">
                     <option value="0">-请选择-</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="isLeader" class="layui-form-label">
-            <span class="x-red">*</span>是否是领导
-        </label>
-            <div class="layui-input-inline">
-                <select name="isLeader" id="isLeader">
-                    <option value="0">-否-</option>
-                    <option value="1">-是-</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="isValid" class="layui-form-label">
-                <span class="x-red">*</span>是否禁用
-            </label>
-            <div class="layui-input-inline">
-                <select name="isValid" id="isValid">
-                    <option value="0">-正常-</option>
-                    <option value="1">-禁用-</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="delFlag" class="layui-form-label">
-                <span class="x-red">*</span>删除标志
-            </label>
-            <div class="layui-input-inline">
-                <select name="delFlag" id="delFlag">
-                    <option value="0">正常</option>
-                    <option value="1">已删除</option>
                 </select>
             </div>
         </div>
@@ -151,16 +120,16 @@
                 描述
             </label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" id="description" name="description"
-                          class="layui-textarea"></textarea>
+                <input type="text" id="description" name="description" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input" value="${sessionScope.tableEmployee.description}">
             </div>
         </div>
     </form>
     <div class="layui-form-item">
         <label for="addbutton" class="layui-form-label">
         </label>
-        <button id="addbutton" onclick="add()" class="layui-btn">
-            增加
+        <button id="addbutton" onclick="update()" class="layui-btn">
+            修改
         </button>
     </div>
 </div>

@@ -13,6 +13,8 @@ public class TableEmployee {
 
     private Integer sex;
 
+    private Integer newsex;
+
     private String sexStr;
 
     private String telephone;
@@ -31,6 +33,8 @@ public class TableEmployee {
 
     private String departmentId;
 
+    private String newdepartmentId;
+
     private String departmentName;
 
     private Integer type;
@@ -46,6 +50,22 @@ public class TableEmployee {
     private Date updateTime;
 
     private TableDepartment department;
+
+    public Integer getNewsex() {
+        return newsex;
+    }
+
+    public void setNewsex(Integer newsex) {
+        this.newsex = newsex;
+    }
+
+    public String getNewdepartmentId() {
+        return newdepartmentId;
+    }
+
+    public void setNewdepartmentId(String newdepartmentId) {
+        this.newdepartmentId = newdepartmentId;
+    }
 
     public String getDepartmentName() {
         return departmentName;

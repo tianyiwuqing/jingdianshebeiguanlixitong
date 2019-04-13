@@ -50,4 +50,11 @@ public interface EmployeeService {
      */
     TableEmployee chaEmployee(String eid);
 
+    /**
+     *
+     * @param employee
+     * @return
+     */
+    boolean xiugaiEmployee(TableEmployee employee);
+
 }
