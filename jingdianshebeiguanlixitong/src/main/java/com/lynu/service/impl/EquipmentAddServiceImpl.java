@@ -102,7 +102,7 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
     public List<TableEmployee> chaCheckingperson() {
         TableEmployeeExample employeeExample = new TableEmployeeExample();
         TableEmployeeExample.Criteria criteria = employeeExample.createCriteria();
-        criteria.andDepartmentIdEqualTo("108");
+        criteria.andDepartmentIdEqualTo("186123720");
         List<TableEmployee> tableEmployees = employeeMapper.selectByExample(employeeExample);
         return tableEmployees;
     }
@@ -116,7 +116,7 @@ public class EquipmentAddServiceImpl implements EquipmentAddService {
     public List<TableEmployee> chaOperatorpersonAddBillsperson() {
         TableEmployeeExample employeeExample = new TableEmployeeExample();
         TableEmployeeExample.Criteria criteria = employeeExample.createCriteria();
-        criteria.andDepartmentIdEqualTo("110");
+        criteria.andDepartmentIdEqualTo("865246330");
         List<TableEmployee> tableEmployees = employeeMapper.selectByExample(employeeExample);
         return tableEmployees;
 

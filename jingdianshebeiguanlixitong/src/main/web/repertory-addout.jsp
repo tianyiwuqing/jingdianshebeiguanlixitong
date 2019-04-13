@@ -175,7 +175,7 @@
                 </select>
             </div>
         </div>
-        <div>
+        <div class="layui-input-inline">
             <label for="receiveemployeeid" class="layui-form-label">
                 <span class="x-red">*</span>所借人员
             </label>

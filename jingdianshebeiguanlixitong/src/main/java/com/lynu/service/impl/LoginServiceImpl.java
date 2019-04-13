@@ -1,6 +1,5 @@
 package com.lynu.service.impl;
 
-import com.lynu.bean.TableDepartment;
 import com.lynu.bean.TableEmployee;
 import com.lynu.bean.TableEmployeeExample;
 import com.lynu.dao.TableDepartmentMapper;
@@ -9,8 +8,6 @@ import com.lynu.service.LoginService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -36,7 +33,7 @@ public class LoginServiceImpl implements LoginService {
         List<TableEmployee> tableEmployees = tableEmployeeMapper.selectByExample(tableEmployeeExample);
             if (tableEmployees!=null&&tableEmployees.size()>0) {
                 TableEmployee tableEmployee =tableEmployees.get(0) ;
-                tableEmployee.setDepartment(departmentMapper.selectByPrimaryKey(Integer.parseInt(tableEmployee.getDepartmentId())));
+//                tableEmployee.setDepartment(departmentMapper.selectByPrimaryKey(Integer.parseInt(tableEmployee.getDepartmentId())));
                 session.setAttribute("LoginUser", tableEmployee);
                 return true;
             }

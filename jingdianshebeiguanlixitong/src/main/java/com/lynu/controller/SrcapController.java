@@ -1,65 +1,61 @@
 package com.lynu.controller;
 
-import com.lynu.bean.TableEmployee;
-import com.lynu.bean.TableRepertory;
-import com.lynu.bean.TableScrap;
+import com.lynu.bean.*;
 import com.lynu.service.SrcapService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
  * @author 天意无情
- * @date 2019-04-11 17:11
+ * @date 2019-04-12 23:13
  */
 @Controller
 @RequestMapping("srcapController")
 public class SrcapController {
 
-
     @Resource
     private SrcapService srcapService;
-
 
     @RequestMapping("chaSoure")
     @ResponseBody
     public List<TableRepertory> chaSoure(String bmid, String sbfl) {
         List<TableRepertory> tableRepertories = srcapService.chaSoure(bmid, sbfl);
-        for (TableRepertory tableRepertory : tableRepertories) {
-        }
-        return srcapService.chaSoure(bmid, sbfl);
+        return tableRepertories;
     }
 
     @RequestMapping("addScrapbills")
-    public void addScrapbills(TableScrap tableScrap) {
-        boolean b = srcapService.addScrapbills(tableScrap);
+    @ResponseBody
+    public boolean addScrapbills(TableScrap scrap) {
+        boolean b = srcapService.addScrapbills(scrap);
+        return b;
     }
 
     @RequestMapping("chaOfKeyEmployee")
     @ResponseBody
-    public List<TableEmployee> chaOfKeyEmployee(){
-        return srcapService.chaOfKeyEmployee();
+    public List<TableEmployee> chaOfKeyEmployee() {
+       return srcapService.chaOfKeyEmployee();
     }
 
     @RequestMapping("chaAllScrap")
     @ResponseBody
     public List<TableScrap> chaAllScrap() {
-        return srcapService.chaAllScrap();
+        List<TableScrap> tableScraps = srcapService.chaAllScrap();
+        return tableScraps;
     }
+
 
     @RequestMapping("delKeyScrapbills")
     @ResponseBody
-    public boolean delKeyScrapbills(String did) {
-        boolean b = srcapService.delKeyScrapbills(did);
-        System.out.println(b);
-        return b;
-    }
+    public boolean delKeyScrapbills(String sid) {
+        return srcapService.delKeyScrapbills(sid);
 
+    }
 
     @RequestMapping("scrapCount")
     @ResponseBody
@@ -72,13 +68,14 @@ public class SrcapController {
     @RequestMapping("chaOfDeleterScrap")
     @ResponseBody
     public List<TableRepertory> chaOfDeleterScrap() {
-        List<TableRepertory> tableRepertories = srcapService.chaOfDeleterScrap();
-        return tableRepertories;
+        return srcapService.chaOfDeleterScrap();
     }
 
     @RequestMapping("delOutRepertory")
     @ResponseBody
     public boolean delOutRepertory(String rid) {
-        return srcapService.delOutRepertory(rid);
+    return srcapService.delOutRepertory(rid);
     }
+
+
 }
