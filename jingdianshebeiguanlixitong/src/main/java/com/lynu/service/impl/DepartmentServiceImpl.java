@@ -52,7 +52,6 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Integer departCount() {
         int l = (int) departmentMapper.countByExample(null);
-        System.out.println("serviceimpl 运行:"+l);
         return l;
     }
 

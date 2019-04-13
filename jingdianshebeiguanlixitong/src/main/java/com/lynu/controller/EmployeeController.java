@@ -1,5 +1,6 @@
 package com.lynu.controller;
 
+import com.lynu.bean.TableEmployee;
 import com.lynu.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 天意无情
@@ -31,7 +33,28 @@ public class EmployeeController {
         return integer;
     }
 
+    @RequestMapping("addEmployee")
+    @ResponseBody
+    public boolean addEmployee(TableEmployee employee) {
+       return employeeService.addEmployee(employee);
+    }
 
+    @RequestMapping("chaAllEmployee")
+    @ResponseBody
+    public List<TableEmployee> chaAllEmployee() {
+       return employeeService.chaAllEmployee();
+    }
 
+    @RequestMapping("delEmployee")
+    @ResponseBody
+    public boolean delEmployee(String eid) {
+        return employeeService.delEmployee(eid);
+    }
+
+    @RequestMapping("uodateEmployee")
+    @ResponseBody
+    public boolean uodateEmployee(String eid) {
+        return employeeService.uodateEmployee(eid);
+    }
 
 }
