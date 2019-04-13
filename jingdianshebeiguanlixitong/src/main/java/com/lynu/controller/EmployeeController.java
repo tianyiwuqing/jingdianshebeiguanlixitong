@@ -56,5 +56,11 @@ public class EmployeeController {
     public boolean uodateEmployee(String eid) {
         return employeeService.uodateEmployee(eid);
     }
-
+    @RequestMapping("chaEmployee")
+    @ResponseBody
+    public String chaEmployee(String eid,HttpSession session) {
+        TableEmployee tableEmployee = employeeService.chaEmployee(eid);
+        session.setAttribute("tableEmployee",tableEmployee);
+        return "management-employee-edit";
+    }
 }

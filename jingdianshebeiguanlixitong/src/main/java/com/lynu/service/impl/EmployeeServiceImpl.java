@@ -94,9 +94,42 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public boolean uodateEmployee(String eid) {
         TableEmployee tableEmployee = employeeMapper.selectByPrimaryKey(Integer.parseInt(eid));
-        tableEmployee.setIsValid(1);
+        if(tableEmployee.getIsValid()==1){
+            tableEmployee.setIsValid(0);
+        }else {
+            tableEmployee.setIsValid(1);
+        }
+
         return employeeMapper.updateByPrimaryKey(tableEmployee) > 0;
     }
+
+    @Override
+    public TableEmployee chaEmployee(String eid) {
+        TableEmployee tableEmployee = employeeMapper.selectByPrimaryKey(Integer.parseInt(eid));
+        if (tableEmployee.getIsLeader() == 0) {
+            tableEmployee.setIsLeaderStr("员工");
+        } else {
+            tableEmployee.setIsLeaderStr("领导");
+        }
+        if (tableEmployee.getDelFlag() == 0) {
+            tableEmployee.setDelFlagStr("正常");
+        } else {
+            tableEmployee.setDelFlagStr("删除");
+        }
+        if (tableEmployee.getIsValid() == 0) {
+            tableEmployee.setIsValidStr("启用");
+        } else {
+            tableEmployee.setIsValidStr("禁用");
+        }
+        if (tableEmployee.getSex() == 0) {
+            tableEmployee.setSexStr("男");
+        } else {
+            tableEmployee.setSexStr("女");
+        }
+        return tableEmployee;
+    }
+
+
 }
 
 

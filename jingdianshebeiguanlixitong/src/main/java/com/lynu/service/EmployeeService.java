@@ -43,4 +43,11 @@ public interface EmployeeService {
      */
     boolean uodateEmployee(String eid);
 
+    /**
+     * 根据id获取员工信息
+     * @param eid
+     * @return
+     */
+    TableEmployee chaEmployee(String eid);
+
 }

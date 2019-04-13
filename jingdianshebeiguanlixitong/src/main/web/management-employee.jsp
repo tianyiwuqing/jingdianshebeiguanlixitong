@@ -50,6 +50,7 @@
             <th>禁用状态</th>
             <th>领导人员</th>
             <th>操作</th>
+            <th>禁用</th>
         </tr>
         </thead>
         <tbody id="tbody">
@@ -122,7 +123,7 @@
                     var option = "<tr id='" + item.id + "'>" +
                         "<td>" + i + "</td>" +
                         "<td>" + item.id + "</td>" +
-                        "<td>" + item.employeename.name + "</td>" +
+                        "<td>" + item.employeename+ "</td>" +
                         "<td>" + item.sexStr + "</td>" +
                         "<td>" + item.telephone + "</td>" +
                         "<td>" + item.address + "</td>" +
@@ -135,10 +136,9 @@
                         "<a title='删除' onclick='member_del(this,'要删除的id')' href='javascript:delEmployee("+item.id +");'> " +
                         "<i class='layui-icon'>&#xe640;</i> " +
                         "</a> " +
-                        "<a title='禁用' onclick='member_del(this,'要禁用的id')' href='javascript:updateEmployee("+item.id +");'> " +
-                        "<i class='layui-icon'>&#xe640;</i> " +
-                        "</a> " +
                         "</td> " +
+                        "<td class='td-status'>" +
+                        "<span class='layui-btn layui-btn-normal layui-btn-mini' onclick='updateEmployee("+item.id+")' id='button'>禁用</span></td>" +
                         "</tr>";
                     $("#tbody").append(option);
                 })
