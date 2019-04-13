@@ -14,8 +14,35 @@ public class ExecuteServiceImpl implements ExecuteService {
     @Autowired
     private ExecuteMapper mapper;
 
+    /*设备故障登记*/
     @Override
     public List<Map<String, Object>> deviceErrorList() {
         return mapper.deviceErrorList();
+    }
+
+    @Override
+    public int deleteBatch(List<String> exceptIds) {
+        return mapper.deleteBatch(exceptIds);
+    }
+
+    @Override
+    public List<Map<String, Object>> deviceErrorQuery(Map<String,Object> queryData) {
+        return mapper.deviceErrorQuery(queryData);
+    }
+
+
+    /*故障维修管理*/
+    @Override
+    public List<Map<String, Object>> repairList() {
+        return mapper.repairList();
+    }
+
+    /**
+     * 故障维修管理条件查询
+     * @param queryData
+     * @return
+     */
+    public List<Map<String,Object>> repairListQuery(Map<String,Object> queryData){
+        return mapper.repairListQuery(queryData);
     }
 }

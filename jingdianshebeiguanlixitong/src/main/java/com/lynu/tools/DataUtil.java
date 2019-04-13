@@ -29,4 +29,13 @@ public class DataUtil {
             }
         }
     }
+
+    /**
+     * 生成随机字符串UUID
+     * @return
+     */
+    public static String getUUID(){
+        return UUID.randomUUID().toString().replaceAll("-","").toUpperCase();
+    }
+
 }
