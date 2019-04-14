@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynu.dao.ExecuteMapper">
+    <!--设备故障登记列表-->
+    <select id="deviceErrorList" resultType="java.util.Map">
+        SELECT tep.*,te.equipment_name,te.equipment_standard FROM table_exception tep left join table_equipment te on tep.except_device=te.id where tep.except_status=0 order by tep.except_time desc
+    </select>
+
+    <!--设备故障登记批量删除-->
+    <update id="deleteBatch" parameterType="java.util.List">
+        update table_exception set except_status=0 where except_id in
+        <foreach collection="exceptIds" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--设备故障登记列表条件查询-->
+    <select id="deviceErrorQuery" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT tep.*,te.equipment_name,te.equipment_standard FROM table_exception tep left join table_equipment te on tep.except_device=te.id where tep.except_status=0
+        and tep.except_time &lt;= DATE_FORMAT(#{startTime},'%Y-%m-%d %H:%i:%s')
+        and tep.except_time &gt;= DATE_FORMAT(#{endTime},'%Y-%m-%d %H:%i:%s')
+        and tep.except_handle_status = #{handleStatus}
+        order by tep.except_time desc
+    </select>
+
+    <!--故障维修管理列表-->
+    <select id="repairList" resultType="java.util.Map" >
+        select tr.*,te.equipment_name,te.equipment_standard from table_repair tr left join table_equipment te on tr.repair_device = te.id where tr.repair_status=0 order by tr.repair_time desc
+    </select>
+
+    <!--故障维修管理列表条件查询-->
+    <select id="repairListQuery" resultType="java.util.Map" parameterType="java.util.Map">
+        select tr.*,te.equipment_name,te.equipment_standard from table_repair tr left join table_equipment te on tr.repair_device = te.id where tr.repair_status=0
+        and INSTR(tr.repair_desc,#{repairDesc}) > 0
+        and tr.repair_time &lt;= DATE_FORMAT(#{startTime},'%y-%m-%d %H:%i:%s')
+        and tr.repair_time &gt;= DATE_FORMAT(#{endTime},'%y-%m-%d %H:%i:%s')
+        order by tr.repair_time desc
+    </select>
+</mapper>
