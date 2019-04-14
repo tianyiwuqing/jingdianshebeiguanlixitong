@@ -156,7 +156,7 @@
                 </ul>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="city.html">
+                        <a _href="${pageContext.request.contextPath}/management-employee.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>员工管理</cite>
                         </a>

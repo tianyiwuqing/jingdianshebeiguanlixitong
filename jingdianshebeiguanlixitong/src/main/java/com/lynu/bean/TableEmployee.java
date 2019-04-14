@@ -13,21 +13,35 @@ public class TableEmployee {
 
     private Integer sex;
 
+    private Integer newsex;
+
+    private String sexStr;
+
     private String telephone;
 
     private String address;
 
     private Integer isValid;
 
+    private String isValidStr;
+
     private Integer isLeader;
+
+    private String isLeaderStr;
 
     private String description;
 
     private String departmentId;
 
+    private String newdepartmentId;
+
+    private String departmentName;
+
     private Integer type;
 
     private Integer delFlag;
+
+    private String delFlagStr;
 
     private String photograph;
 
@@ -36,6 +50,62 @@ public class TableEmployee {
     private Date updateTime;
 
     private TableDepartment department;
+
+    public Integer getNewsex() {
+        return newsex;
+    }
+
+    public void setNewsex(Integer newsex) {
+        this.newsex = newsex;
+    }
+
+    public String getNewdepartmentId() {
+        return newdepartmentId;
+    }
+
+    public void setNewdepartmentId(String newdepartmentId) {
+        this.newdepartmentId = newdepartmentId;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public String getSexStr() {
+        return sexStr;
+    }
+
+    public void setSexStr(String sexStr) {
+        this.sexStr = sexStr;
+    }
+
+    public String getIsValidStr() {
+        return isValidStr;
+    }
+
+    public void setIsValidStr(String isValidStr) {
+        this.isValidStr = isValidStr;
+    }
+
+    public String getIsLeaderStr() {
+        return isLeaderStr;
+    }
+
+    public void setIsLeaderStr(String isLeaderStr) {
+        this.isLeaderStr = isLeaderStr;
+    }
+
+    public String getDelFlagStr() {
+        return delFlagStr;
+    }
+
+    public void setDelFlagStr(String delFlagStr) {
+        this.delFlagStr = delFlagStr;
+    }
 
     public TableDepartment getDepartment() {
         return department;

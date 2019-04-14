@@ -98,7 +98,7 @@ public class srcapServiceImpl implements SrcapService {
     public List<TableEmployee> chaOfKeyEmployee() {
         TableEmployeeExample employeeExample = new TableEmployeeExample();
         TableEmployeeExample.Criteria criteria = employeeExample.createCriteria();
-        criteria.andDepartmentIdEqualTo("110");
+        criteria.andDepartmentIdEqualTo("865246330");
         return employeeMapper.selectByExample(employeeExample);
     }
 

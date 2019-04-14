@@ -85,7 +85,7 @@ public interface EquipmentAddService {
      * @param endTime
      * @return
      */
-    List<TableAddequipmentbills> chaDateAddEquipmentbills(String startTime,String endTime);
+    List<TableAddequipmentbills> chaDateAddEquipmentbills(String startTime, String endTime);
 
 
     /**

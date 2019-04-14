@@ -65,7 +65,7 @@ public class DelRepertoryServiceImpl implements DelRepertoryService {
     public List<TableEmployee> chaOfKeyStong() {
         TableEmployeeExample employeeExample=new TableEmployeeExample();
         TableEmployeeExample.Criteria criteria = employeeExample.createCriteria();
-        criteria.andDepartmentIdEqualTo("200");
+        criteria.andDepartmentIdEqualTo("122144643");
         List<TableEmployee> tableEmployees = employeeMapper.selectByExample(employeeExample);
         return tableEmployees;
     }
