@@ -17,20 +17,7 @@
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <script type="text/javascript">
-        //仓库列表数量
-        $(function () {
-            $.ajax({
-                type: "GET",
-                url: "${pageContext.request.contextPath}/delRepertoryController/chacount",
-                dataType: "json",
-                success: function (returnData) {
-                    console.log(returnData);
-                },
-                error: function () {
-                    console.log("error！")
-                }
-            })
-        });
+
     </script>
 </head>
 
@@ -178,6 +165,20 @@
                 }
             })
         }
+    //仓库列表数量
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "${pageContext.request.contextPath}/delRepertoryController/chacount",
+            dataType: "json",
+            success: function (returnData) {
+                console.log(returnData);
+            },
+            error: function () {
+                console.log("error！")
+            }
+        })
+    });
 </script>
 <script>var _hmt = _hmt || [];
 (function () {

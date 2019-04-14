@@ -22,8 +22,8 @@ public class ExecuteServiceImpl implements ExecuteService {
     }
 
     @Override
-    public int deleteBatch(List exceptIds) {
-        Map<String,List> data = new HashMap<>(16);
+    public int deleteBatch(List<Integer> exceptIds) {
+        Map<String,List<Integer>> data = new HashMap<>(16);
         data.put("exceptIds",exceptIds);
         return mapper.deleteBatch(data);
     }

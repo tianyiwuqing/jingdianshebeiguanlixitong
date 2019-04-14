@@ -45,7 +45,7 @@ public class ExecuteController {
      */
     @ResponseBody
     @RequestMapping("deviceErrorDelete")
-    public Map<String,Object> deleteBatch(@RequestBody List exceptIds){
+    public Map<String,Object> deleteBatch(@RequestBody List<Integer> exceptIds){
         System.out.print("设备故障登记列表批量删除:"+exceptIds.toString());
         Map<String,Object> result = new HashMap<>(16);
         if(exceptIds != null && !exceptIds.isEmpty()){
