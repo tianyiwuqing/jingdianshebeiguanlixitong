@@ -44,8 +44,8 @@ public class ExecuteController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("deviceDelete")
-    public Map<String,Object> deleteBatch(@RequestBody List<String> exceptIds){
+    @RequestMapping("deviceErrorDelete")
+    public Map<String,Object> deleteBatch(@RequestBody List exceptIds){
         System.out.print("设备故障登记列表批量删除:"+exceptIds.toString());
         Map<String,Object> result = new HashMap<>(16);
         if(exceptIds != null && !exceptIds.isEmpty()){
@@ -67,7 +67,7 @@ public class ExecuteController {
      */
     @RequestMapping("deviceErrorQuery")
     @ResponseBody
-    public List<Map<String,Object>> deviceErrorList(@RequestBody Map<String,Object> queryData){
+    public List<Map<String,Object>> deviceErrorQuery(@RequestBody Map<String,Object> queryData){
         System.out.print("设备故障登记列表条件查询："+ queryData.toString());
         if(queryData == null || queryData.isEmpty()){
             return null;

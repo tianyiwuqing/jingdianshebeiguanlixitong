@@ -8,7 +8,7 @@
 
     <!--设备故障登记批量删除-->
     <update id="deleteBatch" parameterType="java.util.List">
-        update table_exception set except_status=0 where except_id in ('sadadadssadaweeadac')
+        update table_exception set except_status=0 where except_id in
         <foreach collection="exceptIds" item="item" open="(" separator="," close=")">
             #{item}
         </foreach>

@@ -21,17 +21,67 @@
     <script type="text/javascript">
         //仓库列表数量
         $(function () {
+            /*设备故障登记列表*/
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "${pageContext.request.contextPath}/execute/deviceErrorList",
                 dataType: "json",
                 success: function (returnData) {
-                    console.log("测试",returnData);
+                    console.log("deviceErrorList",returnData);
+                    var i = 0;
+                    $("#tbody").find("tr").remove();
+                    $("#count").attr('value','共有数据：'+returnData.length+'条');
+                    $(returnData).each(function (index, item) {
+                        i++;
+                        let statusStr = '';
+                        switch(item.except_handle_status){
+                            case 0:
+                                statusStr = '未处理';
+                                break;
+                            case 1:
+                                statusStr = '维修中';
+                                break;
+                            case 2:
+                                statusStr = '已正常';
+                                break;
+                            case 3:
+                                statusStr = '已封存';
+                                break;
+                            case 4:
+                                statusStr = '已报废';
+                                break;
+                        }
+                        var option = "<tr id='" + item.id + "'>" +
+                            "<td>" +
+                            "<div class='layui-unselect layui-form-checkbox' lay-skin='primary' data-id='2'><i class='layui-icon'>&#xe605;</i></div>" +
+                            "</td>" +
+                            "<td>" + i + "</td>" +
+                            "<td>" + item.except_ticket_id + "</td>" +
+                            "<td>" + item.except_sketch + "</td>" +
+                            "<td>" + item.except_content + "</td>" +
+                            "<td>" + item.equipment_name + "</td>" +
+                            "<td>" + item.equipment_standard + "</td>" +
+                            "<td>" + item.except_time + "</td>" +
+                            "<td class='td-status'>" +statusStr+"</td>" +
+                            "<td class='td-manage'>" +
+                            //"<a title='编辑'   href='${pageContext.request.contextPath}/equipmentAddController/chaKeyAddEquipment?aid="+item.id+"'>" +
+                            //"<i class='layui-icon'>" +
+                            //"&#xe642;" +
+                            //"</i>" +
+                            "<a title='删除' href='javascript:deleteData("+item.except_id+");'> " +
+                            "<i class='layui-icon'>&#xe640;</i> " +
+                            "</a> " +
+                            "</td> " +
+                            "</tr>";
+                        $("#tbody").append(option);
+                    })
                 },
                 error: function () {
                     console.log("error！")
                 }
-            });
+            })
+
+
             $.ajax({
                 type: "GET",
                 url: "${pageContext.request.contextPath}/equipmentAddController/chaCount",
@@ -60,18 +110,18 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-    <%--<div class="layui-row">--%>
-    <%--<form class="layui-form layui-col-md12 x-so">--%>
-    <%--<input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start" type="date">--%>
-    <%--<input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end" type="date">--%>
-    <%--<button class="layui-btn" lay-submit="" onclick="sreach()" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>--%>
-    <%--</form>--%>
-    <%--</div>--%>
+    <div class="layui-row">
+    <form class="layui-form layui-col-md12 x-so">
+    <input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start" type="date">
+    <input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end" type="date">
+    <button class="layui-btn" lay-submit="" onclick="sreach()" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+    </form>
+    </div>
     <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+        <button class="layui-btn layui-btn-danger" onclick="deleteData();"><i class="layui-icon"></i>批量删除</button>
         <button class="layui-btn" onclick="x_admin_show('添加设备','./equipment-add.jsp',600,400)"><i class="layui-icon"></i>添加
         </button>
-        <span class="x-right" style="line-height:40px">共有数据：${sessionScope.addEquipmendcount} 条</span>
+        <span id="count" class="x-right" style="line-height:40px">共有数据：${sessionScope.addEquipmendcount} 条</span>
     </xblock>
     <table id="" class="layui-table x-admin">
         <thead>
@@ -82,15 +132,13 @@
             </th>
             <th>序号</th>
             <th>单据编号</th>
-            <th>故障现象</th>
-            <th>设备编号</th>
+            <th>故障简述</th>
+            <th>故障详情</th>
             <th>设备名称</th>
             <th>规格型号</th>
-            <th>单位</th>
-            <th>出厂编号</th>
-            <th>制单日期</th>
-            <th>制单人员</th>
+            <th>上传日期</th>
             <th>单据状态</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody id="tbody">
@@ -123,119 +171,98 @@
             elem: '#end' //指定元素
         });
     });
-    /*订单-时间-查询*/
+
+
+
+    /*设备查询*/
     function sreach() {
         var start= $("#start").val();
         var end= $("#end").val();
         console.log(start+":"+end);
-        $(function () {
-            $.ajax({
-                type: "GET",
-                url: "${pageContext.request.contextPath}/equipmentAddController/chaDateAddEquipmentbills",
-                data:{"startTime":start,"endTime":end},
-                dataType: "json",
-                success: function (returnData) {
-                    var i = 0;
-                    console.log(returnData);
-                    $("#tbody").find("tr").remove();
-                    $(returnData).each(function (index, item) {
-                        i++;
-                        var option = "<tr id='" + item.id + "'>" +
-                            "<td>" +
-                            "<div class='layui-unselect layui-form-checkbox' lay-skin='primary' data-id='2'><i class='layui-icon'>&#xe605;</i></div>" +
-                            "</td>" +
-                            "<td>" + i + "</td>" +
-                            "<td>" + item.billsnumber + "</td>" +
-                            "<td>" + item.furnish.name + "</td>" +
-                            "<td>" + item.abstractdetails + "</td>" +
-                            "<td>" + item.createTime + "</td>" +
-                            "<td>" + item.billsEmployee.employeename + "</td>" +
-                            "<td class='td-status'>" +item.isDelate+"</td>" +
-                            "<td class='td-manage'>" +
-                            // onclick='x_admin_show('编辑','member-edit.html',600,400)'
-                            "<a title='编辑'   href='${pageContext.request.contextPath}/equipmentAddController/chaKeyAddEquipment?aid="+item.id+"'>" +
-                            "<i class='layui-icon'>" +
-                            "&#xe642;" +
-                            "</i>" +
-                            "<a title='删除' onclick='member_del(this,'要删除的id')' href='javascript:addBillsDelete("+item.id +");'> " +
-                            "<i class='layui-icon'>&#xe640;</i> " +
-                            "</a> " +
-                            "</td> " +
-                            "<td></td> " +
-                            "</tr>";
-                        $("#tbody").append(option);
-                    })
-                },
-                error: function () {
-                    console.log("error！")
-                }
-            })
-        });
-    }
-    /*订单-删除*/
-    function addBillsDelete(obj) {
         $.ajax({
-            type: "GET",
-            url: "${pageContext.request.contextPath}/equipmentAddController/delAddquipmentbills",
-            data: {"aid": obj},
-            dataType: "json",
-            success: function (returnData) {
-                if (returnData) {
-                    $("#tbody").find("tr[id=" + obj + "]").remove()
-                }
-            },
-            error: function () {
-                console.log("error！")
-            }
-        })
-    }
-
-    //设备添加订单列表chaAddequipmentbills
-    $(function () {
-        $.ajax({
-            type: "GET",
-            url: "${pageContext.request.contextPath}/equipmentAddController/chaAllAddequipmentbills",
+            type: "POST",
+            url: "${pageContext.request.contextPath}/execute/deviceErrorQuery",
+            data:{"queryData":{"startTime":start,"endTime":end}},
+            contentType: 'application/json',
             dataType: "json",
             success: function (returnData) {
                 var i = 0;
-                console.log(returnData);
+                console.log("查询结果",returnData);
+                $("#tbody").find("tr").remove();
+                $("#count").attr('value','共有数据：'+returnData.length+'条');
                 $(returnData).each(function (index, item) {
                     i++;
+                    let statusStr = '';
+                    switch(item.except_handle_status){
+                        case 0:
+                            statusStr = '未处理';
+                            break;
+                        case 1:
+                            statusStr = '维修中';
+                            break;
+                        case 2:
+                            statusStr = '已正常';
+                            break;
+                        case 3:
+                            statusStr = '已封存';
+                            break;
+                        case 4:
+                            statusStr = '已报废';
+                            break;
+                    }
                     var option = "<tr id='" + item.id + "'>" +
                         "<td>" +
                         "<div class='layui-unselect layui-form-checkbox' lay-skin='primary' data-id='2'><i class='layui-icon'>&#xe605;</i></div>" +
                         "</td>" +
                         "<td>" + i + "</td>" +
-                        "<td>" + item.billsnumber + "</td>" +
-                        "<td>" + item.furnish.name + "</td>" +
-                        "<td>" + item.abstractdetails + "</td>" +
-                        "<td>" + item.furnish.name + "</td>" +
-                        "<td>" + item.abstractdetails + "</td>" +
-                        "<td>" + item.createTime + "</td>" +
-                        "<td>" + item.billsEmployee.employeename + "</td>" +
-                        "<td>" + item.abstractdetails + "</td>" +
-                        "<td>" + item.abstractdetails + "</td>" +
-                        "<td>" + item.abstractdetails + "</td>" +
-
+                        "<td>" + item.except_ticket_id + "</td>" +
+                        "<td>" + item.except_sketch + "</td>" +
+                        "<td>" + item.except_content + "</td>" +
+                        "<td>" + item.equipment_name + "</td>" +
+                        "<td>" + item.equipment_standard + "</td>" +
+                        "<td>" + item.except_time + "</td>" +
+                        "<td class='td-status'>" +statusStr+"</td>" +
+                        "<td class='td-manage'>" +
+                        //"<a title='编辑'   href='${pageContext.request.contextPath}/equipmentAddController/chaKeyAddEquipment?aid="+item.id+"'>" +
+                        //"<i class='layui-icon'>" +
+                        //"&#xe642;" +
+                        //"</i>" +
+                        "<a title='删除' href='javascript:deleteData("+item.except_id+");'> " +
+                        "<i class='layui-icon'>&#xe640;</i> " +
+                        "</a> " +
+                        "</td> " +
                         "</tr>";
                     $("#tbody").append(option);
                 })
             },
-            error: function () {
-                console.log("error！")
+            error: function (e) {
+                console.log("error！",e)
             }
         })
-    });
+    };
 
-    function delAll(argument) {
+    /*
+    * 删除（可批量删）
+    * */
+    function deleteData(id) {
+        let exceptIds = [];
+        if(id == null || id == undefined || id.length<=0){
+            //TODO  把选中的所有的id弄进来
+        }else{
+            exceptIds.push(id);
+        }
+
+        console.log("asdasdasdsada",JSON.stringify(exceptIds))
         $.ajax({
-            type: "GET",
-            url: "${pageContext.request.contextPath}/equipmentAddController/delAllAddquipmentbills",
+            type: "POST",
+            url: "${pageContext.request.contextPath}/execute/deviceErrorDelete",
+            data: JSON.stringify(exceptIds),
+            contentType: 'application/json',
             dataType: "json",
             success: function (returnData) {
-                if (returnData) {
+                if (returnData.result == 'OK') {
                     layer.msg('删除成功', {icon: 1});
-                    $("#tbody").find("tr").remove();
+                    $("#tbody").find("tr[id=" + obj + "]").remove()
                 }
             },
             error: function () {

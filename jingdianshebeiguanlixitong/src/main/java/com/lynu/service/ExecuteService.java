@@ -6,7 +6,7 @@ import java.util.Map;
 public interface ExecuteService {
     /*设备故障登记*/
     public List<Map<String,Object>> deviceErrorList();
-    public int deleteBatch(List<String> exceptIds);
+    public int deleteBatch(List exceptIds);
     public List<Map<String,Object>> deviceErrorQuery(Map<String,Object> queryData);
 
     /*故障维修管理*/

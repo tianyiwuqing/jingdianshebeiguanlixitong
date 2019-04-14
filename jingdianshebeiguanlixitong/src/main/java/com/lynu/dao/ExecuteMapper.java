@@ -7,7 +7,7 @@ public interface ExecuteMapper {
     /*设备故障登记*/
     public List<Map<String,Object>> deviceErrorList();
     public List<Map<String,Object>> deviceErrorQuery(Map<String,Object> queryData);
-    public int deleteBatch(List<String> exceptIds);
+    public int deleteBatch(Map<String,List> exceptIds);
 
     /*故障维修管理*/
     public List<Map<String,Object>> repairList();

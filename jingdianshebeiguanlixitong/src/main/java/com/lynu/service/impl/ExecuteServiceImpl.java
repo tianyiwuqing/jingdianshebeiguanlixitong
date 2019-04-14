@@ -5,6 +5,7 @@ import com.lynu.service.ExecuteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,8 +22,10 @@ public class ExecuteServiceImpl implements ExecuteService {
     }
 
     @Override
-    public int deleteBatch(List<String> exceptIds) {
-        return mapper.deleteBatch(exceptIds);
+    public int deleteBatch(List exceptIds) {
+        Map<String,List> data = new HashMap<>(16);
+        data.put("exceptIds",exceptIds);
+        return mapper.deleteBatch(data);
     }
 
     @Override
